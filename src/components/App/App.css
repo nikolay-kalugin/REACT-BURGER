@@ -1,6 +1,8 @@
 :root {
   --interface-bg: #131316;
-  --text-promary-light: #f2f2f3;
+  --interface-modal-bg: #1C1C21;
+  --text-primary-light: #f2f2f3;
+
 }
 
 @font-face {
@@ -12,12 +14,13 @@
 
 a {
   text-decoration: none;
+  color: var( --text-primary-light, #f2f2f3);
 }
 
 .App { 
   font-family: "JetBrainsMono", "Arial", sans-serif;
   background-color: var( --interface-bg, #131316);
-  color: var( --text-promary-light);
+  color: var( --text-primary-light, #f2f2f3);
   text-align: center;
   padding: 40px 40px 40px 40px;
   border: 5px solid red;

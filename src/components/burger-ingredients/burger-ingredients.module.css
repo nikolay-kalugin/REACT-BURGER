@@ -1,0 +1,63 @@
+.BurgerIngredients {
+	outline: 2px solid rosybrown;  
+	outline-offset: -2px;
+	composes: pt-10  from global;
+}
+
+.MainTitle {
+	font-family: "JetBrainsMono";
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 40px;
+	text-align: left;
+	composes: mb-5  from global;
+
+	outline: 1px solid yellow;  
+	outline-offset: -1px;
+}
+
+._Tabs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1 0 0;
+	composes: mb-10  from global;
+
+	outline: 1px solid yellow;  
+	outline-offset: -1px;
+}
+
+.IngredientsList {
+	display: grid; 
+	grid-template-columns: 50% 50%; 
+	column-gap: 10px; 
+	overflow-y: scroll;
+}
+
+
+/* ширина всей полосы прокрутки */
+
+/* ::-webkit-scrollbar {
+	width: 12px !important;               
+} */
+  
+
+/* цвет зоны отслеживания */
+
+
+/* ::-webkit-scrollbar-track {
+	background: orange !important;      
+} */
+  
+
+/* цвет бегунка */
+/* округлось бегунка */
+/* отступ вокруг бегунка */
+
+
+/* ::-webkit-scrollbar-thumb {
+	background-color: blue !important;   
+	border-radius: 20px !important;      
+	border: 3px solid orange !important;  
+} */

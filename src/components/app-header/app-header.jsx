@@ -11,13 +11,13 @@ function AppHeader()
 					<li className={styles.NavItem}>
 						<a className={styles.NavLink} href="!#">
 							<span className={styles.NavIcon}><BurgerIcon type="primary" /></span>
-							<p className={styles.TextDefault}>Конструктор</p>
+							<p className={[styles.Text, styles.TextDefault]}>Конструктор</p>
 						</a>
 					</li>
 					<li className={styles.NavItem}>
 						<a className={styles.NavLink} href="!#">
 							<span className={styles.NavIcon}><ListIcon type="secondary" /></span>
-							<p className={styles.TextInactive}>Лента заказов</p>
+							<p className={[styles.Text, styles.TextInactive]}>Лента заказов</p>
 						</a>
 					</li>
 					<li className={styles.NavItem}>
@@ -28,7 +28,7 @@ function AppHeader()
 					<li className={styles.NavItem}>
 						<a className={styles.NavLink} href="!#">
 							<span className={styles.NavIcon}><ProfileIcon type="secondary" /></span>
-							<p className={styles.TextInactive}>Личный кабинет</p>
+							<p className={[styles.Text, styles.TextInactive]}>Личный кабинет</p>
 						</a>
 					</li>
 				</ul> 

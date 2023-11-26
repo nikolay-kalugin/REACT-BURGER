@@ -1,0 +1,17 @@
+.BurgerConstructor {
+	composes: pt-25  from global;
+	outline: 2px solid rosybrown;  
+	outline-offset: -2px;
+
+}
+
+.ConstructorElement {
+	background-color: var( --interface-modal-bg, #1C1C21);
+}
+
+.ConstructorList {
+	display: grid;
+	grid-template-columns: 100%;  
+	column-gap: 10px; 
+	overflow-y: scroll;
+}

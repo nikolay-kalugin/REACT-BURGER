@@ -32,14 +32,27 @@
 	display: grid; 
 	grid-template-columns: 50% 50%; 
 	column-gap: 10px; 
-	overflow-y: scroll;
+	
+}
+
+.custom-scroll {
+	overflow-y: scroll !important; 
+}
+
+.constructor-element__action svg {
+	
+
+}
+
+.constructor-element > .constructor-element__row {
+	flex-direction: column;
 }
 
 
 /* ширина всей полосы прокрутки */
 
 /* ::-webkit-scrollbar {
-	width: 12px !important;               
+	            
 } */
   
 

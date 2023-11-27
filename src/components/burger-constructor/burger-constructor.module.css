@@ -1,7 +1,7 @@
 .BurgerConstructor {
-	composes: pt-25  from global;
 	outline: 2px solid rosybrown;  
 	outline-offset: -2px;
+	composes: pt-25  from global;
 
 }
 

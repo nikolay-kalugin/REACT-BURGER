@@ -1,0 +1,34 @@
+.IngredientCard {
+	width: 272px;
+	min-height: 208px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+
+	outline: 1px solid rgb(255, 123, 0);  
+	outline-offset: -1px;
+}
+
+.IngredientImg {
+	width: 240px;
+	height: 120px;
+	composes: mb-4   from global; 
+}
+
+.IngredientPriceBlock {
+	width: auto;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	composes: mb-4   from global; 
+}
+
+.IngredientPrice {
+	composes: text text_type_digits-default mr-2   from global; 
+}
+
+.IngredientText {
+	min-height: 48px;
+	vertical-align: top;
+}

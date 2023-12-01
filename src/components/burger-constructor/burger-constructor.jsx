@@ -18,7 +18,7 @@ function BurgerConstructor(props)
 				isLocked={true}
 			/>
 
-			<ul className={styles.ConstructorList}> 
+			<ul className={styles.ConstructorList} > 
 				{
 					ingredients.length !==0 && ingredients.map( ingredient => 
 						<li key={ingredient._id}>

@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'normalize.css';
 import './index.css';
@@ -7,8 +8,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <App /> 
-  // <React.StrictMode></React.StrictMode>
+  <React.StrictMode>
+    <App /> 
+  </React.StrictMode>
 );
 
 

@@ -13,7 +13,7 @@
 	text-align: left;
 	composes: mb-5  from global;
 
-	outline: 1px solid yellow;  
+	outline: 1px solid rgb(0, 255, 149);  
 	outline-offset: -1px;
 }
 
@@ -29,48 +29,12 @@
 }
 
 .IngredientsList {
-	display: grid; 
-	grid-template-columns: 50% 50%; 
-	column-gap: 10px; 
-	
-}
+	height: 700px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 
-.custom-scroll {
-	overflow-y: scroll !important; 
-}
-
-.constructor-element__action svg {
-	
-
-}
-
-.constructor-element > .constructor-element__row {
-	flex-direction: column;
+	outline: 2px solid rgb(38, 0, 255);  
+	outline-offset: -2px;
 }
 
 
-/* ширина всей полосы прокрутки */
-
-/* ::-webkit-scrollbar {
-	            
-} */
-  
-
-/* цвет зоны отслеживания */
-
-
-/* ::-webkit-scrollbar-track {
-	background: orange !important;      
-} */
-  
-
-/* цвет бегунка */
-/* округлось бегунка */
-/* отступ вокруг бегунка */
-
-
-/* ::-webkit-scrollbar-thumb {
-	background-color: blue !important;   
-	border-radius: 20px !important;      
-	border: 3px solid orange !important;  
-} */

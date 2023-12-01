@@ -1,15 +1,15 @@
-
 import { useState } from 'react';
-import { Tab, ConstructorElement, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-
+import IngredientCategory from '../ingredient-category/ingredient-category.jsx';
 
 function BurgerIngredients(props) 
 {
 	const [current_tab, setCurrent] = useState('one');
-	const ingredients = props.ingredients // props.ingredients.filter( obj => obj.type === 'main' ); // 'bun'
 
-	// console.log(ingredients)
+	const buns = props.ingredients.filter( obj => obj.type === 'bun' ); 
+	const sauces = props.ingredients.filter( obj => obj.type === 'sauce' ); 
+	const mains = props.ingredients.filter( obj => obj.type === 'main' ); 
 
 	return (
 		<section className={styles.BurgerIngredients}>
@@ -28,31 +28,13 @@ function BurgerIngredients(props)
 				</Tab>
 			</div>
 
-			<div>
-				<h2>Бургеры</h2>
+			<ul className={`${styles.IngredientsList} custom-scroll`}>
 
-				<ul className={styles.IngredientsList} custom-scroll > 
-					{
-						ingredients.length !==0 && ingredients.map( ingredient => 
-							<li key={ingredient._id}>
-								<ConstructorElement 
-									text={ingredient.name}
-									price={ingredient.price}
-									thumbnail={ingredient.image}
-									isLocked={undefined}>
+				<IngredientCategory title={'Булки'} ingredients={buns} />
+				<IngredientCategory title={'Соусы'} ingredients={sauces} />
+				<IngredientCategory title={'Начинки'} ingredients={mains} />
 
-	 								<Counter count={1} size="default" extraClass="m-1" />
-
-								</ConstructorElement>
-									
-							
-								
-							</li>
-						)
-					}
-				</ul>
-
-			</div>
+			</ul>
 
 
 		</section>

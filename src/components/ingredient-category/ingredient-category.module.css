@@ -1,0 +1,26 @@
+.IngredientsTitle {
+	font-family: "JetBrainsMono";
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 30px;
+
+	text-align: left;
+	composes: mb-6  from global;
+
+	outline: 1px solid rgb(255, 174, 0);  
+	outline-offset: -1px;
+}
+
+.IngredientsBox {
+	display: grid; 
+	grid-template-columns: 50% 50%; 
+	justify-content: end;
+	column-gap: 12px;
+	row-gap: 32px;
+	composes: pl-4 pb-10   from global;
+
+	outline: 1px solid rgb(55, 255, 0);  
+	outline-offset: -1px;
+}
+

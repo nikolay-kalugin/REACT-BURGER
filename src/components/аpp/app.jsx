@@ -3,6 +3,7 @@ import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+
 // import ingredients from '../../utils/data.js';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
   }, [setIngredients]);
 
   return (
-    <div className={styles.App}>
+    <div className={`${styles.App} custom-scroll`}>
 
       <AppHeader />
 

@@ -1,13 +1,4 @@
-.IngredientCard {
-	width: 272px;
-	min-height: 208px;
-	display: block;
-	margin: 0 auto;
-	position: relative;
 
-	outline: 1px solid rgb(255, 123, 0);  
-	outline-offset: -1px;
-}
 
 .IngredientImg {
 	width: 240px;

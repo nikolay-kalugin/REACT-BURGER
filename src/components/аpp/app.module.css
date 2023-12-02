@@ -32,12 +32,15 @@ ul {
   background-color: var( --interface-bg, #131316);
   color: var( --text-primary-light, #f2f2f3);
 
+  height: 700px;
   display: block;
   text-align: center; 
-  padding: 40px 40px 40px 40px;
+  /* padding: 40px 40px 40px 40px; */
+  overflow-x: hidden;
+	overflow-y: scroll;
 
-  outline: 2px solid red;  
-	outline-offset: -2px;
+  /* outline: 2px solid red;  
+	outline-offset: -2px; */
 }
 
 .Main {
@@ -47,6 +50,6 @@ ul {
   grid-template-columns: 600px 600px;
   column-gap: 40px;
 
-  outline: 2px solid green;  
-	outline-offset: -2px;
+  /* outline: 2px solid green;  
+	outline-offset: -2px; */
 }

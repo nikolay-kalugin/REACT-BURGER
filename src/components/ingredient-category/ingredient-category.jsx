@@ -10,8 +10,10 @@ function IngredientCategory({title, ingredients}) {
 			<ul className={styles.IngredientsBox} > 
 				{
 					ingredients.length !==0 && ingredients.map( ingredient => 
-						
-						<IngredientCard ingredient={ingredient}/>
+
+						<li className={styles.IngredientCard} key={ingredient._id} >
+							<IngredientCard ingredient={ingredient} />
+						</li>
 						
 					)
 				}

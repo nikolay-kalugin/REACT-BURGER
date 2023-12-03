@@ -1,41 +1,7 @@
-:root {
-  --interface-bg: #131316;
-  --interface-modal-bg: #1C1C21;
-  --text-primary-light: #f2f2f3;
-}
-
-@font-face {
-  font-family: "JetBrainsMono";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../../fonts/JetBrainsMono-Regular.woff2") format("woff2");
-}
-
-a {
-  text-decoration: none;
-  color: var( --text-primary-light, #f2f2f3);
-}
-
-h1, h2 {
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-	padding: 0;
-}
-
 .App { 
-  font-family: "JetBrainsMono", "Arial", sans-serif;
-  background-color: var( --interface-bg, #131316);
-  color: var( --text-primary-light, #f2f2f3);
-
   height: 700px;
   display: block;
   text-align: center; 
-  /* padding: 40px 40px 40px 40px; */
   overflow-x: hidden;
 	overflow-y: scroll;
 

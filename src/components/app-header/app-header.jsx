@@ -1,5 +1,6 @@
 
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import Link from '../link/link'
 import styles from './app-header.module.css';
 
 function AppHeader() 
@@ -9,27 +10,16 @@ function AppHeader()
 			<nav className={styles.Nav}>
 				<ul className={styles.NavList}>
 					<li className={styles.NavItem}>
-						<a className={styles.NavLink} href="!#">
-							<span className={styles.NavIcon}><BurgerIcon type="primary" /></span>
-							<p className={[styles.Text, styles.TextDefault]}>Конструктор</p>
-						</a>
+						<Link url="!#" icon={<BurgerIcon type="primary" />} text="Конструктор" />
 					</li>
 					<li className={styles.NavItem}>
-						<a className={styles.NavLink} href="!#">
-							<span className={styles.NavIcon}><ListIcon type="secondary" /></span>
-							<p className={[styles.Text, styles.TextInactive]}>Лента заказов</p>
-						</a>
+						<Link url="!#" icon={<ListIcon type="secondary" />} text="Лента заказов" />
 					</li>
 					<li className={styles.NavItem}>
-						<a className={styles.NavLink} href="!#">
-							<Logo />
-						</a>
+						<Link url="!#" icon={<Logo />} />
 					</li>
 					<li className={styles.NavItem}>
-						<a className={styles.NavLink} href="!#">
-							<span className={styles.NavIcon}><ProfileIcon type="secondary" /></span>
-							<p className={[styles.Text, styles.TextInactive]}>Личный кабинет</p>
-						</a>
+						<Link url="!#" icon={<ProfileIcon type="secondary" />} text="Личный кабинет" />
 					</li>
 				</ul> 
 			</nav>

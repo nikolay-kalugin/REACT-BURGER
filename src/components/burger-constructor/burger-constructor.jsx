@@ -1,5 +1,5 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import CreateOrder from '../create-order/create-order.jsx'
+import CreateOrder from '../create-order/create-order'
 import styles from './burger-constructor.module.css';
 
 function BurgerConstructor({ingredients}) { 
@@ -21,7 +21,7 @@ function BurgerConstructor({ingredients}) {
 					{
 						ingredients.length !==0 && ingredients.map( ingredient => 
 							<li key={ingredient._id}>
-								<DragIcon type="primary" />
+								<DragIcon type="primary"  />
 								<ConstructorElement 
 									extraClass={styles.ConstructorListElement}
 									text={ingredient.name}

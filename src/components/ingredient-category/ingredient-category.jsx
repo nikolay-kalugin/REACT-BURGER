@@ -1,4 +1,4 @@
-import IngredientCard from '../ingredient-card/ingredient-card.jsx';
+import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
 function IngredientCategory({title, ingredients}) {

@@ -5,7 +5,8 @@ function CreateOrder(props) {
 	return(
 		<div className={styles.CreateOrder}>
 			<p className={styles.TotalPrice}>
-				610 <CurrencyIcon type="primary" />
+				<span className="mr-2">610</span>
+				<CurrencyIcon type="primary" />
 			</p>
 			
 			<Button htmlType="button" type="primary" size="large">

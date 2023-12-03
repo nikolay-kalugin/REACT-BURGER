@@ -1,4 +1,6 @@
-
+.IngredientCard:hover {
+	cursor: pointer;
+}
 
 .IngredientImg {
 	width: 240px;

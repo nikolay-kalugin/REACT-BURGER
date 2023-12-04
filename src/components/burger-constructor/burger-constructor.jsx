@@ -1,8 +1,22 @@
+import { useState } from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import CreateOrder from '../create-order/create-order'
+import OrderCreator from '../order-creator/order-creator'
+import Modal from '../modal/modal'
+import OrderDetails from '../order-details/order-details'
 import styles from './burger-constructor.module.css';
 
+
 function BurgerConstructor({ingredients}) { 
+
+	const [orderDetails, setOrderDetails]  = useState(null);
+
+	const onClose = () => { 
+		setOrderDetails( () => null );
+	}
+
+	const onClickOrder = () =>	{
+		setOrderDetails( () => <p>orderDetails, orderDetails, orderDetails ...</p> );
+	}
 
 	return (
 		<section className={styles.BurgerConstructor}>
@@ -21,7 +35,7 @@ function BurgerConstructor({ingredients}) {
 					{
 						ingredients.length !==0 && ingredients.map( ingredient => 
 							<li key={ingredient._id}>
-								<DragIcon type="primary"  />
+								<DragIcon type="primary" />
 								<ConstructorElement 
 									extraClass={styles.ConstructorListElement}
 									text={ingredient.name}
@@ -46,8 +60,15 @@ function BurgerConstructor({ingredients}) {
 				/>
 			</article>
 
-			<CreateOrder />
+			<OrderCreator onClickOrder={ () => onClickOrder() }/>
 
+			{ 
+				orderDetails && <Modal 
+					onClose={onClose} 
+					modalContent={ <OrderDetails orderDetails={orderDetails} />}>
+				</Modal>
+			}
+			
 		</section>
 	)
 

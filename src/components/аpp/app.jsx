@@ -7,6 +7,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor';
 function App() {
 
   const [ingredients, setIngredients] = useState([]);
+  const [loading, setLoading] =  useState(true);
 
   useEffect(() => {
 
@@ -25,9 +26,10 @@ function App() {
         setIngredients( () => obj.data );
       })
       .catch(error => {
-        console.error('There was a problem with the Fetch operation:', error);
+        alert('При загрузке списка ингредиентов возникла ошибка: ', error);
         setIngredients( () => [] )
-      });
+      })
+      .finally( () => { setLoading(false) } )
 
   }, [setIngredients]);
 
@@ -38,12 +40,13 @@ function App() {
 
        <main className={styles.Main}>
         { 
-             ingredients.length !== 0  && 
-            <>
-                <BurgerIngredients ingredients={ingredients} />
+ 
+		    loading ? <p>Данные загружаются...</p> 
+          :
+             <>
+                <BurgerIngredients ingredients={ingredients} loading={loading} />
                 <BurgerConstructor ingredients={ingredients} />
-               
-            </>
+              </>
         }
       </main>
 

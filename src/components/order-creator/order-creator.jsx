@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from '../create-order/create-order.module.css';
+import styles from './order-creator.module.css';
 
-function CreateOrder(props) {
+function OrderCreator({onClickOrder}) {
+
 	return(
 		<div className={styles.CreateOrder}>
 			<p className={styles.TotalPrice}>
@@ -9,7 +11,12 @@ function CreateOrder(props) {
 				<CurrencyIcon type="primary" />
 			</p>
 			
-			<Button htmlType="button" type="primary" size="large">
+			<Button 
+				htmlType="button" 
+				type="primary" 
+				size="large"
+				onClick={onClickOrder}
+			>
   				Оформить заказ
 			</Button>
 		</div>
@@ -17,4 +24,4 @@ function CreateOrder(props) {
 	)
 }
 
-export default CreateOrder;
+export default OrderCreator;

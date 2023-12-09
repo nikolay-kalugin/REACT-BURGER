@@ -1,0 +1,60 @@
+.IngredientDetails{
+	width: 480px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	/* outline: 1px solid rgb(0, 8, 255);  
+	outline-offset: -1px; */
+}
+
+.Image {
+	composes: pt-10 mb-10 from global;
+	/* outline: 1px solid rgb(251, 255, 0);  
+	outline-offset: -1px; */
+}
+
+.Title {
+	composes: mb-10 text text_type_main-default from global;
+	/* outline: 1px solid rgb(255, 64, 0);  
+	outline-offset: -1px; */
+}
+
+.ParametersContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	composes: mb-10 from global;
+
+	/* outline: 1px solid rgb(0, 255, 187);  
+	outline-offset: -1px; */
+}
+
+.Parameter {
+	width: 110px;
+	composes: mr-2 from global;
+
+	/* outline: 1px solid rgb(179, 0, 255);  
+	outline-offset: -1px; */
+}
+
+.Parameter:last-child {
+	margin-right: 0;
+}
+
+.Text {
+	text-align: center;
+	composes: mb-2 text text_type_main-small text_color_inactive from global;
+	
+	/* outline: 1px solid rgb(255, 0, 174);  
+	outline-offset: -1px; */
+}
+
+.Digits { 
+	text-align: center;
+	composes: text text_type_digits-small text_color_inactive from global;
+
+	/* outline: 1px solid rgb(21, 255, 0);  
+	outline-offset: -1px; */
+}

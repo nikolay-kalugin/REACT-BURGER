@@ -1,0 +1,21 @@
+.App { 
+  height: 700px;
+  display: block;
+  text-align: center; 
+  overflow-x: hidden;
+	overflow-y: scroll;
+
+  /* outline: 2px solid red;  
+	outline-offset: -2px; */
+}
+
+.Main {
+  width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 600px 600px;
+  column-gap: 40px;
+
+  /* outline: 2px solid green;  
+	outline-offset: -2px; */
+}

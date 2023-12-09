@@ -1,0 +1,15 @@
+.ModalOverlay {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.60);
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* outline: 2px solid rgb(0, 153, 255);  
+	outline-offset: -2px; */
+}

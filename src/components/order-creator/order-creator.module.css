@@ -1,0 +1,18 @@
+.CreateOrder {
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	composes: pr-4  from global;
+
+	/* outline: 1px solid rgb(0, 153, 255);  
+	outline-offset: -1px; */
+}
+
+.TotalPrice {
+	composes: text text_type_digits-medium  mr-10  from global;
+
+	/* outline: 1px solid rgb(0, 153, 255);  
+	outline-offset: -1px; */
+}
+

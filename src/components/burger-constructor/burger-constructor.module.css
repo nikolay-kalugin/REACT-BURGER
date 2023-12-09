@@ -1,5 +1,7 @@
 .BurgerConstructor {
+	height: 100vh;
 	composes: pt-25  from global;
+
 
 	/* outline: 2px solid rosybrown;  
 	outline-offset: -2px; */
@@ -14,13 +16,14 @@
 
 .ConstructorListElement {
 	background-color: var( --interface-modal-bg, #1C1C21);
+	/* composes: mt-4 from global; */
 
 	/* outline: 2px solid rgb(38, 0, 255);  
 	outline-offset: -2px; */
 }
 
 .MiddleConstructorList {
-	height: 464px;
+	height: 100vh;
 	display: grid;
 	grid-template-columns: 100%;  
 	row-gap: 16px; 

@@ -30,7 +30,7 @@
 }
 
 .IngredientsList {
-	height: 700px;
+	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
 

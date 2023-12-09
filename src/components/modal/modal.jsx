@@ -7,7 +7,7 @@ import styles from '../modal/modal.module.css'
 const modal = document.getElementById('modal') 
 
 
-function Modal({title, onClose, modalContent}) {
+function Modal({title, onClose, children}) {
 
 	const handleEscape = (e) => {
 		// console.log(e.key);
@@ -31,7 +31,7 @@ function Modal({title, onClose, modalContent}) {
 					</div>
 				</div>
 				<div className={styles.ModalContent}>
-					{modalContent}
+					{children}
 				</div>
 			</div>
 			<ModalOverlay onClose={onClose}/>

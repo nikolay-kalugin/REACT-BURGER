@@ -9,9 +9,11 @@ function BurgerIngredients({ingredients})
 {
 	const [currentTab, setCurrentTab] = useState('one');
 
-	const buns = useMemo(() => ingredients.filter( obj => obj.type === 'bun' ),[ingredients]); 
-	const sauces = useMemo(() => ingredients.filter( obj => obj.type === 'sauce' ),[ingredients]); 
-	const mains = useMemo(() => ingredients.filter( obj => obj.type === 'main' ),[ingredients]); 
+	const buns = ingredients.filter( obj => obj.type === 'bun' );
+	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
+	const mains = ingredients.filter( obj => obj.type === 'main' );
+
+	useMemo( () => ingredients, [ingredients] ); 
 
 	const onTabClick = (tab) => {
 		setCurrentTab(tab)
@@ -50,7 +52,7 @@ function BurgerIngredients({ingredients})
 			</div>
 
 			{
-				ingredients.length !== 0  &&  
+				ingredients.length > 0  && (  
 				 
 				 <ul className={`${styles.IngredientsList} custom-scroll`}>
 						<IngredientCategory 
@@ -73,13 +75,12 @@ function BurgerIngredients({ingredients})
 						/>	
 				</ul>
 				
-			}
+			)}
 		
 			{
-				ingredientDetails && <Modal 
-					title="Детали ингредиента" 
-					onClose={onClose} 
-					modalContent={ <IngredientDetails ingredientDetails={ingredientDetails} /> }>
+				ingredientDetails && 
+				<Modal title="Детали ингредиента" onClose={onClose} >
+					<IngredientDetails ingredientDetails={ingredientDetails} />
 				</Modal>
 			}
 

@@ -1,6 +1,5 @@
 .App { 
-  height: 700px;
-  display: block;
+  height: 100vh;
   text-align: center; 
   overflow-x: hidden;
 	overflow-y: scroll;
@@ -11,6 +10,7 @@
 
 .Main {
   width: 1240px;
+  height: 100vh;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 600px 600px;

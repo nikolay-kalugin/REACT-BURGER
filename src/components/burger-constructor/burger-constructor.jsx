@@ -22,6 +22,7 @@ function BurgerConstructor({ingredients}) {
 		<section className={styles.BurgerConstructor}>
 
 			<article className={styles.MainConstructorList}>
+
 				<ConstructorElement 
 					extraClass={styles.ConstructorListElement}
 					type="top"
@@ -31,24 +32,25 @@ function BurgerConstructor({ingredients}) {
 					isLocked={true}
 				/>
 
-				<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
-					{
-						ingredients.length !==0 && ingredients.map( ingredient => 
-							<li key={ingredient._id}>
-								<DragIcon type="primary" />
-								<ConstructorElement 
-									extraClass={styles.ConstructorListElement}
-									text={ingredient.name}
-									price={ingredient.price}
-									thumbnail={ingredient.image}
-									isLocked={false}
-								/>
-							</li>
+				{ ingredients.length > 0  &&  (
+					<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
+						{
+							ingredients.map( ingredient => (
+								<li key={ingredient._id}>
+									<DragIcon type="primary" />
+									<ConstructorElement 
+										extraClass={styles.ConstructorListElement}
+										text={ingredient.name}
+										price={ingredient.price}
+										thumbnail={ingredient.image}
+										isLocked={false}
+									/>
+								</li>
 
-						)
-					}
-
-				</ul>
+						))}
+					
+					</ul>
+				)}
 
 				<ConstructorElement 
 					extraClass={styles.ConstructorListElement}
@@ -63,9 +65,9 @@ function BurgerConstructor({ingredients}) {
 			<OrderCreator onClickOrder={ () => onClickOrder() }/>
 
 			{ 
-				orderDetails && <Modal 
-					onClose={onClose} 
-					modalContent={ <OrderDetails orderDetails={orderDetails} />}>
+				orderDetails && 
+				<Modal onClose={onClose} >
+						<OrderDetails orderDetails={orderDetails} />
 				</Modal>
 			}
 			

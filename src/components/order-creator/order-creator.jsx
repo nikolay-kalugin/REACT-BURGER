@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
 
 function OrderCreator({onClickOrder}) {
 
 	return(
-		<div className={styles.CreateOrder}>
+		<div className={styles.OrderCreator}>
 			<p className={styles.TotalPrice}>
 				<span className="mr-2">610</span>
 				<CurrencyIcon type="primary" />

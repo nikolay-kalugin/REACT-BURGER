@@ -1,7 +1,7 @@
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
-function IngredientCategory({id, title, ingredients, onClick}) {
+function IngredientCategory( {id, title, ingredients, onClick} ) {
 
 	const onClickIngredient = ( ingredientID ) => {
 		onClick( ingredientID )
@@ -11,7 +11,10 @@ function IngredientCategory({id, title, ingredients, onClick}) {
 		<article>
 			<h2 className={styles.IngredientsTitle}>{title}</h2>
 
-			<ul id={id} className={styles.IngredientsBox} > 
+			<ul 
+				id={id} 
+				className={styles.IngredientsBox} 
+			> 
 				{
 					ingredients.length !==0 && ingredients.map( ingredient => 
 
@@ -27,6 +30,7 @@ function IngredientCategory({id, title, ingredients, onClick}) {
 						
 					)
 				}
+
 			</ul>
 
 		</article>

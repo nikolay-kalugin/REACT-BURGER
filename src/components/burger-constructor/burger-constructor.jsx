@@ -10,10 +10,6 @@ function BurgerConstructor({ingredients}) {
 
 	const [orderDetails, setOrderDetails]  = useState(null);
 
-	const onClose = () => { 
-		setOrderDetails( () => null );
-	}
-
 	const onClickOrder = () =>	{
 		setOrderDetails( () => <p>orderDetails, orderDetails, orderDetails ...</p> );
 	}
@@ -65,11 +61,11 @@ function BurgerConstructor({ingredients}) {
 			<OrderCreator onClickOrder={ () => onClickOrder() }/>
 
 			{ 
-				orderDetails && 
-				<Modal onClose={onClose} >
-						<OrderDetails orderDetails={orderDetails} />
-				</Modal>
-			}
+				orderDetails && (
+					<Modal onClose={ () => setOrderDetails( () => null ) } >
+							<OrderDetails orderDetails={ orderDetails } />
+					</Modal>
+			)}
 			
 		</section>
 	)

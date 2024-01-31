@@ -5,7 +5,6 @@ import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 
-
 function BurgerIngredients({ingredients}) 
 {
 
@@ -13,27 +12,46 @@ function BurgerIngredients({ingredients})
 
 	const [currentTab, setCurrentTab] = useState('one');
 
+	const elemTabs = document.getElementById('tabs');
+	const refBunsList = useRef(null);
 	const refSaucesList = useRef(null);
 	const refMainsList = useRef(null);
-	const refBunsList = useRef(null);
-	
-	
-	
 
 	function update() {
-
+		
 		const elemBuns = refBunsList.current
-		const rect = elemBuns?.getBoundingClientRect();
-		elemBuns && console.log( rect.top ) 
+		const elemSauces = refSaucesList.current
+		const elemMains = refMainsList.current
 
+		const rectTabs = elemTabs?.getBoundingClientRect();
+		const rectBuns = elemBuns?.getBoundingClientRect();
+		const rectSauces = elemSauces?.getBoundingClientRect();
+		const rectMains = elemMains?.getBoundingClientRect();
 
-	  }
-	  
-	document.addEventListener("scroll", update);
-	update();
+		// console.log("rectTabs =" , rectTabs.top ) 
+		// elemBuns && console.log("rectBuns =" , rectBuns.top ) 
+		// elemSauces && console.log("rectSauces =" , rectSauces.top ) 
+		// elemMains && console.log("rectMains =" , rectMains.top ) 
 
+		const diffKoeff = 120;
 
+		if ( rectBuns.top - rectTabs.top < diffKoeff ) 
+		{
+			setCurrentTab('one')
+		}
 
+		if ( rectSauces.top - rectTabs.top < diffKoeff ) 
+		{
+			setCurrentTab('two')
+		}
+
+		if ( rectMains.top - rectTabs.top < diffKoeff ) 
+		{
+			setCurrentTab('three')
+		}
+
+	}
+	
 	useMemo( () => ingredients, [ingredients] ); 
 
 	const buns = ingredients.filter( obj => obj.type === 'bun' );
@@ -62,7 +80,7 @@ function BurgerIngredients({ingredients})
 
 			<h1 className={styles.MainTitle}>Соберите бургер</h1>
 
-			<div className={styles._Tabs}>
+			<div id="tabs" className={styles._Tabs}>
 				<Tab value="one" active={currentTab === 'one'} onClick={() => onTabClick('buns')}>
 					Булки
 				</Tab>
@@ -77,7 +95,7 @@ function BurgerIngredients({ingredients})
 			{
 				ingredients.length > 0  && (  
 				 
-					<ul className={`${styles.IngredientsList} custom-scroll`}>
+					<ul onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
 
 							<IngredientCategory 
 								id={'buns'}

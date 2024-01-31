@@ -1,10 +1,10 @@
-import { ADD_TASK, DELETE_TASK } from './actions'
+import { ADD_TASK, DELETE_TASK } from '../actions/ingredients'
 
 const initialState = {
-	tasks: [],
+	
 }
 
-export const reducer = (state = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
 	switch (action.type) 
 	{
 		case ADD_TASK:

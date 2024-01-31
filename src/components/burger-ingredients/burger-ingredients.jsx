@@ -1,19 +1,44 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 
+
 function BurgerIngredients({ingredients}) 
 {
+
+	// const ingredients = useSelector( store => store.ingredients)
+
 	const [currentTab, setCurrentTab] = useState('one');
+
+	const refSaucesList = useRef(null);
+	const refMainsList = useRef(null);
+	const refBunsList = useRef(null);
+	
+	
+	
+
+	function update() {
+
+		const elemBuns = refBunsList.current
+		const rect = elemBuns?.getBoundingClientRect();
+		elemBuns && console.log( rect.top ) 
+
+
+	  }
+	  
+	document.addEventListener("scroll", update);
+	update();
+
+
+
+	useMemo( () => ingredients, [ingredients] ); 
 
 	const buns = ingredients.filter( obj => obj.type === 'bun' );
 	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
 	const mains = ingredients.filter( obj => obj.type === 'main' );
-
-	useMemo( () => ingredients, [ingredients] ); 
 
 	const onTabClick = (tab) => {
 
@@ -53,34 +78,34 @@ function BurgerIngredients({ingredients})
 				ingredients.length > 0  && (  
 				 
 					<ul className={`${styles.IngredientsList} custom-scroll`}>
+
 							<IngredientCategory 
 								id={'buns'}
 								title={'Булки'} 
 								ingredients={buns}
 								onClick={onClickIngredient} 
-						
+								ref={refBunsList}
+
 							/>
 							<IngredientCategory 
 								id={'sauces'}
 								title={'Соусы'} 
 								ingredients={sauces}
 								onClick={onClickIngredient} 
-							
+								ref={refSaucesList}
 							/>
 							<IngredientCategory 
 								id={'mains'}
 								title={'Начинки'} 
 								ingredients={mains}
 								onClick={onClickIngredient} 
-							
+								ref={refMainsList}
 							/>	
 					</ul>
 				
 				)
 			
 			}
-
-			
 			
 			{
 				

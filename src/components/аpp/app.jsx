@@ -12,8 +12,8 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      getApiData(setIngredients, setLoading);
-},[]);
+    getApiData(setIngredients, setLoading);
+  },[]);
 
   return (
     <div className={`${styles.App} custom-scroll`}>
@@ -26,16 +26,13 @@ function App() {
             :
               <>
                 <BurgerIngredients ingredients={ingredients} loading={loading} />
-
-                <BurgerConstructor ingredients={ingredients} />
-                           
+                <BurgerConstructor ingredients={ingredients} />       
               </>
         }
       </main>
 
-
-
     </div>
+    
   );
 }
 

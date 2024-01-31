@@ -1,7 +1,9 @@
+import { forwardRef } from 'react';
+
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
-function IngredientCategory( {id, title, ingredients, onClick} ) {
+const IngredientCategory = ( {id, title, ingredients, onClick}, ref ) => {
 
 	const onClickIngredient = ( ingredientID ) => {
 		onClick( ingredientID )
@@ -9,7 +11,7 @@ function IngredientCategory( {id, title, ingredients, onClick} ) {
 
 	return(
 		<article>
-			<h2 className={styles.IngredientsTitle}>{title}</h2>
+			<h2 ref={ref} className={styles.IngredientsTitle}>{title}</h2>
 
 			<ul 
 				id={id} 
@@ -37,4 +39,4 @@ function IngredientCategory( {id, title, ingredients, onClick} ) {
 	) 
 }
 
-export default IngredientCategory;
+export default forwardRef(IngredientCategory);

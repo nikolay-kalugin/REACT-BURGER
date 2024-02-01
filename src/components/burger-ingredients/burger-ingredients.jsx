@@ -4,11 +4,13 @@ import styles from './burger-ingredients.module.css';
 import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
+import { useSelector } from 'react-redux';
 
-function BurgerIngredients({ingredients}) 
+function BurgerIngredients() 
 {
 
-	// const ingredients = useSelector( store => store.ingredients)
+	const ingredients = useSelector( store => store.ingredients );
+
 
 	const [currentTab, setCurrentTab] = useState('one');
 
@@ -59,11 +61,10 @@ function BurgerIngredients({ingredients})
 	const mains = ingredients.filter( obj => obj.type === 'main' );
 
 	const onTabClick = (tab) => {
-
 		setCurrentTab(tab);
 		const element = document.getElementById(tab);
 		element && element.scrollIntoView({ behavior: 'smooth' });
-	}
+	};
 
 
 	const [ingredientDetails, setIngredientDetails] = useState(null);

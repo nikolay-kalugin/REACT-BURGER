@@ -1,18 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import getApiData from '../../services/getApiData';
+import { getIngredients } from '../../redux/actions/getIngredients';
 
 function App() {
 
-  const [ingredients, setIngredients] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [ingredients, setIngredients] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  const loading = false;
 
   useEffect(() => {
-    getApiData(setIngredients, setLoading);
+    // getApiData(setIngredients, setLoading);
+    getIngredients();
+
   },[]);
 
   return (
@@ -25,8 +29,8 @@ function App() {
           loading ? <p>Данные загружаются...</p> 
             :
               <>
-                <BurgerIngredients ingredients={ingredients} loading={loading} />
-                <BurgerConstructor ingredients={ingredients} />       
+                <BurgerIngredients />
+                <BurgerConstructor />       
               </>
         }
       </main>

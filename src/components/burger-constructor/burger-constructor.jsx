@@ -4,9 +4,11 @@ import OrderCreator from '../order-creator/order-creator'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import styles from './burger-constructor.module.css';
+import { useSelector } from 'react-redux';
 
+function BurgerConstructor() { 
 
-function BurgerConstructor({ingredients}) { 
+	const ingredients = useSelector( store => store.ingredients );
 
 	const [orderDetails, setOrderDetails]  = useState(null);
 
@@ -19,14 +21,14 @@ function BurgerConstructor({ingredients}) {
 
 			<article className={styles.MainConstructorList}>
 
-				<ConstructorElement 
+				{/* <ConstructorElement 
 					extraClass={styles.ConstructorListElement}
 					type="top"
-					text={ingredients[0].name}
-					price={ingredients[0].price}
-					thumbnail={ingredients[0].image}
+					text={ingredients[0]?.name}
+					price={ingredients[0]?.price}
+					thumbnail={ingredients[0]?.image}
 					isLocked={true}
-				/>
+				/> */}
 
 				{ ingredients.length > 0  &&  (
 					<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
@@ -48,14 +50,16 @@ function BurgerConstructor({ingredients}) {
 					</ul>
 				)}
 
-				<ConstructorElement 
+				{/* <ConstructorElement 
 					extraClass={styles.ConstructorListElement}
 					type="bottom"
 					text={ingredients[0].name}
 					price={ingredients[0].price}
 					thumbnail={ingredients[0].image}
 					isLocked={true}
-				/>
+				/> */}
+
+
 			</article>
 
 			<OrderCreator onClickOrder={ () => onClickOrder() }/>

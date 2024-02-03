@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 function BurgerConstructor() { 
 
 	const ingredients = useSelector( store => store.ingredients );
-
-	const [orderDetails, setOrderDetails]  = useState(null);
+	
+	const [orderDetails, setOrderDetails] = useState(null);
 
 	const onClickOrder = () =>	{
 		setOrderDetails( () => <p>orderDetails, orderDetails, orderDetails ...</p> );
@@ -21,14 +21,14 @@ function BurgerConstructor() {
 
 			<article className={styles.MainConstructorList}>
 
-				{/* <ConstructorElement 
+				<ConstructorElement 
 					extraClass={styles.ConstructorListElement}
 					type="top"
-					text={ingredients[0]?.name}
-					price={ingredients[0]?.price}
-					thumbnail={ingredients[0]?.image}
+					text={ingredients[0].name}
+					price={ingredients[0].price}
+					thumbnail={ingredients[0].image}
 					isLocked={true}
-				/> */}
+				/>
 
 				{ ingredients.length > 0  &&  (
 					<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
@@ -50,14 +50,14 @@ function BurgerConstructor() {
 					</ul>
 				)}
 
-				{/* <ConstructorElement 
+				<ConstructorElement 
 					extraClass={styles.ConstructorListElement}
 					type="bottom"
 					text={ingredients[0].name}
 					price={ingredients[0].price}
 					thumbnail={ingredients[0].image}
 					isLocked={true}
-				/> */}
+				/>
 
 
 			</article>

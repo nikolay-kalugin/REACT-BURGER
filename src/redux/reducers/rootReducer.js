@@ -1,24 +1,20 @@
-import { GET_INGREDIENTS_REQUEST , GET_INGREDIENTS_SUCCESS, GET_INGREDIENTS_FAILED } from '../actions/getIngredients'
+import { 
+	GET_INGREDIENTS_REQUEST, 
+	GET_INGREDIENTS_SUCCESS, 
+	GET_INGREDIENTS_FAILED } from '../actions/getIngredients'
 
-
-const initialState = {
-	bun: null,
-	ingredients: [],
-};
-
-export const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state, action) => {
 	switch( action.type ) 
 	{
 		case GET_INGREDIENTS_REQUEST:
-			return {
-				...state,
-				ingredients: [ ...state.ingredients ]
-			};
+			return state;
+			
 
 		case GET_INGREDIENTS_SUCCESS:
+
 			return {
 				...state,
-				ingredients: [ ...state.ingredients, action.payload ]
+				ingredients: action.payload,
 			};
 
 		case GET_INGREDIENTS_FAILED:

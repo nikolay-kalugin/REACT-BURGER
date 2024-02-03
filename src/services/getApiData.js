@@ -1,8 +1,8 @@
-const getApiData = ( setLoading) => {
+const getApiData = ( setLoading ) => {
 
     const url = `https://norma.nomoreparties.space/api/ingredients`;
 
-    fetch(url)
+    return fetch(url)
     .then(response => { 
       if (!response.ok) 
       {

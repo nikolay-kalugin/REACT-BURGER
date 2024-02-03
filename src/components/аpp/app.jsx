@@ -5,6 +5,7 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { getIngredients } from '../../redux/actions/getIngredients';
+import { useDispatch } from 'react-redux';
 
 function App() {
 
@@ -13,11 +14,13 @@ function App() {
 
   const loading = false;
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // getApiData(setIngredients, setLoading);
-    getIngredients();
+    dispatch(getIngredients());
 
-  },[]);
+  },[dispatch]);
 
   return (
     <div className={`${styles.App} custom-scroll`}>

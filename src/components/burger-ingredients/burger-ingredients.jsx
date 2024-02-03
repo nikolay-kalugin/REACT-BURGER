@@ -8,9 +8,7 @@ import { useSelector } from 'react-redux';
 
 function BurgerIngredients() 
 {
-
 	const ingredients = useSelector( store => store.ingredients );
-
 
 	const [currentTab, setCurrentTab] = useState('one');
 
@@ -29,11 +27,6 @@ function BurgerIngredients()
 		const rectBuns = elemBuns?.getBoundingClientRect();
 		const rectSauces = elemSauces?.getBoundingClientRect();
 		const rectMains = elemMains?.getBoundingClientRect();
-
-		// console.log("rectTabs =" , rectTabs.top ) 
-		// elemBuns && console.log("rectBuns =" , rectBuns.top ) 
-		// elemSauces && console.log("rectSauces =" , rectSauces.top ) 
-		// elemMains && console.log("rectMains =" , rectMains.top ) 
 
 		const diffKoeff = 120;
 

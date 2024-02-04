@@ -1,23 +1,19 @@
 import { useEffect } from 'react';
-
 import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { getIngredients } from '../../redux/actions/getIngredients';
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector } from 'react-redux';
 
 function App() {
 
-  // const [ingredients, setIngredients] = useState([]);
-  // const [loading, setLoading] = useState(true);
-
-  const loading = false;
+  const loading = useSelector(state => state.isLoading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // getApiData(setIngredients, setLoading);
+    
     dispatch(getIngredients());
 
   },[dispatch]);

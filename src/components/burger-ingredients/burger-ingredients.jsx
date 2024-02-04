@@ -6,17 +6,21 @@ import IngredientCategory from '../ingredient-category/ingredient-category';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
 import { useSelector } from 'react-redux';
 
+
 function BurgerIngredients() 
 {
 	const ingredients = useSelector( store => store.ingredients );
 
+	const ingredientDetails = useSelector( store => store.ingredientDetails );
+
 	const [currentTab, setCurrentTab] = useState('one');
+
+	// Переключение табов при скроллинге - begin
 
 	const elemTabs = document.getElementById('tabs');
 	const refBunsList = useRef(null);
 	const refSaucesList = useRef(null);
 	const refMainsList = useRef(null);
-
 	function update() {
 		
 		const elemBuns = refBunsList.current
@@ -46,28 +50,20 @@ function BurgerIngredients()
 		}
 
 	}
+
+	// Переключение табов при скроллинге - end
 	
-	useMemo( () => ingredients, [ingredients] ); 
-
-	const buns = ingredients.filter( obj => obj.type === 'bun' );
-	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
-	const mains = ingredients.filter( obj => obj.type === 'main' );
-
 	const onTabClick = (tab) => {
 		setCurrentTab(tab);
 		const element = document.getElementById(tab);
 		element && element.scrollIntoView({ behavior: 'smooth' });
 	};
 
+	useMemo( () => ingredients, [ingredients] ); 
 
-	const [ingredientDetails, setIngredientDetails] = useState(null);
-
-	const onClickIngredient = (ingredientID) => { 
-		
-		const [ingredientObj] = ingredients.filter( obj => obj._id === ingredientID )
-		// console.log(ingredientObj)
-		setIngredientDetails(ingredientObj);
-	}
+	const buns = ingredients.filter( obj => obj.type === 'bun' );
+	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
+	const mains = ingredients.filter( obj => obj.type === 'main' );
 
 	return (
 		<section className={styles.BurgerIngredients}>
@@ -95,7 +91,6 @@ function BurgerIngredients()
 								id={'buns'}
 								title={'Булки'} 
 								ingredients={buns}
-								onClick={onClickIngredient} 
 								ref={refBunsList}
 
 							/>
@@ -103,14 +98,12 @@ function BurgerIngredients()
 								id={'sauces'}
 								title={'Соусы'} 
 								ingredients={sauces}
-								onClick={onClickIngredient} 
 								ref={refSaucesList}
 							/>
 							<IngredientCategory 
 								id={'mains'}
 								title={'Начинки'} 
 								ingredients={mains}
-								onClick={onClickIngredient} 
 								ref={refMainsList}
 							/>	
 					</ul>
@@ -119,11 +112,12 @@ function BurgerIngredients()
 			
 			}
 			
-			{
-				
+			{	
 				ingredientDetails && (
-					<Modal title="Детали ингредиента" onClose={ () => setIngredientDetails( () => null ) } >
-						<IngredientDetails ingredientDetails={ingredientDetails} />
+					<Modal 
+						title="Детали ингредиента" 
+					> 
+							<IngredientDetails ingredientDetails={ingredientDetails} />
 					</Modal>
 				)
 			}

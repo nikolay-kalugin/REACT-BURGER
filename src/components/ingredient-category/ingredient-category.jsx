@@ -1,16 +1,18 @@
 import { forwardRef } from 'react';
-
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
-const IngredientCategory = ( {id, title, ingredients, onClick}, ref ) => {
+import { useDispatch } from 'react-redux';
+import { SET_INGREDIENT_DETAILS } from '../../redux/actions/actions'
 
-	const onClickIngredient = ( ingredientID ) => {
-		onClick( ingredientID )
-	};
+const IngredientCategory = ( {id, title, ingredients}, ref ) => {
+
+	const dispatch = useDispatch();
 
 	return(
+
 		<article>
+
 			<h2 ref={ref} className={styles.IngredientsTitle}>{title}</h2>
 
 			<ul 
@@ -23,11 +25,13 @@ const IngredientCategory = ( {id, title, ingredients, onClick}, ref ) => {
 						<li 
 							className={styles.IngredientCard} 
 							key={ingredient._id}
-							onClick={() => onClickIngredient(ingredient._id)} 
+							onClick={ () => dispatch({ type: SET_INGREDIENT_DETAILS, payload: ingredient._id }) } 
 						>
+
 							<IngredientCard 
 								ingredient={ingredient}
 							 />
+
 						</li>
 						
 					)
@@ -36,6 +40,7 @@ const IngredientCategory = ( {id, title, ingredients, onClick}, ref ) => {
 			</ul>
 
 		</article>
+
 	) 
 }
 

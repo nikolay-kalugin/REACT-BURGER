@@ -10,12 +10,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const initialState = {
-	bun: null,
-	ingredients: [],
-};
-
-const store = configureStore(initialState);
+const store = configureStore();
 
 root.render(
   <React.StrictMode>

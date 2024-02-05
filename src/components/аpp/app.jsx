@@ -3,7 +3,7 @@ import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { getIngredients } from '../../redux/actions/getIngredients';
+import { getIngredients } from '../../services/getIngredients';
 import { useDispatch , useSelector } from 'react-redux';
 
 function App() {

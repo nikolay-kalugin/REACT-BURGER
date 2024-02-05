@@ -5,11 +5,14 @@ import {
 
 	SET_INGREDIENT_DETAILS,
 	SET_ORDER_DETAILS,
+
+	ADD_INGREDIENT,
+	DELETE_INGREDIENT,
 } from '../actions/actions'
 
 
 const initialState = {
-	bun: null,
+	buns: [],
 	ingredients: [],
 	addedIngredients: [],
 
@@ -17,18 +20,15 @@ const initialState = {
 	orderDetails: null,
 
 	isLoading: true,
-	error: undefined,
 };
 
 
-
-
-export const rootReducer = (state = initialState, action) => {
+export const rootReducer = ( state = initialState, action ) => {
 
 	switch( action.type ) 
 	{
 
-		// Экшены для подгрузки ингредиентов
+		// Экшены для подгрузки списка ИНГРЕДИЕНТОВ
 		case GET_INGREDIENTS_REQUEST:
 			return state;
 			
@@ -46,10 +46,8 @@ export const rootReducer = (state = initialState, action) => {
 				...state,
 				isLoading: false,
 			} 
-
-
 		
-		// Экшены для работы с модальным окном
+		// Экшены для работы с МОДАЛЬНЫМ окном
 		case SET_INGREDIENT_DETAILS: 
 
 			const [ingredientObj] = state.ingredients.filter( obj => obj._id === action.payload );
@@ -64,6 +62,26 @@ export const rootReducer = (state = initialState, action) => {
 				...state,
 				orderDetails: action.payload
 			}
+
+		// Экшены для работы с КОНСТРУКТОРОМ заказа
+		case ADD_INGREDIENT: 
+
+		if ( action.payload.type === 'bun' ) 
+		{
+			alert(1)
+
+		}
+
+		return {
+			...state,
+			addedIngredients: [ ...state.addedIngredients, action.payload ]
+		}
+
+		case DELETE_INGREDIENT: 
+		return {
+			...state,
+			addedIngredients: [ ...state.addedIngredients.filter( ingredient => ingredient.id !== action.payload ) ]
+		}
 
 		// Экшен по дефолту
 		default: 

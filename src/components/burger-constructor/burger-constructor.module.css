@@ -25,7 +25,8 @@
 .MiddleConstructorList {
 	height: 100vh;
 	display: grid;
-	grid-template-columns: 100%;  
+	grid-template-columns: 100%;
+	align-content: flex-start;  
 	row-gap: 16px; 
 	overflow-x: hidden;
 	overflow-y: scroll;

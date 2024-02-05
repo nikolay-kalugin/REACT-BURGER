@@ -1,17 +1,21 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import OrderCreator from '../order-creator/order-creator'
-import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
+import OrderCreator from '../order-creator/order-creator';
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteIngredient } from '../../redux/actions/actions';
+import { getAddedIngredients, getOrderDetails } from '../../redux/selectors/selectors'
 
 
 function BurgerConstructor() { 
 
-	const ingredients = useSelector( store => store.ingredients );
+	const dispatch = useDispatch();
 
-	const orderDetails = useSelector( store => store.orderDetails );
+	const addedIngredients = useSelector( getAddedIngredients );
+
+	const orderDetails = useSelector( getOrderDetails );
 
 	return (
 		<section className={styles.BurgerConstructor}>
@@ -27,11 +31,11 @@ function BurgerConstructor() {
 					isLocked={true}
 				/> */}
 
-				{ ingredients.length > 0  &&  (
+				{ addedIngredients.length > 0  &&  (
 					<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
 						{
-							ingredients.map( ingredient => (
-								<li key={ingredient._id}>
+							addedIngredients.map( ingredient => (
+								<li key={ingredient.id} >
 									<DragIcon type="primary" />
 									<ConstructorElement 
 										extraClass={styles.ConstructorListElement}
@@ -39,6 +43,7 @@ function BurgerConstructor() {
 										price={ingredient.price}
 										thumbnail={ingredient.image}
 										isLocked={false}
+										handleClose={ () => dispatch(deleteIngredient(ingredient.id)) }
 									/>
 								</li>
 

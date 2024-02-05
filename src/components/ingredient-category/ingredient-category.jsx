@@ -3,7 +3,7 @@ import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
 import { useDispatch } from 'react-redux';
-import { SET_INGREDIENT_DETAILS } from '../../redux/actions/actions'
+import { setIngredientDetails, addIngredient } from '../../redux/actions/actions'
 
 const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 
@@ -25,7 +25,11 @@ const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 						<li 
 							className={styles.IngredientCard} 
 							key={ingredient._id}
-							onClick={ () => dispatch({ type: SET_INGREDIENT_DETAILS, payload: ingredient._id }) } 
+							onClick={ () => {
+												dispatch(setIngredientDetails(ingredient._id));
+												dispatch(addIngredient(ingredient));
+											} 
+									} 
 						>
 
 							<IngredientCard 

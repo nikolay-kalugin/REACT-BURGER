@@ -3,15 +3,16 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
-import IngredientDetails from '../ingredient-details/ingredient-details.jsx'
+import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import { useSelector } from 'react-redux';
+import { getIngredients, getIngredientDetails } from '../../redux/selectors/selectors';
 
 
 function BurgerIngredients() 
 {
-	const ingredients = useSelector( store => store.ingredients );
+	const ingredients = useSelector( getIngredients );
 
-	const ingredientDetails = useSelector( store => store.ingredientDetails );
+	const ingredientDetails = useSelector( getIngredientDetails );
 
 	const [currentTab, setCurrentTab] = useState('one');
 

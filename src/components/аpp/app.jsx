@@ -5,10 +5,11 @@ import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import { getIngredients } from '../../services/getIngredients';
 import { useDispatch , useSelector } from 'react-redux';
+import { getIsLoading } from '../../redux/selectors/selectors'
 
 function App() {
 
-  const loading = useSelector(state => state.isLoading);
+  const loading = useSelector( getIsLoading );
 
   const dispatch = useDispatch();
 

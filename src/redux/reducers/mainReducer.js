@@ -19,22 +19,26 @@ const initialState = {
 	ingredientDetails: null,
 	orderDetails: null,
 
-	isLoading: true,
+	isLoading: false,
+	error: undefined,
 };
 
 
-export const rootReducer = ( state = initialState, action ) => {
+export const mainReducer = ( state = initialState, action ) => {
 
 	switch( action.type ) 
 	{
 
+
 		// Экшены для подгрузки списка ИНГРЕДИЕНТОВ
 		case GET_INGREDIENTS_REQUEST:
-			return state;
+			return {
+				...state,
+				isLoading: true,
+			}
 			
 
 		case GET_INGREDIENTS_SUCCESS:
-
 			return {
 				...state,
 				ingredients: action.payload,
@@ -45,6 +49,7 @@ export const rootReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				isLoading: false,
+				error: action.payload,
 			} 
 		
 		// Экшены для работы с МОДАЛЬНЫМ окном
@@ -66,26 +71,26 @@ export const rootReducer = ( state = initialState, action ) => {
 		// Экшены для работы с КОНСТРУКТОРОМ заказа
 		case ADD_INGREDIENT: 
 
-		if ( action.payload.type === 'bun' ) 
-		{
-			alert(1)
+			if ( action.payload.type === 'bun' ) 
+			{
+				alert(1)
+			}
 
-		}
-
-		return {
-			...state,
-			addedIngredients: [ ...state.addedIngredients, action.payload ]
-		}
+			return {
+				...state,
+				addedIngredients: [ ...state.addedIngredients, action.payload ]
+			}
 
 		case DELETE_INGREDIENT: 
-		return {
-			...state,
-			addedIngredients: [ ...state.addedIngredients.filter( ingredient => ingredient.id !== action.payload ) ]
-		}
+			return {
+				...state,
+				addedIngredients: [ ...state.addedIngredients.filter( ingredient => ingredient.id !== action.payload ) ]
+			}
 
 		// Экшен по дефолту
 		default: 
 			return state;
+
 	}
 	
 };

@@ -13,15 +13,15 @@ export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 
 // Action-Creators
 
-export const getIngredientRequest = () => {
-	return { type: GET_INGREDIENTS_REQUEST, payload: null }
+export const getIngredientsRequest = () => {
+	return { type: GET_INGREDIENTS_REQUEST }
 } 
 
-export const getIngredientSuccess = (ingredients) => {
+export const getIngredientsSuccess = (ingredients) => {
 	return { type: GET_INGREDIENTS_SUCCESS, payload: ingredients }
 } 
 
-export const getIngredientFailed = (err) => {
+export const getIngredientsFailed = (err) => {
 	return { type: GET_INGREDIENTS_FAILED, payload: err }
 } 
 

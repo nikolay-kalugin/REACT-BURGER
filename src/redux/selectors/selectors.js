@@ -1,11 +1,11 @@
-export const getIsLoading = store => store.mainReducer.isLoading ;
+export const getIsLoading = store => store.isLoading ;
 
-export const getIngredients = store => store.mainReducer.ingredients ;
+export const getIngredients = store => store.ingredients ;
 
-export const getAddedIngredients = store => store.mainReducer.addedIngredients ;
+export const getAddedIngredients = store => store.addedIngredients ;
 
-export const getIngredientDetails = store => store.mainReducer.ingredientDetails ;
+export const getIngredientDetails = store => store.ingredientDetails ;
 
-export const getOrderDetails = store => store.mainReducer.orderDetails ;
+export const getOrderDetails = store => store.orderDetails ;
 
 

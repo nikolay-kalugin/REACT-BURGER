@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
-import { setOrderDetails } from '../../redux/actions/actions';
+import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddedIngredients } from '../../redux/selectors/selectors'
 

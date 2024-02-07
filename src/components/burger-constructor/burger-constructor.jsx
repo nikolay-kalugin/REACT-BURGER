@@ -5,8 +5,9 @@ import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteIngredient } from '../../redux/actions/actions';
+import { deleteIngredient } from '../../redux/actions/constructorActions';
 import { getAddedIngredients, getOrderDetails } from '../../redux/selectors/selectors'
+
 
 
 function BurgerConstructor() { 

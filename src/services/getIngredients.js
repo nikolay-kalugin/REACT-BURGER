@@ -1,4 +1,4 @@
-import { getIngredientsRequest, getIngredientsSuccess, getIngredientsFailed } from '../redux/actions/actions'
+import { getIngredientsRequest, getIngredientsSuccess, getIngredientsFailed } from '../redux/actions/ingredientsActions'
 
 export const getIngredients = 
 	() => 

@@ -16,6 +16,8 @@ function BurgerIngredients()
 
 	const [currentTab, setCurrentTab] = useState('one');
 
+	
+
 	// Переключение табов при скроллинге - begin
 
 	const elemTabs = document.getElementById('tabs');

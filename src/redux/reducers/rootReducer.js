@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 import { ingredientsReducer }  from '../reducers/ingredientsReducer';
-import { modalReducer }  from '../reducers/modalReducer';
+import { ingredientDetailsReducer }  from './ingredientDetailsReducer';
+import { constructorReducer }  from '../reducers/constructorReducer';
+import { orderDetailsReducer }  from '../reducers/orderDetailsReducer';
 
  const rootReducer = combineReducers({
 	ingredientsReducer, 
-	modalReducer,
+	ingredientDetailsReducer,
+	constructorReducer,
+	orderDetailsReducer,
   });
 
 export default rootReducer;
@@ -23,6 +27,7 @@ export default rootReducer;
 
 
 // const initialState = {
+	
 // 	buns: [],
 // 	ingredients: [],
 // 	isLoading: false,
@@ -32,7 +37,6 @@ export default rootReducer;
 
 // 	ingredientDetails: null,
 // 	orderDetails: null,
-
 
 // };
 

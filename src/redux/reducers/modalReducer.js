@@ -1,8 +1,4 @@
 import { 
-	GET_INGREDIENTS_REQUEST, 
-	GET_INGREDIENTS_SUCCESS, 
-	GET_INGREDIENTS_FAILED,
-
 	SET_INGREDIENT_DETAILS,
 	SET_ORDER_DETAILS,
 
@@ -12,48 +8,23 @@ import {
 
 
 const initialState = {
-	buns: [],
-	ingredients: [],
-	addedIngredients: [],
-
 	ingredientDetails: null,
 	orderDetails: null,
 
-	isLoading: false,
-	error: undefined,
+	addedIngredients: [],
 };
 
 
-export const mainReducer = ( state = initialState, action ) => {
+export const modalReducer = ( state = initialState, action ) => {
 
 	switch( action.type ) 
 	{
 
 
-		// Экшены для подгрузки списка ИНГРЕДИЕНТОВ
-		case GET_INGREDIENTS_REQUEST:
-			return {
-				...state,
-				isLoading: true,
-			}
-			
-
-		case GET_INGREDIENTS_SUCCESS:
-			return {
-				...state,
-				ingredients: action.payload,
-				isLoading: false,
-			}
-
-		case GET_INGREDIENTS_FAILED:
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
-			} 
-		
 		// Экшены для работы с МОДАЛЬНЫМ окном
 		case SET_INGREDIENT_DETAILS: 
+
+			console.log(state)
 
 			const [ingredientObj] = state.ingredients.filter( obj => obj._id === action.payload );
 
@@ -67,6 +38,7 @@ export const mainReducer = ( state = initialState, action ) => {
 				...state,
 				orderDetails: action.payload
 			}
+
 
 		// Экшены для работы с КОНСТРУКТОРОМ заказа
 		case ADD_INGREDIENT: 

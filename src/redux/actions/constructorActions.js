@@ -8,13 +8,13 @@ import {
 
 // Для работы с КОНСТРУКТОРОМ
 
-export const addIngredient = (ingredient) => {
+export const addIngredientConstructor = (ingredient) => {
 	return { 	
 				type: ADD_INGREDIENT_CONSTRUCTOR, 
 				payload: { ...ingredient, id: uuid() } 
 			} 
 } 
 
-export const deleteIngredient = (id) => {
+export const deleteIngredientConstructor = (id) => {
 	return { type: DELETE_INGREDIENT_CONSTRUCTOR, payload: id } 
 } 

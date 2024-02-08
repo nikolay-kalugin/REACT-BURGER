@@ -1,33 +1,46 @@
-import { useMemo } from 'react'
+import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
 import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddedIngredients } from '../../redux/selectors/selectors'
+import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
 
 function OrderCreator() {
 
 	const dispatch = useDispatch();
 
+	const addedBun = useSelector( getAddedBun );
+
 	const addedIngredients = useSelector( getAddedIngredients )
 
-	const initialValue = 0;
 
+	// Рассчет итоговой стоимости заказа
 	const totalPrice = useMemo( () => { 
 
-		if ( addedIngredients.length > 0 )
+		const initialValue = 0;
+
+		let addedIngredientsPrice = 0;
+		let addedBunPrice = 0;
+
+		if ( addedIngredients.length > 0 || addedBun )
 		{
-			return addedIngredients.reduce( 
-				(accumulator, ingredient) => accumulator + ingredient.price,
-				 initialValue,
-			);
+			if ( addedIngredients.length > 0 ) 
+			{
+				addedIngredientsPrice = addedIngredients.reduce( 
+					(accumulator, ingredient) => accumulator + ingredient.price,
+					 initialValue,
+				);
+			}
+
+			if ( addedBun )
+			{
+				addedBunPrice = addedBun.price * 2;
+			}
 		}
-		else 
-		{
-			return 0;
-		}
-		
-	}, [addedIngredients] );
+
+		return addedIngredientsPrice + addedBunPrice
+
+	}, [addedIngredients, addedBun] );
 	
 	// const [total_price, dispatch] = useReducer(reducer, 0)
 

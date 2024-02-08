@@ -5,6 +5,7 @@ import {
 
 
 const initialState = {
+	bun: null,
 	addedIngredients: [],
 };
 
@@ -19,7 +20,10 @@ export const constructorReducer = ( state = initialState, action ) => {
 
 			if ( action.payload.type === 'bun' ) 
 			{
-				alert(1)
+				return {
+					...state,
+					bun: action.payload
+				}
 			}
 
 			return {

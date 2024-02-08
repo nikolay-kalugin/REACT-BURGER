@@ -7,7 +7,6 @@ import {
 
 
 const initialState = {
-	buns: [],
 	ingredients: [],
 	isLoading: false,
 	error: undefined,

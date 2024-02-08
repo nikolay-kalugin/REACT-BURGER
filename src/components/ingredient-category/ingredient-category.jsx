@@ -4,7 +4,7 @@ import styles from './ingredient-category.module.css';
 
 import { useDispatch } from 'react-redux';
 import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
-import { addIngredient } from '../../redux/actions/constructorActions'
+// import { addIngredientConstructor } from '../../redux/actions/constructorActions'
 
 const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 
@@ -28,7 +28,7 @@ const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 							key={ingredient._id}
 							onClick={ () => {
 												dispatch(setIngredientDetails(ingredient));
-												dispatch(addIngredient(ingredient));
+												// dispatch(addIngredientConstructor(ingredient));
 											} 
 									} 
 						>

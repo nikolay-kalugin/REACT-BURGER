@@ -26,7 +26,7 @@ function BurgerConstructor() {
 	const [{canDrop}, dropRef] = useDrop(() => ({
 		accept: 'ingredient',
 		drop: (ingredient) => {
-			dispatch(addIngredientConstructor(ingredient))
+			dispatch( addIngredientConstructor(ingredient) )
 		},
 		collect: (monitor) => ({ 
 			canDrop: monitor.canDrop()
@@ -103,7 +103,7 @@ function BurgerConstructor() {
 											price={ingredient.price}
 											thumbnail={ingredient.image}
 											isLocked={false}
-											handleClose={ () => dispatch(deleteIngredientConstructor(ingredient.id)) }
+											handleClose={ () => dispatch( deleteIngredientConstructor(ingredient.id) ) }
 										/>
 
 									</li>

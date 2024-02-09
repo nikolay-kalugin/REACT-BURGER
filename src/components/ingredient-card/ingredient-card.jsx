@@ -15,7 +15,6 @@ function IngredientCard({ingredient}) {
 	});
 
 
-
 	// const onDragHandler = (e, obj) => {
 	// 	e.dataTransfer.setData( 'text/plain', JSON.stringify(obj) );
 	// 	// console.log(e.dataTransfer.getData('text'))

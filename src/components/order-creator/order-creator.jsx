@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
-import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
+import { getAddedIngredients, getAddedBun, } from '../../redux/selectors/selectors';
+import { getOrderData } from '../../services/getOrderData';
 
 function OrderCreator() {
 
@@ -11,11 +11,15 @@ function OrderCreator() {
 
 	const addedBun = useSelector( getAddedBun );
 
-	const addedIngredients = useSelector( getAddedIngredients )
+	const addedIngredients = useSelector( getAddedIngredients );
+
 
 
 	// Рассчет итоговой стоимости заказа
-	const totalPrice = useMemo( () => { 
+	const orderResults = useMemo( () => { 
+
+		let orderIngredients = [];
+		let ingredientsIDs = []
 
 		const initialValue = 0;
 
@@ -30,35 +34,67 @@ function OrderCreator() {
 					(accumulator, ingredient) => accumulator + ingredient.price,
 					 initialValue,
 				);
+
+				addedIngredients.forEach( (addedIngredient) => {
+					orderIngredients = [...orderIngredients, addedIngredient];
+				});
+				
 			}
 
 			if ( addedBun )
 			{
 				addedBunPrice = addedBun.price * 2;
+				orderIngredients = [addedBun, ...orderIngredients, addedBun] 
 			}
 		}
 
-		return addedIngredientsPrice + addedBunPrice
+
+		orderIngredients.map( (ingredient) => {
+			return ingredientsIDs = [...ingredientsIDs, ingredient._id]
+		});
+
+
+		return {
+			totalPrice: addedIngredientsPrice + addedBunPrice,
+			data: {
+				ingredients: ingredientsIDs
+			}
+		}
 
 	}, [addedIngredients, addedBun] );
 	
 	// const [total_price, dispatch] = useReducer(reducer, 0)
 
+	const orderButtonClickHandler = () =>  {
+		dispatch( getOrderData(orderResults.data) )
+	}
+
+
 	return(
 		<div className={styles.OrderCreator}>
 			<p className={styles.TotalPrice}>
-				<span className="mr-2">{totalPrice}</span>
+				<span className="mr-2">{orderResults.totalPrice}</span>
 				<CurrencyIcon type="primary" />
 			</p>
 			
-			<Button 
-				htmlType="button" 
-				type="primary" 
-				size="large"
-				onClick={ () => dispatch( setOrderDetails(true) ) }
-			>
-  				Оформить заказ
-			</Button>
+
+			{
+				( addedIngredients.length > 0 && addedBun )  &&  (
+
+					<Button 
+						htmlType="button" 
+						type="primary" 
+						size="large"
+						onClick={ () => orderButtonClickHandler(orderResults) }
+					>
+						Оформить заказ
+					</Button>
+
+				) 
+			}
+
+
+
 		</div>
 
 	)

@@ -1,10 +1,14 @@
 import { 
 	SET_ORDER_DETAILS,
+	GET_ORDER_DATA_REQUEST,
+	GET_ORDER_DATA_SUCCESS,
+	GET_ORDER_DATA_FAILED,
 } from '../actions/types'
 
 
 const initialState = {
 	orderDetails: null,
+	error: null,
 };
 
 
@@ -18,6 +22,30 @@ export const orderDetailsReducer = ( state = initialState, action ) => {
 				...state,
 				orderDetails: action.payload
 			}
+
+		
+		// Экшены для подгрузки с бэка ИНФО ЗАКАЗА 
+		case GET_ORDER_DATA_REQUEST:
+			return {
+				...state,
+				// isLoading: true,
+			}
+			
+
+		case GET_ORDER_DATA_SUCCESS:
+			return {
+				...state,
+				orderDetails: action.payload,
+				// isLoading: false,
+			}
+
+		case GET_ORDER_DATA_FAILED:
+			return {
+				...state,
+				// isLoading: false,
+				error: action.payload,
+			} 
+
 
 		// Экшен по дефолту
 		default: 

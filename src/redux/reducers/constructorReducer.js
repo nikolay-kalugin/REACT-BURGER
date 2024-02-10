@@ -1,6 +1,7 @@
 import { 
 	ADD_INGREDIENT_CONSTRUCTOR,
 	DELETE_INGREDIENT_CONSTRUCTOR,
+	CHANGE_INGREDIENTS_CONSTRUCTOR,
 } from '../actions/types'
 
 
@@ -36,6 +37,25 @@ export const constructorReducer = ( state = initialState, action ) => {
 				...state,
 				addedIngredients: [ ...state.addedIngredients.filter( ingredient => ingredient.id !== action.payload ) ]
 			}
+
+		
+		case CHANGE_INGREDIENTS_CONSTRUCTOR: 
+
+			// console.log( 'dragObjIndex', action.payload.dragObjIndex)
+			// console.log( 'dropObjIndex', action.payload.dropObjIndex)
+
+			const dragCard = state.addedIngredients[action.payload.dragObjIndex]
+			const newAddedIngredients = [...state.addedIngredients]
+			newAddedIngredients.splice( action.payload.dragObjIndex, 1 )
+			newAddedIngredients.splice( action.payload.dropObjIndex, 0, dragCard )
+
+			return {
+				...state,
+				addedIngredients: newAddedIngredients
+			}
+
+
+			
 
 		// Экшен по дефолту
 		default: 

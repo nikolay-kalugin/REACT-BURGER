@@ -7,7 +7,7 @@ export const getIngredientDetails = store => store.ingredientDetailsReducer.ingr
 
 // Для ДАННЫХ ЗАКАЗА
 export const getOrderDetails = store => store.orderDetailsReducer.orderDetails ;
-
+export const getOrderIsLoading = store => store.orderDetailsReducer.isLoading ;
 
 // Для КОНСТРУКТОРА
 export const getAddedIngredients = store => store.constructorReducer.addedIngredients ;

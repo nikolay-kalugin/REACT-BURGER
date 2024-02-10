@@ -8,6 +8,7 @@ import {
 
 const initialState = {
 	orderDetails: null,
+	isLoading: false,
 	error: null,
 };
 
@@ -28,7 +29,7 @@ export const orderDetailsReducer = ( state = initialState, action ) => {
 		case GET_ORDER_DATA_REQUEST:
 			return {
 				...state,
-				// isLoading: true,
+				isLoading: true,
 			}
 			
 
@@ -36,13 +37,13 @@ export const orderDetailsReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				orderDetails: action.payload,
-				// isLoading: false,
+				isLoading: false,
 			}
 
 		case GET_ORDER_DATA_FAILED:
 			return {
 				...state,
-				// isLoading: false,
+				isLoading: false,
 				error: action.payload,
 			} 
 

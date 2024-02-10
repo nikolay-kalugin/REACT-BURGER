@@ -1,11 +1,12 @@
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import ConstructorIngredientCard from '../constructor-ingredient-card/constructor-ingredient-card';
 import OrderCreator from '../order-creator/order-creator';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addIngredientConstructor, deleteIngredientConstructor } from '../../redux/actions/constructorActions';
+import { addIngredientConstructor } from '../../redux/actions/constructorActions';
 import { getAddedIngredients, getAddedBun, getOrderDetails } from '../../redux/selectors/selectors';
 import { useDrop } from 'react-dnd';
 
@@ -21,9 +22,8 @@ function BurgerConstructor() {
 
 
 	// Drag & Drop (Targer elem handlers)
-	let border = null;
 
-	const [{canDrop}, dropRef] = useDrop(() => ({
+	const [, dropRef] = useDrop(() => ({
 		accept: 'ingredient',
 		drop: (ingredient) => {
 			dispatch( addIngredientConstructor(ingredient) )
@@ -33,20 +33,13 @@ function BurgerConstructor() {
 		}),
 	}));
 
-	if (canDrop) 
-	{
-		// border = '1px solid blue'  
-	}
-
-
-
 	// const onDropHandler = (e) => {
 	// 	// console.log(e.dataTransfer.getData('text'))
 	// 	const drag_obj =  JSON.parse(e.dataTransfer.getData('text'))
 	// 	// console.log(drag_obj)
 	// 	dispatch(addIngredientConstructor(drag_obj));
 	// }
-
+	// onDragStart={ () => console.log(1) }
 
 	return (
 		<section className={styles.BurgerConstructor}>
@@ -61,7 +54,7 @@ function BurgerConstructor() {
 					( 
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorUP}`}
-							style={{border}}
+							// style={{border}}
 						>
 							Выберите булки
 						</div>	
@@ -82,7 +75,7 @@ function BurgerConstructor() {
 					(
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorCenter}`}
-							style={{border}}
+							// style={{border}}
 						>
 							Выберите начинку
 						</div>
@@ -90,12 +83,19 @@ function BurgerConstructor() {
 						<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
 							{
 								addedIngredients.map( ingredient => (
-									<li key={ingredient.id}>
+									<li 
+										key={ingredient.id}
+										
+									>
 
-										<DragIcon type="primary" 
-											// onDragStart={ () => console.log(1) }
-											onClick={ () => console.log(1) }
-										/>
+										<ConstructorIngredientCard 
+											ingredient={ingredient}
+							 			/>
+
+
+										{/* <span className={styles.ConstructorListIcon} >	
+											<DragIcon type="primary" />
+										</span>
 										
 										<ConstructorElement 
 											extraClass={styles.ConstructorListElement}
@@ -104,7 +104,7 @@ function BurgerConstructor() {
 											thumbnail={ingredient.image}
 											isLocked={false}
 											handleClose={ () => dispatch( deleteIngredientConstructor(ingredient.id) ) }
-										/>
+										/> */}
 
 									</li>
 								))
@@ -117,7 +117,7 @@ function BurgerConstructor() {
 					addedBun === null  ?  ( 
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorBottom}`}
-							style={{border}}
+							// style={{border}}
 						>
 							Выберите булки
 						</div>	

@@ -19,6 +19,8 @@ function IngredientCard({ingredient}) {
 	// 	e.dataTransfer.setData( 'text/plain', JSON.stringify(obj) );
 	// 	// console.log(e.dataTransfer.getData('text'))
 	// }
+	// onDragStart={ (e) => onDragHandler(e, ingredient) }
+	
 
 	return(
 		<div className={styles.IngredientCard} >
@@ -26,7 +28,6 @@ function IngredientCard({ingredient}) {
 				src={ingredient.image} 
 				width={240} 
 				alt={`ingredient`}
-				// onDragStart={ (e) => onDragHandler(e, ingredient) }
 				ref={dragRef}
 			/>
 			<div className={styles.IngredientPriceBlock}>

@@ -2,6 +2,7 @@ import {
 	ADD_INGREDIENT_CONSTRUCTOR,
 	DELETE_INGREDIENT_CONSTRUCTOR,
 	CHANGE_INGREDIENTS_CONSTRUCTOR,
+
 } from '../actions/types'
 
 
@@ -21,9 +22,27 @@ export const constructorReducer = ( state = initialState, action ) => {
 
 			if ( action.payload.type === 'bun' ) 
 			{
+
+				// let newArr = []
+
+				// // Проверка есть ли уже в конструкторе булка
+				// if ( state.addedIngredients.filter( item => item.type === 'bun' ).length > 0 )
+				// {
+					
+				// 	newArr = state.addedIngredients
+				// 				.splice(0, 1, action.payload)
+				// 				.splice((newArr.length-1), 1, action.payload) 
+					
+				// }
+				// else
+				// {
+				// 	newArr = [ action.payload, ...state.addedIngredients, action.payload ]
+				// }
+
 				return {
 					...state,
-					bun: action.payload
+					bun: action.payload,
+					// addedIngredients: newArr
 				}
 			}
 

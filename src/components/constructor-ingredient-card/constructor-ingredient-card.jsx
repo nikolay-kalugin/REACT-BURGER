@@ -16,12 +16,14 @@ function ConstructorIngredientCard({ingredient}) {
 
 	const ref = useRef(null);
 
+	
+	/*** Drag & Drop (Drag elem handlers) ***/
+
 	const [{isDragging}, drag] = useDrag({
 		type: 'constructor-ingredient',
 		item: ingredient,
 		collect: (monitor) => {
 			// console.log(ingredient)
-			// dispatch()
 			return { isDragging: monitor.isDragging() }
 		}
 	})

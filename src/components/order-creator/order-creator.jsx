@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddedIngredients, getAddedBun, } from '../../redux/selectors/selectors';
+import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
 import { getOrderData } from '../../services/getOrderData';
+import getOrderResults from '../../redux/selectors/getOrderResults'
 
 function OrderCreator() {
 
@@ -13,59 +14,14 @@ function OrderCreator() {
 
 	const addedIngredients = useSelector( getAddedIngredients );
 
+	const orderResults = useMemo( () => 
+		getOrderResults(addedBun, addedIngredients)
+		, [addedIngredients, addedBun] 
+	);
 
-
-	// Рассчет итоговой стоимости заказа
-	const orderResults = useMemo( () => { 
-
-		let orderIngredients = [];
-		let ingredientsIDs = []
-
-		const initialValue = 0;
-
-		let addedIngredientsPrice = 0;
-		let addedBunPrice = 0;
-
-		if ( addedIngredients.length > 0 || addedBun )
-		{
-			if ( addedIngredients.length > 0 ) 
-			{
-				addedIngredientsPrice = addedIngredients.reduce( 
-					(accumulator, ingredient) => accumulator + ingredient.price,
-					 initialValue,
-				);
-
-				addedIngredients.forEach( (addedIngredient) => {
-					orderIngredients = [...orderIngredients, addedIngredient];
-				});
-				
-			}
-
-			if ( addedBun )
-			{
-				addedBunPrice = addedBun.price * 2;
-				orderIngredients = [addedBun, ...orderIngredients, addedBun] 
-			}
-		}
-
-
-		orderIngredients.map( (ingredient) => {
-			return ingredientsIDs = [...ingredientsIDs, ingredient._id]
-		});
-
-
-		return {
-			totalPrice: addedIngredientsPrice + addedBunPrice,
-			data: {
-				ingredients: ingredientsIDs
-			}
-		}
-
-	}, [addedIngredients, addedBun] );
 	
-	// const [total_price, dispatch] = useReducer(reducer, 0)
-
 	const orderButtonClickHandler = () =>  {
+		// console.log( orderResults.constructorIngredientsCounts )
 		dispatch( getOrderData(orderResults.data) )
 	}
 
@@ -77,7 +33,6 @@ function OrderCreator() {
 				<CurrencyIcon type="primary" />
 			</p>
 			
-
 			{
 				( addedIngredients.length > 0 && addedBun )  &&  (
 
@@ -92,8 +47,6 @@ function OrderCreator() {
 
 				) 
 			}
-
-
 
 		</div>
 

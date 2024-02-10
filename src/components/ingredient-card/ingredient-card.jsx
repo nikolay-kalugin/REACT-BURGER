@@ -1,10 +1,31 @@
+import { useMemo } from 'react';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ingredient-card.module.css';
 import { useDrag } from 'react-dnd';
- 
+import { useSelector } from 'react-redux';
+import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
+import getOrderResults from '../../redux/selectors/getOrderResults'
+
 function IngredientCard({ingredient}) {
 
-	// Drag & Drop (Draggable elem handlers)
+	const addedBun = useSelector( getAddedBun );
+
+	const addedIngredients = useSelector( getAddedIngredients );
+
+	const ingredientCount = useMemo( () => {
+		const orderResults = getOrderResults(addedBun, addedIngredients);
+
+		// console.log(orderResults.constructorIngredientsCounts)
+		return orderResults.constructorIngredientsCounts[ingredient._id]
+
+	}, [addedIngredients, addedBun, ingredient._id] 
+	);
+
+	
+	
+
+	/*** Drag & Drop (Drag elem handlers) ***/
+
 	const [, dragRef] = useDrag({
 		type: 'ingredient',
 		item: ingredient,
@@ -14,13 +35,6 @@ function IngredientCard({ingredient}) {
 		}
 	});
 
-
-	// const onDragHandler = (e, obj) => {
-	// 	e.dataTransfer.setData( 'text/plain', JSON.stringify(obj) );
-	// 	// console.log(e.dataTransfer.getData('text'))
-	// }
-	// onDragStart={ (e) => onDragHandler(e, ingredient) }
-	
 
 	return(
 		<div className={styles.IngredientCard} >
@@ -35,7 +49,7 @@ function IngredientCard({ingredient}) {
 				<CurrencyIcon type="primary" />
 			</div>
 			<div className={styles.IngredientText}>{ingredient.name}</div>
-			<Counter count={1} />
+			<Counter count={ingredientCount} />
 		</div>
 	)
 

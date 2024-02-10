@@ -35,6 +35,7 @@ function App() {
                   <BurgerIngredients />
                   <BurgerConstructor />       
                 </>
+                
           }
         </main>
       </DndProvider>

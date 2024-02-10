@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import Modal from '../modal/modal';
@@ -16,14 +16,13 @@ function BurgerIngredients()
 
 	const [currentTab, setCurrentTab] = useState('one');
 
-	
-
 	// Переключение табов при скроллинге - begin
 
 	const elemTabs = document.getElementById('tabs');
 	const refBunsList = useRef(null);
 	const refSaucesList = useRef(null);
 	const refMainsList = useRef(null);
+
 	function update() {
 		
 		const elemBuns = refBunsList.current
@@ -37,17 +36,17 @@ function BurgerIngredients()
 
 		const diffKoeff = 120;
 
-		if ( rectBuns.top - rectTabs.top < diffKoeff ) 
+		if ( (rectBuns.top - rectTabs.top) < diffKoeff ) 
 		{
 			setCurrentTab('one')
 		}
 
-		if ( rectSauces.top - rectTabs.top < diffKoeff ) 
+		if ( (rectSauces.top - rectTabs.top) < diffKoeff ) 
 		{
 			setCurrentTab('two')
 		}
 
-		if ( rectMains.top - rectTabs.top < diffKoeff ) 
+		if ( (rectMains.top - rectTabs.top) < diffKoeff ) 
 		{
 			setCurrentTab('three')
 		}

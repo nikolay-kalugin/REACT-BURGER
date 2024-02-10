@@ -13,7 +13,11 @@ export const getIngredients =
 						? response.json() 
 						: Promise.reject( new Error('Server returned ' + response.status) ) 
 			)
-			.then( obj => dispatch( getIngredientsSuccess(obj.data) ) )
+			.then( obj => {
+					// console.log(obj.data)
+					dispatch( getIngredientsSuccess(obj.data) ) 
+				}
+			)
 			.catch( err => dispatch( getIngredientsFailed(err) ) )
 		} 
 

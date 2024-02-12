@@ -1,0 +1,12 @@
+.ConstructorListIcon:hover {
+	cursor: pointer;
+}
+
+.ConstructorListElement {
+	background-color: var( --interface-modal-bg, #1C1C21);
+
+	/* composes: mt-4 from global; */
+
+	/* outline: 2px solid rgb(38, 0, 255);  
+	outline-offset: -2px; */
+}

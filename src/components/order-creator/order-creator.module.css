@@ -1,9 +1,9 @@
-.CreateOrder {
+.OrderCreator {
 	height: 64px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	composes: pr-4  from global;
+	composes: pr-4  pb-10  from global;
 
 	/* outline: 1px solid rgb(0, 153, 255);  
 	outline-offset: -1px; */

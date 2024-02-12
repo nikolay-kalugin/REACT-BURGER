@@ -1,25 +1,39 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import styles from '../modal/modal.module.css'
 
+import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
+import { setOrderDetails } from '../../redux/actions/orderDetailsActions'
+import { useDispatch } from 'react-redux';
+
 const modal = document.getElementById('modal') 
 
 
-function Modal({title, onClose, modalContent}) {
+function Modal( {title, children} ) {
 
-	const handleEscape = (e) => {
-		// console.log(e.key);
-		e.key === 'Escape' && onClose();
-	}
+	const dispatch = useDispatch();
+
+	const onClose = useCallback( () => { 
+										dispatch(setIngredientDetails(null));
+										dispatch(setOrderDetails(null));
+									}  
+				, [dispatch] )
 
 	useEffect(() => {
+
+		const handleEscape = (e) => {
+			e.key === 'Escape' && onClose();
+		}
+
 		document.addEventListener('keydown', handleEscape);
 		return () => {
 			document.removeEventListener('keydown', handleEscape);
-		} 
+		}
+		 
 	}, [onClose] );
+
 
 	return createPortal(
 		<>
@@ -27,16 +41,18 @@ function Modal({title, onClose, modalContent}) {
 				<div className={styles.ModalHeader}>
 					<h2>{title}</h2>
 					<div className={styles.CloseIcon}>
-						<CloseIcon type="primary" onClick={onClose} />
+						<CloseIcon type="primary" onClick={ () => onClose() } 
+						/>
 					</div>
 				</div>
 				<div className={styles.ModalContent}>
-					{modalContent}
+					{children}
 				</div>
 			</div>
-			<ModalOverlay onClose={onClose}/>
-		</>,
-		modal
+
+			<ModalOverlay onClose={onClose} />
+
+		</>, modal
 	);
 }
 

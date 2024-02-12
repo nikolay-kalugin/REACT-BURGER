@@ -1,36 +1,47 @@
+import { forwardRef } from 'react';
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
-function IngredientCategory({id, title, ingredients, onClick}) {
+import { useDispatch } from 'react-redux';
+import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
 
-	const onClickIngredient = ( ingredientID ) => {
-		onClick( ingredientID )
-	};
+const IngredientCategory = ( {id, title, ingredients}, ref ) => {
+
+	const dispatch = useDispatch();
 
 	return(
-		<article>
-			<h2 className={styles.IngredientsTitle}>{title}</h2>
 
-			<ul id={id} className={styles.IngredientsBox} > 
+		<article>
+
+			<h2 ref={ref} className={styles.IngredientsTitle}>{title}</h2>
+
+			<ul 
+				id={id} 
+				className={styles.IngredientsBox} 
+			> 
 				{
 					ingredients.length !==0 && ingredients.map( ingredient => 
 
 						<li 
 							className={styles.IngredientCard} 
 							key={ingredient._id}
-							onClick={() => onClickIngredient(ingredient._id)} 
+							onClick={ () => { dispatch(setIngredientDetails(ingredient)) } } 
 						>
+
 							<IngredientCard 
 								ingredient={ingredient}
 							 />
+
 						</li>
 						
 					)
 				}
+
 			</ul>
 
 		</article>
+
 	) 
 }
 
-export default IngredientCategory;
+export default forwardRef(IngredientCategory);

@@ -1,5 +1,7 @@
 .BurgerConstructor {
+	height: 100vh;
 	composes: pt-25  from global;
+
 
 	/* outline: 2px solid rosybrown;  
 	outline-offset: -2px; */
@@ -15,14 +17,42 @@
 .ConstructorListElement {
 	background-color: var( --interface-modal-bg, #1C1C21);
 
+	/* composes: mt-4 from global; */
+
 	/* outline: 2px solid rgb(38, 0, 255);  
 	outline-offset: -2px; */
 }
 
+.ConstructorListElementCustom {
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var( --interface-modal-bg, #1C1C21);
+	composes: mt-4 from global;
+}
+
+.modificatorUP {
+	border-radius: 60px 60px 20px 20px;
+	box-sizing: border-box;
+}
+
+.modificatorCenter {
+	border-radius: 40px;
+	box-sizing: border-box;
+	composes: mb-4 from global;
+}
+
+.modificatorBottom {
+	border-radius: 20px 20px 60px 60px;
+	box-sizing: border-box;
+}
+
 .MiddleConstructorList {
-	height: 464px;
+	max-height: 50vh;
 	display: grid;
-	grid-template-columns: 100%;  
+	grid-template-columns: 100%;
+	align-content: flex-start;  
 	row-gap: 16px; 
 	overflow-x: hidden;
 	overflow-y: scroll;

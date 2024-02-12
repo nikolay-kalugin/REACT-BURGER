@@ -1,72 +1,121 @@
-import { useState } from 'react';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import OrderCreator from '../order-creator/order-creator'
-import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
+import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
+import ConstructorIngredientCard from '../constructor-ingredient-card/constructor-ingredient-card';
+import OrderCreator from '../order-creator/order-creator';
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addIngredientConstructor } from '../../redux/actions/constructorActions';
+import { getAddedIngredients, getAddedBun, getOrderDetails } from '../../redux/selectors/selectors';
+import { useDrop } from 'react-dnd';
 
-function BurgerConstructor({ingredients}) { 
+function BurgerConstructor() { 
 
-	const [orderDetails, setOrderDetails]  = useState(null);
+	const dispatch = useDispatch();
 
-	const onClose = () => { 
-		setOrderDetails( () => null );
-	}
+	const addedBun = useSelector( getAddedBun );
 
-	const onClickOrder = () =>	{
-		setOrderDetails( () => <p>orderDetails, orderDetails, orderDetails ...</p> );
-	}
+	const addedIngredients = useSelector( getAddedIngredients );
+
+	const orderDetails = useSelector( getOrderDetails );
+
+
+	/*** Drag & Drop (Drop elem handlers) ***/
+
+	const [, dropRef] = useDrop(() => ({
+		accept: 'ingredient',
+		drop: (ingredient) => {
+			dispatch( addIngredientConstructor(ingredient) )
+		},
+		collect: (monitor) => ({ 
+			canDrop: monitor.canDrop()
+		}),
+	}));
+
 
 	return (
 		<section className={styles.BurgerConstructor}>
 
-			<article className={styles.MainConstructorList}>
-				<ConstructorElement 
-					extraClass={styles.ConstructorListElement}
-					type="top"
-					text={ingredients[0].name}
-					price={ingredients[0].price}
-					thumbnail={ingredients[0].image}
-					isLocked={true}
-				/>
+			<article 
+				className={styles.MainConstructorList} 
+				ref={dropRef}
+			>
 
-				<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
-					{
-						ingredients.length !==0 && ingredients.map( ingredient => 
-							<li key={ingredient._id}>
-								<DragIcon type="primary" />
-								<ConstructorElement 
-									extraClass={styles.ConstructorListElement}
-									text={ingredient.name}
-									price={ingredient.price}
-									thumbnail={ingredient.image}
-									isLocked={false}
-								/>
-							</li>
+				{
+					addedBun === null  ?  
+					( 
+						<div 
+							className={`${styles.ConstructorListElementCustom} ${styles.modificatorUP}`}
+						>
+							Выберите булки
+						</div>	
+					) : (
+						<ConstructorElement 
+							extraClass={styles.ConstructorListElement}
+							type="top"
+							text={addedBun.name}
+							price={addedBun.price}
+							thumbnail={addedBun.image}
+							isLocked={true}
+						/> 
+					)
+				}
 
-						)
-					}
+				{	
+					addedIngredients.length === 0  ?  
+					(
+						<div 
+							className={`${styles.ConstructorListElementCustom} ${styles.modificatorCenter}`}
+						>
+							Выберите начинку
+						</div>
+					) : (
+						<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
+							{
+								addedIngredients.map( ingredient =>  (
 
-				</ul>
+									<li key={ingredient.id}>
 
-				<ConstructorElement 
-					extraClass={styles.ConstructorListElement}
-					type="bottom"
-					text={ingredients[0].name}
-					price={ingredients[0].price}
-					thumbnail={ingredients[0].image}
-					isLocked={true}
-				/>
+										<ConstructorIngredientCard ingredient={ingredient} />
+
+									</li>
+
+								))
+							}
+						</ul>
+					)
+				}
+
+				{
+					addedBun === null  ?  ( 
+						<div 
+							className={`${styles.ConstructorListElementCustom} ${styles.modificatorBottom}`}
+						>
+							Выберите булки
+						</div>	
+					) : (
+						<ConstructorElement 
+							extraClass={styles.ConstructorListElement}
+							type="bottom"
+							text={addedBun.name}
+							price={addedBun.price}
+							thumbnail={addedBun.image}
+							isLocked={true}
+						/>
+					)
+				}
+
 			</article>
 
-			<OrderCreator onClickOrder={ () => onClickOrder() }/>
+			<OrderCreator />
 
 			{ 
-				orderDetails && <Modal 
-					onClose={onClose} 
-					modalContent={ <OrderDetails orderDetails={orderDetails} />}>
-				</Modal>
+				orderDetails  &&  (
+					<Modal>
+							<OrderDetails  orderDetails={orderDetails} />
+					</Modal>
+				)
 			}
 			
 		</section>

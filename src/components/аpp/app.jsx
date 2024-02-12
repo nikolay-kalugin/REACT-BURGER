@@ -1,58 +1,47 @@
-import {useState, useEffect} from 'react';
+import { useEffect } from 'react';
 import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import { getIngredients } from '../../services/getIngredients';
+import { useDispatch , useSelector } from 'react-redux';
+import { getIsLoading } from '../../redux/selectors/selectors';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
 
-  const [ingredients, setIngredients] = useState([]);
-  const [loading, setLoading] =  useState(true);
+  const loading = useSelector( getIsLoading );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    
+    dispatch( getIngredients() );
 
-    const apiUrl = `https://norma.nomoreparties.space/api/ingredients`;
-
-    fetch(apiUrl)
-      .then(response => { 
-        if (!response.ok) 
-        {
-          setIngredients( () => [] )
-          throw new Error('Server returned ' + response.status);
-        }
-        return response.json()
-      })
-      .then((obj) => {
-        setIngredients( () => obj.data );
-      })
-      .catch(error => {
-        alert('При загрузке списка ингредиентов возникла ошибка: ', error);
-        setIngredients( () => [] )
-      })
-      .finally( () => { setLoading(false) } )
-
-  }, [setIngredients]);
+  },[dispatch]);
 
   return (
     <div className={`${styles.App} custom-scroll`}>
 
       <AppHeader />
 
-       <main className={styles.Main}>
-        { 
- 
-		    loading ? <p>Данные загружаются...</p> 
-          :
-             <>
-                <BurgerIngredients ingredients={ingredients} loading={loading} />
-                <BurgerConstructor ingredients={ingredients} />
-              </>
-        }
-      </main>
-
-
+      <DndProvider backend={HTML5Backend}>
+        <main className={styles.Main}>
+          { 
+            loading ? <p>Данные загружаются...</p> 
+              :
+                <>
+                  <BurgerIngredients />
+                  <BurgerConstructor />       
+                </>
+                
+          }
+        </main>
+      </DndProvider>
 
     </div>
+    
   );
 }
 

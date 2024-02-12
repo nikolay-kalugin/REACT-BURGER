@@ -1,7 +1,8 @@
-
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import Link from '../link/link'
 import styles from './app-header.module.css';
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import CustomLink from '../custom-link/custom-link';
+
+
 
 function AppHeader() 
 {
@@ -10,16 +11,31 @@ function AppHeader()
 			<nav className={styles.Nav}>
 				<ul className={styles.NavList}>
 					<li className={styles.NavItem}>
-						<Link url="!#" icon={<BurgerIcon type="primary" />} text="Конструктор" />
+						<CustomLink 
+							url="/" 
+							icon={<BurgerIcon type="primary" />} 
+							text="Конструктор" 
+						/>
 					</li>
 					<li className={styles.NavItem}>
-						<Link url="!#" icon={<ListIcon type="secondary" />} text="Лента заказов" />
+						<CustomLink 
+							url="orders" 
+							icon={<ListIcon type="secondary" />} 
+							text="Лента заказов" 
+					/>
 					</li>
 					<li className={styles.NavItem}>
-						<Link url="!#" icon={<Logo />} />
+						<CustomLink 
+							url="/" 
+							icon={<Logo />} 
+					/>
 					</li>
 					<li className={styles.NavItem}>
-						<Link url="!#" icon={<ProfileIcon type="secondary" />} text="Личный кабинет" />
+						<CustomLink 
+							url="/profile" 
+							icon={<ProfileIcon type="secondary" />} 
+							text="Личный кабинет" 
+						/>
 					</li>
 				</ul> 
 			</nav>

@@ -5,8 +5,6 @@ import { getOrderDetails } from '../../redux/selectors/selectors';
 
 function OrderDetails() {
 
-	// const isLoading = useSelector( getOrderIsLoading )
-
 	const orderDetails = useSelector( getOrderDetails )
 
 	return (

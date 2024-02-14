@@ -14,7 +14,6 @@ export const getIngredients =
 						: Promise.reject( new Error('Server returned ' + response.status) ) 
 			)
 			.then( obj => {
-					// console.log(obj.data)
 					dispatch( getIngredientsSuccess(obj.data) ) 
 				}
 			)

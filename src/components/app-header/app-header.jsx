@@ -2,8 +2,6 @@ import styles from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import CustomLink from '../custom-link/custom-link';
 
-
-
 function AppHeader() 
 {
 	return (
@@ -40,7 +38,7 @@ function AppHeader()
 				</ul> 
 			</nav>
 	  	</header>
-	);
+	)
 }
   
 export default AppHeader;

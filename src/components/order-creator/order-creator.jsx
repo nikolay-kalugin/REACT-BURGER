@@ -20,8 +20,7 @@ function OrderCreator() {
 	);
 
 	
-	const orderButtonClickHandler = () =>  {
-		// console.log( orderResults.constructorIngredientsCounts )
+	const orderButtonClickHandler = () => {
 		dispatch( getOrderData(orderResults.data) )
 	}
 

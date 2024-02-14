@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 function CustomLink({url, icon, text}) 
 {
-	// const handleOnClick = (e) => {e.preventDefault()} ; 
-
 	return (
 		<Link to={url} className={styles.NavLink} >
 			<span className={styles.NavIcon}>{icon}</span>

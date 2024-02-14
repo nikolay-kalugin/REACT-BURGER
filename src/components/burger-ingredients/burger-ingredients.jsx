@@ -17,7 +17,7 @@ function BurgerIngredients()
 	const [currentTab, setCurrentTab] = useState('one');
 
 	// Переключение табов при скроллинге - begin
-
+	const appScroll = document.getElementById('app');
 	const elemTabs = document.getElementById('tabs');
 	const refBunsList = useRef(null);
 	const refSaucesList = useRef(null);
@@ -52,21 +52,35 @@ function BurgerIngredients()
 		}
 
 	}
-
 	// Переключение табов при скроллинге - end
 	
+	
 	const onTabClick = (tab) => {
+		
 		setCurrentTab(tab);
-		const element = document.getElementById(tab);
-		element && element.scrollIntoView({ behavior: 'smooth' });
+		
+		switch(tab)
+		{
+			case 'buns': refBunsList?.current.scrollIntoView({block: "start", behavior: "smooth"}) 
+				break;
+			case 'sauces': refSaucesList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+				break;
+			case 'mains': refMainsList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+				break;
+			default: 	
+		}
+		
+		appScroll.scrollTo( 0, 0 )
 	};
 
-	useMemo( () => ingredients, [ingredients] ); 
-
-	const buns = ingredients.filter( obj => obj.type === 'bun' );
-	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
-	const mains = ingredients.filter( obj => obj.type === 'main' );
-
+	const [buns, sauces, mains] = useMemo(() => {
+		return [
+					ingredients.filter( obj => obj.type === 'bun' ), 
+					ingredients.filter( obj => obj.type === 'sauce' ),
+					ingredients.filter( obj => obj.type === 'main' )
+				]
+	  }, [ingredients])
+	
 	return (
 		<section className={styles.BurgerIngredients}>
 
@@ -86,29 +100,32 @@ function BurgerIngredients()
 
 			{
 				ingredients.length > 0  && (  
-				 
-					<ul onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
+				
+					<article onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
 
-							<IngredientCategory 
-								id={'buns'}
-								title={'Булки'} 
-								ingredients={buns}
-								ref={refBunsList}
+						<IngredientCategory 
+							id={'buns'}
+							title={'Булки'} 
+							ingredients={buns}
+							ref={refBunsList}
 
-							/>
-							<IngredientCategory 
-								id={'sauces'}
-								title={'Соусы'} 
-								ingredients={sauces}
-								ref={refSaucesList}
-							/>
-							<IngredientCategory 
-								id={'mains'}
-								title={'Начинки'} 
-								ingredients={mains}
-								ref={refMainsList}
-							/>	
-					</ul>
+						/>
+
+						<IngredientCategory 
+							id={'sauces'}
+							title={'Соусы'} 
+							ingredients={sauces}
+							ref={refSaucesList}
+						/>
+
+						<IngredientCategory 
+							id={'mains'}
+							title={'Начинки'} 
+							ingredients={mains}
+							ref={refMainsList}
+						/>
+
+					</article>
 				
 				)
 			

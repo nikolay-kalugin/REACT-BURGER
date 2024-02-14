@@ -13,16 +13,14 @@ function IngredientCard({ingredient}) {
 	const addedIngredients = useSelector( getAddedIngredients );
 
 	const ingredientCount = useMemo( () => {
-		const orderResults = getOrderResults(addedBun, addedIngredients);
 
-		// console.log(orderResults.constructorIngredientsCounts)
-		return orderResults.constructorIngredientsCounts[ingredient._id]
+			const orderResults = getOrderResults(addedBun, addedIngredients);
 
-	}, [addedIngredients, addedBun, ingredient._id] 
+			return orderResults.constructorIngredientsCounts[ingredient._id]
+
+		}, [addedIngredients, addedBun, ingredient._id] 
 	);
 
-	
-	
 
 	/*** Drag & Drop (Drag elem handlers) ***/
 
@@ -30,7 +28,6 @@ function IngredientCard({ingredient}) {
 		type: 'ingredient',
 		item: ingredient,
 		collect: (monitor) => {
-			// console.log(ingredient)
 			return {isDrag: monitor.isDragging()}
 		}
 	});
@@ -40,7 +37,8 @@ function IngredientCard({ingredient}) {
 		<div className={styles.IngredientCard} >
 			<img className={styles.IngredientImg} 
 				src={ingredient.image} 
-				width={240} 
+				width={240}
+				height={120} 
 				alt={`ingredient`}
 				ref={dragRef}
 			/>

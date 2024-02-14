@@ -18,11 +18,9 @@ function Modal( {title, children} ) {
 	const onClose = useCallback( () => { 
 										dispatch(setIngredientDetails(null));
 										dispatch(setOrderDetails(null));
-									}  
-				, [dispatch] )
+								}, [dispatch] )
 
 	useEffect(() => {
-
 		const handleEscape = (e) => {
 			e.key === 'Escape' && onClose();
 		}

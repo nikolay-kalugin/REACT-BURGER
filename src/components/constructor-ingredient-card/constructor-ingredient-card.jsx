@@ -23,7 +23,6 @@ function ConstructorIngredientCard({ingredient}) {
 		type: 'constructor-ingredient',
 		item: ingredient,
 		collect: (monitor) => {
-			// console.log(ingredient)
 			return { isDragging: monitor.isDragging() }
 		}
 	})
@@ -50,7 +49,6 @@ function ConstructorIngredientCard({ingredient}) {
 			if( dragObjIndex < dropObjIndex && hoverClientY < hoverMiddleY) { return }
 			if( dragObjIndex > dropObjIndex && hoverClientY > hoverMiddleY) { return }
 
-			// console.log( dragObjIndex, dropObjIndex)
 			dispatch( changeIngredientsConstructor( dragObjIndex, dropObjIndex ) );
 			
 		}

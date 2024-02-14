@@ -9,16 +9,13 @@ const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 
 	const dispatch = useDispatch();
 
-	return(
+	return (
 
-		<article>
+		<>
 
 			<h2 ref={ref} className={styles.IngredientsTitle}>{title}</h2>
 
-			<ul 
-				id={id} 
-				className={styles.IngredientsBox} 
-			> 
+			<ul id={id} className={styles.IngredientsBox} > 
 				{
 					ingredients.length !==0 && ingredients.map( ingredient => 
 
@@ -36,10 +33,9 @@ const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 						
 					)
 				}
-
 			</ul>
 
-		</article>
+		</>
 
 	) 
 }

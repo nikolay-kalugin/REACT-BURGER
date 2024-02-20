@@ -13,6 +13,10 @@ import { OrdersPage } from '../../pages/orders/orders';
 
 function App() {
 
+  // const { ingredientID } = useParams();
+
+  // const ingredientID = ''
+
   return (
 
     <div id={`app`} className={`${styles.App} custom-scroll`}>
@@ -20,14 +24,25 @@ function App() {
       <AppHeader />
 
       <Routes>
-        <Route path="/" element={<HomePage />}/>
-        <Route path="/register" element={<RegisterPage />}/>
-        <Route path="/login" element={<LoginPage />}/>
-        <Route path="/forgot-password" element={<ForgotPasswordPage />}/>
-        <Route path="/reset-password" element={<ResetPasswordPage />}/>
-        <Route path="/ingredients" element={<IngredientsPage />}/>
-        <Route path="/profile" element={<ProfilePage />}/>
-        <Route path="/orders" element={<OrdersPage />}/>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+        
+        <Route path="/ingredients" element={<IngredientsPage />}>
+          <Route path=":ingredientID" element={<IngredientsPage />} />
+        </Route> 
+        
+        <Route path="/cabinet" element={<ProfilePage />} >
+          <Route path=":profile" element={<ProfilePage />} />
+          <Route path=":history" element={<ProfilePage />} />
+          <Route path=":exit" element={<ProfilePage />} />
+        </Route>
+
+        <Route path="/orders" element={<OrdersPage />} />
+
+        <Route path="*" element={null} />
       </Routes>
    
     </div>

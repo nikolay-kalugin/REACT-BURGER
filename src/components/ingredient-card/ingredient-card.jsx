@@ -47,7 +47,9 @@ function IngredientCard({ingredient}) {
 				<CurrencyIcon type="primary" />
 			</div>
 			<div className={styles.IngredientText}>{ingredient.name}</div>
-			<Counter count={ingredientCount} />
+			{
+				(ingredientCount > 0) && <Counter count={ingredientCount} />
+			}
 		</div>
 	)
 

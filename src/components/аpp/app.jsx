@@ -10,6 +10,7 @@ import { ResetPasswordPage } from '../../pages/reset-password/reset-password';
 import { IngredientsPage } from '../../pages/ingredients/ingredients';
 import { ProfilePage } from '../../pages/profile/profile';
 import { OrdersPage } from '../../pages/orders/orders';
+import { Page404 } from '../../pages/404/404';
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
 
         <Route path="/orders" element={<OrdersPage />} />
 
-        <Route path="*" element={null} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
    
     </div>

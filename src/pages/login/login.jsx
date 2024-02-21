@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { NavLink } from 'react-router-dom';
 
 export function LoginPage() {
 
@@ -50,27 +51,28 @@ export function LoginPage() {
 
 					<p className="text text_type_main-default text_color_inactive">
 						Вы — новый пользователь?
-						<Button 
-							htmlType="button" 
-							type="secondary" 
-							size="medium"
-							extraClass=""
-							onClick={() => alert('Зарегистрироваться')}
-						>
-							Зарегистрироваться
-						</Button>
+						<NavLink to="/register">
+							<Button 
+								htmlType="button" 
+								type="secondary" 
+								size="medium"
+							>
+								Зарегистрироваться
+							</Button>
+						</NavLink>
 					</p>
 
 					<p className="text text_type_main-default text_color_inactive">
 						Забыли пароль?
-						<Button 
-							htmlType="button" 
-							type="secondary" 
-							size="medium"
-							onClick={() => alert('Восстановить пароль')}
-						>
-							Восстановить пароль
-						</Button>
+						<NavLink to="/forgot-password">
+							<Button 
+								htmlType="button" 
+								type="secondary" 
+								size="medium"
+							>
+								Восстановить пароль
+							</Button>
+						</NavLink>
 					</p>
 			
 				</form>

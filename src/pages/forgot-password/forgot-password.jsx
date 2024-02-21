@@ -1,13 +1,43 @@
 import React from 'react';
 import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function ForgotPasswordPage() {
 
 	const [email, setEmail] = React.useState('bob@example.com')
-	const onChangeEmail = e => {
+	const onChangeEmail = (e) => {
 		setEmail(e.target.value)
 	}
+
+	const navigate = useNavigate();
+
+	const onClickHandler = (url, data) => {
+
+		fetch( url, 
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data)
+			}
+		)
+		.then( response => response.ok 
+					? response.json() 
+					: Promise.reject( new Error('Server returned ' + response.status) ) 
+		)
+		.then( obj => {
+				if( obj.success )
+				{ 
+					navigate(`/reset-password`)
+				}
+			}
+		)
+		.catch( err => console.log(err) )
+
+	}
+
 
 	return (
 		<div className={styles.Page}>
@@ -30,21 +60,22 @@ export function ForgotPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => alert('Восстановить')}
+						onClick={() => onClickHandler('https://norma.nomoreparties.space/api/password-reset', {email}) }
 					>
 						Восстановить
 					</Button>
 
 					<p className="text text_type_main-default text_color_inactive">
 						Вспомнили пароль?
-						<Button 
-							htmlType="button" 
-							type="secondary" 
-							size="medium"
-							onClick={() => alert('Войти')}
-						>
-							Войти
-						</Button>
+						<NavLink to="/login">
+							<Button 
+								htmlType="button" 
+								type="secondary" 
+								size="medium"
+							>
+								Войти
+							</Button>
+						</NavLink>
 					</p>
 			
 				</form>

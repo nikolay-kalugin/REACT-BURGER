@@ -1,19 +1,70 @@
 import React from 'react';
 import styles from './register.module.css';
 import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export function RegisterPage() {
 
+	// {
+	// 	"success": true,
+	// 	"user": {
+	// 		"email": "dyson78@mail.ru",
+	// 		"name": "Nikolay"
+	// 	},
+	// 	"accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDY3ZjNlOTdlZGUwMDAxZDA1ZDZiYSIsImlhdCI6MTcwODU1NjA5NCwiZXhwIjoxNzA4NTU3Mjk0fQ.PZkHkX6Rr6VbASkPwG1Y_dzy22dXNc3ZH1fk7JtxRxc",
+	// 	"refreshToken": "fd9a1602183e105ccd93c6f39a5f5a8e46754dbd4e88c639a3406faf974ebb1a2b1406f00e952cd5"
+	// }
+
+	const navigate = useNavigate();
+
+	const [userName, setUserName] = React.useState('')
+	const onChangeUserName = (e) => {
+		setUserName(e.target.value)
+	}
+
 	const [email, setEmail] = React.useState('bob@example.com')
-	const onChangeEmail = e => {
+	const onChangeEmail = (e) => {
 		setEmail(e.target.value)
 	}
 
 	const [password, setPassword] = React.useState('password')
-	const onChangePassword = e => {
+	const onChangePassword = (e) => {
 		setPassword(e.target.value)
 	}
 
+	let registerData = {
+		"email": email, 
+		"password": password, 
+		"name": userName 
+	}
+
+	const onClickHandler = (url, data) => {
+
+		fetch( url, 
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data)
+			}
+		)
+		.then( response => response.ok 
+					? response.json() 
+					: Promise.reject( new Error('Server returned ' + response.status) ) 
+		)
+		.then( obj => {
+				if( obj.success )
+				{ 
+					navigate(`/login`)
+				}
+			}
+		)
+		.catch( err => console.log(err) )
+
+	}
+
+	
 	return (
 		<div className={styles.Page}>
 			<div className={styles.Wrapper}>
@@ -25,10 +76,10 @@ export function RegisterPage() {
 					<Input
 						type={'text'}
 						placeholder={'Имя'}
-						// onChange={e => {e.target.value}}
+						value={userName}
+						onChange={onChangeUserName}
 						name={'name'}
 						error={false}
-						onIconClick={() => alert('name')}
 						errorText={'Ошибка'}
 						size={'default'}
 						extraClass="mb-6"
@@ -54,21 +105,22 @@ export function RegisterPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => alert('Зарегистрироваться')}
+						onClick={() => onClickHandler('https://norma.nomoreparties.space/api/auth/register', registerData )}
 					>
 						Зарегистрироваться
 					</Button>
 
 					<p className="text text_type_main-default text_color_inactive">
 						Уже зарегистрированы?
-						<Button 
-							htmlType="button" 
-							type="secondary" 
-							size="medium"
-							onClick={() => alert('Войти')}
-						>
-							Войти
-						</Button>
+						<NavLink to="/login">
+							<Button 
+								htmlType="button" 
+								type="secondary" 
+								size="medium"
+							>
+								Войти
+							</Button>
+						</NavLink>
 					</p>
 			
 				</form>

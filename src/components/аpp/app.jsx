@@ -26,22 +26,19 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         
         <Route path="/ingredients" element={<IngredientsPage />}>
           <Route path=":ingredientID" element={<IngredientsPage />} />
-        </Route> 
+        </Route>         
         
-        <Route path="/cabinet" element={<ProfilePage />} >
-          <Route path=":profile" element={<ProfilePage />} />
-          <Route path=":history" element={<ProfilePage />} />
-          <Route path=":exit" element={<ProfilePage />} />
-        </Route>
-
         <Route path="/orders" element={<OrdersPage />} />
+        
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/orders" element={<OrdersPage />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>

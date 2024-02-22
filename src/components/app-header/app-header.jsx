@@ -1,16 +1,15 @@
 import styles from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 function AppHeader() 
 {
 
-	const location = useLocation();
-
-	const customActive = location.pathname === '/cabinet/profile'
-						|| location.pathname === '/cabinet/history'
-						|| location.pathname === '/cabinet/exit'
+	// const location = useLocation();
+	// const customActive = location.pathname === '/cabinet/profile'
+	// 					|| location.pathname === '/cabinet/history'
+	// 					|| location.pathname === '/cabinet/exit'
 
 	return (
 	  	<header className={styles.Header}>
@@ -56,14 +55,14 @@ function AppHeader()
 						</NavLink>
 					</li>
 					<li className={styles.NavItem}>
-						<NavLink to="/cabinet/profile" className={styles.NavLink} >
+						<NavLink to="/profile" className={styles.NavLink} >
 						{
 							({isActive}) => (
 								<>
 									<span className={styles.NavIcon}>
-										<ProfileIcon type={(isActive || customActive) ? "primary" : "secondary"} />
+										<ProfileIcon type={ isActive ? "primary" : "secondary"} />
 									</span>
-									<p className={[styles.Text, (isActive || customActive) ? styles.TextDefault : styles.TextInactive]}
+									<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}
 									>
 										Личный кабинет
 									</p>

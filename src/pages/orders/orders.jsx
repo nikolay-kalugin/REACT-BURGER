@@ -5,7 +5,7 @@ export function OrdersPage() {
 	return (
 		<div className={styles.wrapper}>
 		  <form className={styles.form}>
-			<h1 className={styles.heading}>Лента заказов</h1>
+			<h2 className={styles.heading}>История заказов</h2>
 		  </form>
 		</div>
 	);

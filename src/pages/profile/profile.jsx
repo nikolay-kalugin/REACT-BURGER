@@ -30,7 +30,7 @@ export function ProfilePage() {
 					<ul className={styles.SideNavMenu}>
 						<li className={styles.SideNavItem}>
 							<NavLink 
-								to="/cabinet/profile" 
+								to="/profile" 
 								className={styles.NavLink} 
 								onClick={() => setIsVisibleProfile(true)} 	
 							>
@@ -45,7 +45,7 @@ export function ProfilePage() {
 						</li>
 						<li className={styles.SideNavItem}>
 							<NavLink 
-								to="/cabinet/history" 
+								to="/profile/orders" 
 								className={styles.NavLink} 
 								onClick={() => setIsVisibleProfile(false)} 
 							>
@@ -60,7 +60,7 @@ export function ProfilePage() {
 						</li>
 						<li className={styles.SideNavItem}>
 							<NavLink 
-								to="/cabinet/exit" 
+								to="/" 
 								className={styles.NavLink}
 								onClick={() => setIsVisibleProfile(false)} 
 							>

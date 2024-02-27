@@ -5,8 +5,11 @@ import { useDrag } from 'react-dnd';
 import { useSelector } from 'react-redux';
 import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
 import getOrderResults from '../../redux/selectors/getOrderResults'
+import { Link, useLocation } from 'react-router-dom';
 
 function IngredientCard({ingredient}) {
+
+	const location = useLocation();
 
 	const addedBun = useSelector( getAddedBun );
 
@@ -33,24 +36,38 @@ function IngredientCard({ingredient}) {
 	});
 
 
-	return(
-		<div className={styles.IngredientCard} >
-			<img className={styles.IngredientImg} 
-				src={ingredient.image} 
-				width={240}
-				height={120} 
-				alt={`ingredient`}
-				ref={dragRef}
-			/>
-			<div className={styles.IngredientPriceBlock}>
-				<span className={styles.IngredientPrice}>{ingredient.price}</span>
-				<CurrencyIcon type="primary" />
+	return (
+
+		<Link 
+			to={`ingredients/${ingredient._id}`} 
+			state={{ background: location }}
+		>
+
+			<div className={styles.IngredientCard} >
+
+				<img className={styles.IngredientImg} 
+					src={ingredient.image} 
+					width={240}
+					height={120} 
+					alt={`ingredient`}
+					ref={dragRef}
+				/>
+
+				<div className={styles.IngredientPriceBlock}>
+					<span className={styles.IngredientPrice}>{ingredient.price}</span>
+					<CurrencyIcon type="primary" />
+				</div>
+
+				<div className={styles.IngredientText}>{ingredient.name}</div>
+
+				{
+					(ingredientCount > 0) && <Counter count={ingredientCount} />
+				}
+				
 			</div>
-			<div className={styles.IngredientText}>{ingredient.name}</div>
-			{
-				(ingredientCount > 0) && <Counter count={ingredientCount} />
-			}
-		</div>
+
+		</Link> 
+
 	)
 
 }

@@ -5,12 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 function AppHeader() 
 {
-
-	// const location = useLocation();
-	// const customActive = location.pathname === '/cabinet/profile'
-	// 					|| location.pathname === '/cabinet/history'
-	// 					|| location.pathname === '/cabinet/exit'
-
 	return (
 	  	<header className={styles.Header}>
 			<nav className={styles.Nav}>

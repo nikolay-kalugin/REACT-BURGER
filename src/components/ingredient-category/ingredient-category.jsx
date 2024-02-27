@@ -20,17 +20,16 @@ const IngredientCategory = ( {id, title, ingredients}, ref ) => {
 					ingredients.length !==0 && ingredients.map( ingredient => 
 
 						<li 
-							className={styles.IngredientCard} 
 							key={ingredient._id}
+							className={styles.IngredientCard} 	
 							onClick={ () => { dispatch(setIngredientDetails(ingredient)) } } 
 						>
 
 							<IngredientCard 
 								ingredient={ingredient}
-							 />
+							/>
 
 						</li>
-						
 					)
 				}
 			</ul>

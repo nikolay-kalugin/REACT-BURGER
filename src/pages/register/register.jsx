@@ -5,16 +5,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 export function RegisterPage() {
 
-	// {
-	// 	"success": true,
-	// 	"user": {
-	// 		"email": "dyson78@mail.ru",
-	// 		"name": "Nikolay"
-	// 	},
-	// 	"accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZDY3ZjNlOTdlZGUwMDAxZDA1ZDZiYSIsImlhdCI6MTcwODU1NjA5NCwiZXhwIjoxNzA4NTU3Mjk0fQ.PZkHkX6Rr6VbASkPwG1Y_dzy22dXNc3ZH1fk7JtxRxc",
-	// 	"refreshToken": "fd9a1602183e105ccd93c6f39a5f5a8e46754dbd4e88c639a3406faf974ebb1a2b1406f00e952cd5"
-	// }
-
 	const navigate = useNavigate();
 
 	const [userName, setUserName] = React.useState('')

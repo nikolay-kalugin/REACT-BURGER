@@ -1,18 +1,15 @@
 import { useState, useMemo, useRef, } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
-import IngredientDetails from '../ingredient-details/ingredient-details';
 import { useSelector } from 'react-redux';
-import { getIngredients, getIngredientDetails } from '../../redux/selectors/selectors';
+import { getIsLoading, getIngredients } from '../../redux/selectors/selectors';
 
+function BurgerIngredients() {
 
-function BurgerIngredients() 
-{
+	const loading = useSelector( getIsLoading );
+
 	const ingredients = useSelector( getIngredients );
-
-	const ingredientDetails = useSelector( getIngredientDetails );
 
 	const [currentTab, setCurrentTab] = useState('one');
 
@@ -25,9 +22,9 @@ function BurgerIngredients()
 
 	function update() {
 		
-		const elemBuns = refBunsList.current
-		const elemSauces = refSaucesList.current
-		const elemMains = refMainsList.current
+		const elemBuns = refBunsList?.current
+		const elemSauces = refSaucesList?.current
+		const elemMains = refMainsList?.current
 
 		const rectTabs = elemTabs?.getBoundingClientRect();
 		const rectBuns = elemBuns?.getBoundingClientRect();
@@ -99,7 +96,12 @@ function BurgerIngredients()
 			</div>
 
 			{
-				ingredients.length > 0  && (  
+
+				loading ? <p>Данные загружаются...</p> 
+				 
+				:
+				 
+				ingredients.length > 0  &&  (  
 				
 					<article onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
 
@@ -129,16 +131,6 @@ function BurgerIngredients()
 				
 				)
 			
-			}
-			
-			{	
-				ingredientDetails && (
-					<Modal 
-						title="Детали ингредиента" 
-					> 
-							<IngredientDetails ingredientDetails={ingredientDetails} />
-					</Modal>
-				)
 			}
 
 		</section>

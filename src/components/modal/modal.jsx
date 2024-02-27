@@ -7,18 +7,34 @@ import styles from '../modal/modal.module.css'
 import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
 import { setOrderDetails } from '../../redux/actions/orderDetailsActions'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const modal = document.getElementById('modal') 
 
 
 function Modal( {title, children} ) {
 
+
+	const navigate = useNavigate();
+
+	const handleModalClose = useCallback( () => {
+			// Возвращаемся к предыдущему пути при закрытии модалки
+			navigate(-1); 
+			}, [navigate] )
+	
+
 	const dispatch = useDispatch();
 
+	// const onClose = useCallback( () => { 
+	// 									dispatch(setIngredientDetails(null));
+	// 									dispatch(setOrderDetails(null));
+	// 							}, [dispatch] )
+
+
 	const onClose = useCallback( () => { 
-										dispatch(setIngredientDetails(null));
-										dispatch(setOrderDetails(null));
-								}, [dispatch] )
+			handleModalClose(); 
+		}, [handleModalClose] )
+
 
 	useEffect(() => {
 		const handleEscape = (e) => {
@@ -33,7 +49,7 @@ function Modal( {title, children} ) {
 	}, [onClose] );
 
 
-	return createPortal(
+	return createPortal (
 		<>
 			<div className={styles.Modal}>
 				<div className={styles.ModalHeader}>

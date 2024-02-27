@@ -1,6 +1,6 @@
 import { getIngredientsRequest, getIngredientsSuccess, getIngredientsFailed } from '../redux/actions/ingredientsActions';
 
-export const getIngredients = 
+export const getIngredientsStart = 
 	() => 
 		(dispatch) => {
 			

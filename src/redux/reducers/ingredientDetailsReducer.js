@@ -19,6 +19,7 @@ export const ingredientDetailsReducer = ( state = initialState, action ) => {
 				ingredientDetails: action.payload
 			}
 
+
 		// Экшен по дефолту
 		default: 
 			return state;

@@ -2,56 +2,49 @@ import React from 'react';
 import styles from './register.module.css';
 import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { registerUser } from '../../services/registerUser'
+import { getUserRegistrationSuccess } from '../../redux/selectors/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function RegisterPage() {
 
+	const dispatch = useDispatch();
+
 	const navigate = useNavigate();
 
-	const [userName, setUserName] = React.useState('')
+	const userRegistrationSuccess = useSelector( getUserRegistrationSuccess );
+
+	const [userName, setUserName] = React.useState('');
 	const onChangeUserName = (e) => {
 		setUserName(e.target.value)
 	}
 
-	const [email, setEmail] = React.useState('bob@example.com')
+	const [userEmail, setUserEmail] = React.useState('');
 	const onChangeEmail = (e) => {
-		setEmail(e.target.value)
+		setUserEmail(e.target.value)
 	}
 
-	const [password, setPassword] = React.useState('password')
+	const [userPassword, setUserPassword] = React.useState(''); // password
 	const onChangePassword = (e) => {
-		setPassword(e.target.value)
+		setUserPassword(e.target.value)
 	}
 
-	let registerData = {
-		"email": email, 
-		"password": password, 
-		"name": userName 
+	let registerUserData = {
+		"name": userName,
+		"email": userEmail, 
+		"password": userPassword, 
+
 	}
 
-	const onClickHandler = (url, data) => {
+	const onClickHandler = (data) => {
 
-		fetch( url, 
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data)
-			}
-		)
-		.then( response => response.ok 
-					? response.json() 
-					: Promise.reject( new Error('Server returned ' + response.status) ) 
-		)
-		.then( obj => {
-				if( obj.success )
-				{ 
-					navigate(`/login`)
-				}
-			}
-		)
-		.catch( err => console.log(err) )
+		dispatch( registerUser(data) );
 
+		if (userRegistrationSuccess) 
+		{
+			navigate(`/login`);
+		} 
+		
 	}
 
 	
@@ -77,7 +70,7 @@ export function RegisterPage() {
 
 					<EmailInput
 						onChange={onChangeEmail}
-						value={email}
+						value={userEmail}
 						name={'email'}
 						isIcon={false}
 						extraClass="mb-6"
@@ -85,7 +78,7 @@ export function RegisterPage() {
 
 					<PasswordInput
 						onChange={onChangePassword}
-						value={password}
+						value={userPassword}
 						name={'password'}
 						extraClass="mb-6"
 					/>
@@ -95,7 +88,7 @@ export function RegisterPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler('https://norma.nomoreparties.space/api/auth/register', registerData )}
+						onClick={() => onClickHandler( registerUserData )}
 					>
 						Зарегистрироваться
 					</Button>

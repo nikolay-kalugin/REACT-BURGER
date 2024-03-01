@@ -37,8 +37,8 @@ export const ingredientsReducer = ( state = initialState, action ) => {
 		case GET_INGREDIENTS_FAILED:
 			return {
 				...state,
-				isLoading: false,
 				error: action.payload,
+				isLoading: false,
 			} 
 		
 

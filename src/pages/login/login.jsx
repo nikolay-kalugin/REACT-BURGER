@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 export function LoginPage() {
 
-	const [email, setEmail] = React.useState('bob@example.com')
+	const [email, setEmail] = React.useState('')
 	const onChangeEmail = e => {
 		setEmail(e.target.value)
 	}
 
-	const [password, setPassword] = React.useState('password')
+	const [password, setPassword] = React.useState('')
 	const onChangePassword = e => {
 		setPassword(e.target.value)
 	}

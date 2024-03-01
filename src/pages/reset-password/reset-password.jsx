@@ -81,7 +81,7 @@ export function ResetPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler('https://norma.nomoreparties.space/api/password-reset/reset', resetData)}
+						onClick={() => onClickHandler(`/password-reset/reset`, resetData)}
 					>
 						Сохранить
 					</Button>

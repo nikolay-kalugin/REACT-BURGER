@@ -3,17 +3,16 @@ import { createPortal } from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import styles from '../modal/modal.module.css'
-
-import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
-import { setOrderDetails } from '../../redux/actions/orderDetailsActions'
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setOrderDetails }  from '../../redux/actions/orderDetailsActions'
 
 const modal = document.getElementById('modal') 
 
 
 function Modal( {title, children} ) {
 
+	const dispatch = useDispatch();
 
 	const navigate = useNavigate();
 
@@ -21,19 +20,12 @@ function Modal( {title, children} ) {
 			// Возвращаемся к предыдущему пути при закрытии модалки
 			navigate(-1); 
 			}, [navigate] )
-	
-
-	const dispatch = useDispatch();
-
-	// const onClose = useCallback( () => { 
-	// 									dispatch(setIngredientDetails(null));
-	// 									dispatch(setOrderDetails(null));
-	// 							}, [dispatch] )
 
 
 	const onClose = useCallback( () => { 
 			handleModalClose(); 
-		}, [handleModalClose] )
+			dispatch(setOrderDetails(null));
+		}, [handleModalClose, dispatch] )
 
 
 	useEffect(() => {

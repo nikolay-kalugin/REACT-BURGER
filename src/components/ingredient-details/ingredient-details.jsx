@@ -1,17 +1,6 @@
 import styles from '../ingredient-details/ingredient-details.module.css'
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getIngredients } from '../../redux/selectors/selectors';
 
-function IngredientDetails() {
-
-	let ingredientDetails = null;
-
-	const {ingredientID} = useParams();
-	
-	const ingredients = useSelector( getIngredients );
-
-	[ingredientDetails] = ingredients.filter( ingredient => ingredient._id === ingredientID )
+function IngredientDetails({ingredientDetails}) {
 
 	return (
 

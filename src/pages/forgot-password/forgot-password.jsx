@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
+// import { fetchWithRefresh } from '../../utils/api'
 
 export function ForgotPasswordPage() {
 
@@ -38,6 +39,11 @@ export function ForgotPasswordPage() {
 
 	}
 
+	// const onClickHandler = (url, data) => {
+	// 	fetchWithRefresh()
+	// }
+	
+
 
 	return (
 		<div className={styles.Page}>
@@ -60,7 +66,7 @@ export function ForgotPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler('https://norma.nomoreparties.space/api/password-reset', {email}) }
+						onClick={() => onClickHandler(`/password-reset`, {email}) }
 					>
 						Восстановить
 					</Button>

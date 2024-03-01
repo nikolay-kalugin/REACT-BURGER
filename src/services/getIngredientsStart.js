@@ -1,4 +1,6 @@
 import { getIngredientsRequest, getIngredientsSuccess, getIngredientsFailed } from '../redux/actions/ingredientsActions';
+import { BURGER_API_URL } from '../utils/api';
+
 
 export const getIngredientsStart = 
 	() => 
@@ -6,7 +8,7 @@ export const getIngredientsStart =
 			
 			dispatch( getIngredientsRequest() );
 
-			const url = `https://norma.nomoreparties.space/api/ingredients`;
+			const url = `${BURGER_API_URL}/ingredients`;
 
 			fetch( url )
 			.then( response => response.ok 

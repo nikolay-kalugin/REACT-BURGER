@@ -5,7 +5,7 @@ import {
 	DELETE_INGREDIENT_CONSTRUCTOR,
 	CHANGE_INGREDIENTS_CONSTRUCTOR,
 
-} from './types'
+} from './__types'
 
 // Для работы с КОНСТРУКТОРОМ
 

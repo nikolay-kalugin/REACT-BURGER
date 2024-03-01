@@ -2,24 +2,30 @@ import {
 	USER_REGISTRATION_REQUEST,
 	USER_REGISTRATION_SUCCESS,
 	USER_REGISTRATION_FAILED,
-} from '../actions/types'
+	USER_AUTH_REQUEST,
+	USER_AUTH_SUCCESS,
+	USER_AUTH_FAILED,
+} from '../actions/__types'
 
 
 const initialState = {
-	// признак того, что операция обмена с API в процессе
+	// признак того, что пользователь отправляет данные на сервер
 	userRegistrationRequest:  false,
 	// признак, что пользователь зарегистрировался
 	userRegistrationSuccess: false,
   	// ошибка в результате обмена с API
-  	error: undefined, 
+  	userRegistrationError: undefined, 
 
-	// признак, что пользователь залогинился
+	// признак, что пользователь залогинился (авторизован)
 	userIsLogged: false,
+
 	// приложение ожидает код в письме для сброса пароля
   	userPasswordResetting: false,
 
-	userName: '',
-	userEmail: '',
+	// Данные авторизованного пользователя (для Профиля)
+	userAuthName: '',
+	userAuthEmail: '',
+	userAuthPassword: '',
 };
 
 
@@ -38,22 +44,43 @@ export const userReducer = ( state = initialState, action ) => {
 		case USER_REGISTRATION_SUCCESS: 
 			return {
 				...state,
-				userRegistrationSuccess: action.payload.success,
-				userName: action.payload.user.name,
-				userEmail: action.payload.user.email,
 				userRegistrationRequest: false,
+				userRegistrationSuccess: action.payload.success,
+
 			}
 
 		case USER_REGISTRATION_FAILED: 
 			return {
 				...state,
-				error: action.payload.message,
 				userRegistrationRequest: false,
+				userRegistrationError: action.payload.message,
 
 			}
 		
+		/**************************************/
 
+		case USER_AUTH_REQUEST: 
+			return {
+				...state,
+				userAuthRequest: true,
+			}
 
+		case USER_AUTH_SUCCESS: 
+			return {
+				...state,
+				userAuthRequest: false,
+				userAuthSuccess: action.payload.success,
+				userAuthName: action.payload.user.name,
+				userAuthEmail: action.payload.user.email,
+			}
+
+		case USER_AUTH_FAILED: 
+			return {
+				...state,
+				userAuthRequest: false,
+				userAuthError: action.payload.message,
+
+			}
 
 		// Экшен по дефолту
 		default: 

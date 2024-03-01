@@ -3,7 +3,7 @@ import {
 	DELETE_INGREDIENT_CONSTRUCTOR,
 	CHANGE_INGREDIENTS_CONSTRUCTOR,
 
-} from '../actions/types'
+} from '../actions/__types'
 
 
 const initialState = {

@@ -1,6 +1,6 @@
 import { 
 	SET_INGREDIENT_DETAILS,
-} from '../actions/types'
+} from '../actions/__types'
 
 
 const initialState = {

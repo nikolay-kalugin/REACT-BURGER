@@ -2,9 +2,13 @@ import {
 	USER_REGISTRATION_REQUEST,
 	USER_REGISTRATION_SUCCESS,
 	USER_REGISTRATION_FAILED,
-} from './types'
+	USER_AUTH_REQUEST,
+	USER_AUTH_SUCCESS,
+	USER_AUTH_FAILED,
+} from './__types'
 
 // Для работы с USER
+
 
 export const userRegistrationRequest = () => {
 	return { type: USER_REGISTRATION_REQUEST }
@@ -16,4 +20,18 @@ export const userRegistrationSuccess = (bool) => {
 
 export const userRegistrationFailed = (err) => {
 	return { type: USER_REGISTRATION_FAILED, payload: err }
+} 
+
+/********************************************/
+
+export const userAuthRequest = () => {
+	return { type: USER_AUTH_REQUEST }
+} 
+
+export const userAuthSuccess = (bool) => {
+	return { type: USER_AUTH_SUCCESS, payload: bool }
+} 
+
+export const userAuthFailed = (err) => {
+	return { type: USER_AUTH_FAILED, payload: err }
 } 

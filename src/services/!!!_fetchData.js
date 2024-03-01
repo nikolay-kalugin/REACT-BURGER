@@ -1,6 +1,6 @@
 export const fetchData = (url, data) => {
 
-	fetch( url, 
+	return fetch( url, 
 			{
 				method: "POST",
 				headers: {
@@ -13,13 +13,7 @@ export const fetchData = (url, data) => {
 				? response.json() 
 				: Promise.reject( new Error('Server returned ' + response.status) ) 
 	)
-	.then( obj => {
-			if( obj.success )
-			{ 
-				window.location.replace(`/reset-password`)
-			}
-		}
-	)
-	.catch( err => console.log(err) )
+	.then( obj => obj.data )
+	.catch( err => Promise.reject(err) )
 	
 }

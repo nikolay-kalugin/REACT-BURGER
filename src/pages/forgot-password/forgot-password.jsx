@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
-// import { fetchWithRefresh } from '../../utils/api'
+import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 
 export function ForgotPasswordPage() {
 
-	const [email, setEmail] = React.useState('bob@example.com')
+	const [email, setEmail] = React.useState('')
 	const onChangeEmail = (e) => {
 		setEmail(e.target.value)
 	}
@@ -14,37 +14,12 @@ export function ForgotPasswordPage() {
 	const navigate = useNavigate();
 
 	const onClickHandler = (url, data) => {
+		const resetPasswordResult = fetchWithRefresh(url, data)
+										.then( obj => obj.success );
 
-		fetch( url, 
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data)
-			}
-		)
-		.then( response => response.ok 
-					? response.json() 
-					: Promise.reject( new Error('Server returned ' + response.status) ) 
-		)
-		.then( obj => {
-				if( obj.success )
-				{ 
-					navigate(`/reset-password`)
-				}
-			}
-		)
-		.catch( err => console.log(err) )
-
+		resetPasswordResult && navigate(`/reset-password`);
 	}
-
-	// const onClickHandler = (url, data) => {
-	// 	fetchWithRefresh()
-	// }
 	
-
-
 	return (
 		<div className={styles.Page}>
 			<div className={styles.Wrapper}>
@@ -66,7 +41,7 @@ export function ForgotPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler(`/password-reset`, {email}) }
+						onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset`, {email} )}
 					>
 						Восстановить
 					</Button>

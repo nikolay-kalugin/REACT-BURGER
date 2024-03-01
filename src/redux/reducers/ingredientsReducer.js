@@ -3,7 +3,7 @@ import {
 	GET_INGREDIENTS_SUCCESS, 
 	GET_INGREDIENTS_FAILED,
 
-} from '../actions/types'
+} from '../actions/__types'
 
 
 const initialState = {

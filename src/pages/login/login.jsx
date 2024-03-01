@@ -1,19 +1,37 @@
 import React from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate  } from 'react-router-dom';
+import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 
 export function LoginPage() {
 
-	const [email, setEmail] = React.useState('')
-	const onChangeEmail = e => {
-		setEmail(e.target.value)
+	const navigate = useNavigate();
+
+	const [userEmail, setUserEmail] = React.useState('')
+	const onChangeEmail = (e) => {
+		setUserEmail(e.target.value)
 	}
 
-	const [password, setPassword] = React.useState('')
-	const onChangePassword = e => {
-		setPassword(e.target.value)
+	const [userPassword, setUserPassword] = React.useState('')
+	const onChangePassword = (e) => {
+		setUserPassword(e.target.value)
 	}
+
+
+	let loginUserData = {
+		"email": userEmail, 
+		"password": userPassword, 
+
+	}
+
+	const onClickHandler = (url, data) => {
+		const authUserResult = fetchWithRefresh(url, data)
+									.then( obj => obj.success );
+		// console.log(resultAuthUser)
+		authUserResult && navigate(`/`);
+	}
+
 
 	return (
 		<div className={styles.Page}>
@@ -25,7 +43,7 @@ export function LoginPage() {
 
 					<EmailInput
 						onChange={onChangeEmail}
-						value={email}
+						value={userEmail}
 						name={'email'}
 						isIcon={false}
 						extraClass="mb-6"
@@ -34,7 +52,7 @@ export function LoginPage() {
 
 					<PasswordInput
 						onChange={onChangePassword}
-						value={password}
+						value={userPassword}
 						name={'password'}
 						extraClass="mb-6"
 					/>	
@@ -44,7 +62,7 @@ export function LoginPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => alert('Войти')}
+						onClick={() => onClickHandler(`${BURGER_API_URL}/auth/login`, loginUserData)}
 					>
 						Войти
 					</Button>

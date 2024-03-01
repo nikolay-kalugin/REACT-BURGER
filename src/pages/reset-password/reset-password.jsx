@@ -2,14 +2,15 @@ import React from 'react';
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 
 export function ResetPasswordPage() {
 
 	const navigate = useNavigate();
 
-	const [password, setPassword] = React.useState('password')
+	const [newUserPassword, setNewUserPassword] = React.useState('')
 	const onChangePassword = (e) => {
-		setPassword(e.target.value)
+		setNewUserPassword(e.target.value)
 	}
 
 	const [token, setToken] = React.useState('')
@@ -17,37 +18,18 @@ export function ResetPasswordPage() {
 		setToken(e.target.value)
 	}
 
-	let resetData = {
-		"password": password,
-		"token": token
+	let resetPasswordData = {
+		"password": newUserPassword,
+		"token": token,
 	  } 
 
+
 	const onClickHandler = (url, data) => {
+		const updatePasswordResult = fetchWithRefresh(url, data)
+										.then( obj => obj.success );
 
-		fetch( url, 
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(data)
-			}
-		)
-		.then( response => response.ok 
-					? response.json() 
-					: Promise.reject( new Error('Server returned ' + response.status) ) 
-		)
-		.then( obj => {
-				if( obj.success )
-				{ 
-					navigate(`/login`)
-				}
-			}
-		)
-		.catch( err => console.log(err) )
-
+		updatePasswordResult && navigate(`/login`);
 	}
-
 
 	return (
 		<div className={styles.Page}>
@@ -59,7 +41,7 @@ export function ResetPasswordPage() {
 
 					<PasswordInput
 						onChange={onChangePassword}
-						value={password}
+						value={newUserPassword}
 						name={'password'}
 						extraClass="mb-6"
 					/>
@@ -81,7 +63,7 @@ export function ResetPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler(`/password-reset/reset`, resetData)}
+						onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset/reset`, resetPasswordData)}
 					>
 						Сохранить
 					</Button>

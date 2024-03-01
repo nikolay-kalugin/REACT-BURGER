@@ -33,17 +33,17 @@ function BurgerIngredients() {
 
 		const diffKoeff = 120;
 
-		if ( (rectBuns.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectBuns?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('one')
 		}
 
-		if ( (rectSauces.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectSauces?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('two')
 		}
 
-		if ( (rectMains.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectMains?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('three')
 		}

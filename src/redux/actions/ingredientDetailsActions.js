@@ -1,6 +1,6 @@
 import {
 	SET_INGREDIENT_DETAILS,
-} from './types'
+} from './__types'
 
 // Для отображения ДАННЫХ ИНГРЕДИЕНТА
 

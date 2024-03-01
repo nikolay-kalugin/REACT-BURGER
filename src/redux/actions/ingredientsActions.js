@@ -4,7 +4,7 @@ import {
 	GET_INGREDIENTS_SUCCESS,
 	GET_INGREDIENTS_FAILED,
 
-} from './types'
+} from './__types'
 
 // Для подгрузки ИНГРЕДИЕНТОВ
 

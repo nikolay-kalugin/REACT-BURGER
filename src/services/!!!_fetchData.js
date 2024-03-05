@@ -1,12 +1,15 @@
-export const fetchData = (url, data) => {
+
+
+export const fetchData = (url, method, token, sendData) => {
 
 	return fetch( url, 
 			{
-				method: "POST",
+				method: method,
 				headers: {
 					"Content-Type": "application/json",
+					"Authorization": token,
 				},
-				body: JSON.stringify(data)
+				body: JSON.stringify(sendData)
 			}
 	)
 	.then( response => response.ok 
@@ -14,6 +17,5 @@ export const fetchData = (url, data) => {
 				: Promise.reject( new Error('Server returned ' + response.status) ) 
 	)
 	.then( obj => obj.data )
-	.catch( err => Promise.reject(err) )
-	
+	.catch( err => Promise.reject(err) )	
 }

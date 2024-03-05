@@ -5,6 +5,9 @@ import {
 	USER_AUTH_REQUEST,
 	USER_AUTH_SUCCESS,
 	USER_AUTH_FAILED,
+	SET_USER_NAME,
+	SET_USER_EMAIL,
+	SET_USER_PASSWORD,
 } from './__types'
 
 // Для работы с USER
@@ -34,4 +37,24 @@ export const userAuthSuccess = (bool) => {
 
 export const userAuthFailed = (err) => {
 	return { type: USER_AUTH_FAILED, payload: err }
+} 
+
+/********************************************/
+
+export const setUserName = (name) => {
+	return { type: SET_USER_NAME, payload: name }
+} 
+
+export const setUserEmail = (email) => {
+	return { type: SET_USER_EMAIL, payload: email }
+} 
+
+export const setUserPassword = (password) => {
+	return { type: SET_USER_PASSWORD, payload: password }
+} 
+
+/********************************************/
+
+export const setUserLogout = () => {
+	return { type: SET_USER_PASSWORD }
 } 

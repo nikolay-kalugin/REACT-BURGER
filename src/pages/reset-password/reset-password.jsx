@@ -24,11 +24,10 @@ export function ResetPasswordPage() {
 	  } 
 
 
-	const onClickHandler = (url, data) => {
-		const updatePasswordResult = fetchWithRefresh(url, data)
-										.then( obj => obj.success );
-
-		updatePasswordResult && navigate(`/login`);
+	const onClickHandler = async (url, data) => {
+		const updatePasswordResult = await fetchWithRefresh(url, data)
+										
+		updatePasswordResult.success && navigate(`/login`);
 	}
 
 	return (

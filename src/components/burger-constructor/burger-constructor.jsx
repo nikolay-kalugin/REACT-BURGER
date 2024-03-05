@@ -23,16 +23,31 @@ function BurgerConstructor() {
 
 	/*** Drag & Drop (Drop elem handlers) ***/
 
-	const [, dropRef] = useDrop(() => ({
-		accept: 'ingredient',
-		drop: (ingredient) => {
-			dispatch( addIngredientConstructor(ingredient) )
-		},
-		collect: (monitor) => ({ 
-			canDrop: monitor.canDrop()
-		}),
-	}));
+	const [{canDrop, dragItem}, dropRef] = useDrop(() => (
+		{
+			accept: 'ingredient',
+			drop: (ingredient) => {
+				dispatch( addIngredientConstructor(ingredient) )
+			},
+			collect: (monitor) => ({
+				canDrop: monitor.canDrop(),
+				dragItem: monitor.getItem(),
+			}),
+			
+		})
+	);
 
+	let borderStyleBun = null;
+	let borderStyleMiddle = null;
+
+	if( dragItem?.type === 'bun' && canDrop)
+	{
+		borderStyleBun = {border: '1px solid blue'};
+	}
+	else if ( dragItem?.type !== 'bun' && canDrop)
+	{
+		borderStyleMiddle = {border: '1px solid blue'};
+	}
 
 	return (
 		<section className={styles.BurgerConstructor}>
@@ -47,6 +62,7 @@ function BurgerConstructor() {
 					( 
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorUP}`}
+							style={borderStyleBun}
 						>
 							Выберите булки
 						</div>	
@@ -67,6 +83,7 @@ function BurgerConstructor() {
 					(
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorCenter}`}
+							style={borderStyleMiddle}
 						>
 							Выберите начинку
 						</div>
@@ -91,6 +108,7 @@ function BurgerConstructor() {
 					addedBun === null  ?  ( 
 						<div 
 							className={`${styles.ConstructorListElementCustom} ${styles.modificatorBottom}`}
+							style={borderStyleBun}
 						>
 							Выберите булки
 						</div>	

@@ -1,26 +1,102 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
-import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink } from 'react-router-dom';
+import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { setUserName, setUserEmail } from '../../redux/actions/userActions';
+import { BURGER_API_URL, fetchWithRefresh, getUserData, patchUserData } from '../../utils/api';
+import { setUserLogout } from '../../redux/actions/userActions';
 
 export function ProfilePage() {
 
-	const [isVisibleProfile, setIsVisibleProfile] = React.useState(true);
+	const dispatch = useDispatch();
 
-	const [name, setName] = React.useState('Ваше имя')
-	const onChangeName = e => {
-		setName(e.target.value)
+	const [userNameEditing, setUserNameEditing] = useState(true);
+
+	const onNameIconClickHandler = (e) =>
+	{
+		setUserNameEditing(!userNameEditing);
 	}
 
-	const [email, setEmail] = React.useState('pochta@mail.ru')
-	const onChangeEmail = e => {
-		setEmail(e.target.value)
+	const [isVisibleProfile, setIsVisibleProfile] = useState(true);
+
+	const [profileName, setProfileName] = useState('');
+	const onChangeName = (e) => {
+		setProfileName(e.target.value);
 	}
 
-	const [password, setPassword] = React.useState('password')
+	const [profileEmail, setProfileEmail] = useState('');
+	const onChangeEmail = (e) => {
+		setProfileEmail(e.target.value);
+	}
+
+	const [profilePassword, setProfilePassword] = useState('');
 	const onChangePassword = e => {
-		setPassword(e.target.value)
+		setProfilePassword(e.target.value);
 	}
+
+	// Подгрузка данных пользователя в профиль
+	useEffect(() => 
+
+			async() => {
+
+				if( document.location.pathname === '/profile' )
+				{
+					const getUserDataResult = await getUserData();
+		
+					if (getUserDataResult.success)
+					{
+						setProfileName(getUserDataResult.user.name);
+						setProfileEmail(getUserDataResult.user.email);
+					}
+				}
+			}
+	,[]) 
+	
+
+
+	let logoutData = {
+		"token": localStorage.getItem("refreshToken")
+	}
+
+	// Обработчик кнопки "Выход"	
+	const onClickLogoutHandler = async(url, data) => {
+		const logoutUserResult = await fetchWithRefresh(url, data)
+		dispatch(setUserLogout());
+		alert(logoutUserResult.message)
+	}
+
+	// Обработчик кнопки "Отменить"
+	const onClickCancelBtn = async() => {
+
+		const getUserDataResult = await getUserData();
+
+		if (getUserDataResult.success)
+		{
+			setProfileName(getUserDataResult.user.name);
+			setProfileEmail(getUserDataResult.user.email);
+		}
+
+	}
+
+	let newUserData = {
+		"name": profileName,
+		"email": profileEmail,
+		"password": profilePassword,
+	}
+
+	// Обработчик кнопки "Сохранить"
+	const onClickSaveBtn = async(url, data) => {
+		const patchUserDataResult = await patchUserData(url, data)
+
+		if(patchUserDataResult.success)
+		{
+			dispatch(setUserName(patchUserDataResult.user.name));
+			dispatch(setUserEmail(patchUserDataResult.user.email));
+		}
+
+	}
+
 
 	return (
 		<div className={styles.Page}>
@@ -47,7 +123,7 @@ export function ProfilePage() {
 							<NavLink 
 								to="/profile/orders" 
 								className={styles.NavLink} 
-								onClick={() => setIsVisibleProfile(false)} 
+								onClick={() => setIsVisibleProfile(true)} 
 							>
 								{
 									({isActive}) => (
@@ -60,9 +136,9 @@ export function ProfilePage() {
 						</li>
 						<li className={styles.SideNavItem}>
 							<NavLink 
-								to="/" 
+								to="/login" 
 								className={styles.NavLink}
-								onClick={() => setIsVisibleProfile(false)} 
+								onClick={() => onClickLogoutHandler(`${BURGER_API_URL}/auth/logout`, logoutData)} 
 							>
 								{
 									({isActive}) => (
@@ -80,7 +156,7 @@ export function ProfilePage() {
 					{
 						isVisibleProfile && ( 
 							<p className="text text_type_main-default text_color_inactive">
-								В этом разделе вы можете изменить свои персональные данные
+								В этом разделе вы можете изменить<br/> свои персональные данные
 							</p>
 						)
 					}
@@ -92,22 +168,23 @@ export function ProfilePage() {
 						<form className={styles.form} >
 
 							<Input
+								onChange={onChangeName}
+								value={profileName}
 								type={'text'}
 								placeholder={'Имя'}
-								onChange={onChangeName}
 								icon={'EditIcon'}
-								value={name}
 								name={'name'}
 								error={false}
-								onIconClick={() => alert('Edit name ...')}
+								onIconClick={() => onNameIconClickHandler()} 
 								errorText={'Ошибка'}
 								size={'default'}
 								extraClass="mb-6"
+								disabled={userNameEditing}
 							/>
 
 							<EmailInput
 								onChange={onChangeEmail}
-								value={email}
+								value={profileEmail}
 								name={'email'}
 								placeholder="Логин"
 								isIcon={true}
@@ -116,10 +193,32 @@ export function ProfilePage() {
 
 							<PasswordInput
 								onChange={onChangePassword}
-								value={password}
+								value={profilePassword}
 								name={'password'}
 								icon="EditIcon"
+								extraClass="mb-6"
 							/>
+
+
+							<Button 
+								htmlType="button" 
+								type="primary" 
+								size="medium" 
+								extraClass="ml-2"
+								onClick={() => onClickCancelBtn()}
+							>
+								Отменить
+							</Button>
+
+							<Button 
+								htmlType="button" 
+								type="primary" 
+								size="medium" 
+								extraClass="ml-2"
+								onClick={() => onClickSaveBtn(`${BURGER_API_URL}/auth/user`, newUserData)}
+							>
+								Сохранить
+							</Button>
 				
 						</form>
 					)

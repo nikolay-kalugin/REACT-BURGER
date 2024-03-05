@@ -5,6 +5,10 @@ import {
 	USER_AUTH_REQUEST,
 	USER_AUTH_SUCCESS,
 	USER_AUTH_FAILED,
+	SET_USER_NAME,
+	SET_USER_EMAIL,
+	SET_USER_PASSWORD,
+	SET_USER_LOGOUT,
 } from '../actions/__types'
 
 
@@ -23,9 +27,9 @@ const initialState = {
   	userPasswordResetting: false,
 
 	// Данные авторизованного пользователя (для Профиля)
-	userAuthName: '',
-	userAuthEmail: '',
-	userAuthPassword: '',
+	userName: '',
+	userEmail: '',
+	userPassword: '',
 };
 
 
@@ -70,8 +74,7 @@ export const userReducer = ( state = initialState, action ) => {
 				...state,
 				userAuthRequest: false,
 				userAuthSuccess: action.payload.success,
-				userAuthName: action.payload.user.name,
-				userAuthEmail: action.payload.user.email,
+				userIsLogged: true,
 			}
 
 		case USER_AUTH_FAILED: 
@@ -81,6 +84,36 @@ export const userReducer = ( state = initialState, action ) => {
 				userAuthError: action.payload.message,
 
 			}
+
+		/**************************************/
+
+		case SET_USER_NAME: 
+			return {
+				...state,
+				userName: action.payload,
+			}
+
+		case SET_USER_EMAIL: 
+			return {
+				...state,
+				userEmail: action.payload,
+			}
+
+		case SET_USER_PASSWORD: 
+			return {
+				...state,
+				userPassword: action.payload,
+			}
+
+		/**************************************/
+
+		case SET_USER_LOGOUT: 
+		return {
+			...state,
+			userIsLogged: false,
+		}
+
+
 
 		// Экшен по дефолту
 		default: 

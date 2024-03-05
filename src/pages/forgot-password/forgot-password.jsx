@@ -13,11 +13,10 @@ export function ForgotPasswordPage() {
 
 	const navigate = useNavigate();
 
-	const onClickHandler = (url, data) => {
-		const resetPasswordResult = fetchWithRefresh(url, data)
-										.then( obj => obj.success );
-
-		resetPasswordResult && navigate(`/reset-password`);
+	const onClickHandler = async (url, data) => {
+		const resetPasswordResult = await fetchWithRefresh(url, data)
+										
+		resetPasswordResult.success && navigate(`/reset-password`);
 	}
 	
 	return (

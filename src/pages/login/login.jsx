@@ -1,35 +1,46 @@
-import React from 'react';
+import { useState } from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate  } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
+import { useDispatch } from 'react-redux';
+import { setUserName, setUserEmail, setUserPassword } from '../../redux/actions/userActions'
 
 export function LoginPage() {
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
-	const [userEmail, setUserEmail] = React.useState('')
+	const [userAuthEmail, setUserAuthEmail] = useState('');
 	const onChangeEmail = (e) => {
-		setUserEmail(e.target.value)
+		setUserAuthEmail(e.target.value)
 	}
 
-	const [userPassword, setUserPassword] = React.useState('')
+	const [userAuthPassword, setUserAuthPassword] = useState('');
 	const onChangePassword = (e) => {
-		setUserPassword(e.target.value)
+		setUserAuthPassword(e.target.value)
 	}
 
 
 	let loginUserData = {
-		"email": userEmail, 
-		"password": userPassword, 
+		"email": userAuthEmail, 
+		"password": userAuthPassword, 
 
 	}
 
-	const onClickHandler = (url, data) => {
-		const authUserResult = fetchWithRefresh(url, data)
-									.then( obj => obj.success );
-		// console.log(resultAuthUser)
-		authUserResult && navigate(`/`);
+	// Обработчик кнопки "Вход"
+	const  onClickHandler = async (url, data) => {
+		const authUserResult = await fetchWithRefresh(url, data)
+		
+		if(authUserResult.success)
+		{
+			dispatch(setUserName(authUserResult.user.name));
+			dispatch(setUserEmail(authUserResult.user.email));
+			dispatch(setUserPassword(userAuthPassword));
+			localStorage.setItem("accessToken", authUserResult.accessToken);
+			localStorage.setItem("refreshToken", authUserResult.refreshToken);
+			navigate(`/`);
+		} 
 	}
 
 
@@ -43,7 +54,7 @@ export function LoginPage() {
 
 					<EmailInput
 						onChange={onChangeEmail}
-						value={userEmail}
+						value={userAuthEmail}
 						name={'email'}
 						isIcon={false}
 						extraClass="mb-6"
@@ -52,7 +63,7 @@ export function LoginPage() {
 
 					<PasswordInput
 						onChange={onChangePassword}
-						value={userPassword}
+						value={userAuthPassword}
 						name={'password'}
 						extraClass="mb-6"
 					/>	

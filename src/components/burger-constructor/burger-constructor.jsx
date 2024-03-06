@@ -129,11 +129,10 @@ function BurgerConstructor() {
 			<OrderCreator />
 
 			{ 
-				orderDetails  &&  (
-					<Modal>
-							<OrderDetails  orderDetails={orderDetails} />
-					</Modal>
-				)
+				orderDetails &&
+				<Modal>
+						<OrderDetails />
+				</Modal>	
 			}
 			
 		</section>

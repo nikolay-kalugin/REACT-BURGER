@@ -8,6 +8,7 @@ import {
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
+	SET_USER_LOGOUT
 } from './__types'
 
 // Для работы с USER
@@ -56,5 +57,7 @@ export const setUserPassword = (password) => {
 /********************************************/
 
 export const setUserLogout = () => {
-	return { type: SET_USER_PASSWORD }
+	return { type: SET_USER_LOGOUT }
 } 
+
+

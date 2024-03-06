@@ -4,7 +4,7 @@ import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer
 import { NavLink, useNavigate  } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 import { useDispatch } from 'react-redux';
-import { setUserName, setUserEmail, setUserPassword } from '../../redux/actions/userActions'
+import { userAuthRequest, userAuthSuccess, userAuthFailed, setUserName, setUserEmail, setUserPassword } from '../../redux/actions/userActions'
 
 export function LoginPage() {
 
@@ -30,16 +30,24 @@ export function LoginPage() {
 
 	// Обработчик кнопки "Вход"
 	const  onClickHandler = async (url, data) => {
+
 		const authUserResult = await fetchWithRefresh(url, data)
+
+		dispatch(userAuthRequest());
 		
 		if(authUserResult.success)
 		{
+			dispatch(userAuthSuccess(true));
 			dispatch(setUserName(authUserResult.user.name));
 			dispatch(setUserEmail(authUserResult.user.email));
 			dispatch(setUserPassword(userAuthPassword));
 			localStorage.setItem("accessToken", authUserResult.accessToken);
 			localStorage.setItem("refreshToken", authUserResult.refreshToken);
 			navigate(`/`);
+		}
+		else
+		{
+			dispatch(userAuthFailed('userAuthFailederr'));
 		} 
 	}
 

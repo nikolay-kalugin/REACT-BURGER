@@ -89,7 +89,7 @@ export const getUserData = async () => {
 	} 
 	catch(err) 
 	{
-		if (err.message === "jwt expired") // err.message === "Token is invalid"
+		if (err.message === "jwt expired" || err.message === "Token is invalid")  
 		{
 			// обновляем токен
 			const refreshData = await refreshToken(); 

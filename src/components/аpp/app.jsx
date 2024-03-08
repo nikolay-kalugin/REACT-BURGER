@@ -19,6 +19,7 @@ import { ProfilePage } from '../../pages/profile/profile';
 import { OrdersPage } from '../../pages/orders/orders';
 import { NotFound404 } from '../../pages/not-found-404/not-found-404';
 import { IngredientsPage } from '../../pages/ingredients/ingredients';
+import { OnlyAuth, OnlyUnAuth } from '../../pages/protected-route/protected-route';
 
 import { getIngredientsStart } from '../../services/getIngredientsStart';
 
@@ -43,17 +44,38 @@ function App() {
       <AppHeader />
 
       <Routes location={background || location}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/ingredients/:ingredientID" element={<IngredientsPage />} />
-        <Route path="*" element={<NotFound404 />} />
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/profile/orders" element={<OrdersPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/ingredients/:ingredientID" element={<IngredientsPage />} />
+          <Route path="*" element={<NotFound404 />} />
+
+          <Route path="/login" 
+              element={
+                <OnlyUnAuth component={ <LoginPage /> } />
+              } 
+          />
+
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+          <Route path="/orders" element={<OrdersPage />} />
+
+
+          {/* Профиль пользователя */}
+
+          <Route path="/profile" 
+              element={
+                <OnlyAuth component={ <ProfilePage /> } />
+              } 
+          />
+
+          <Route path="/profile/orders" 
+              element={
+                <OnlyAuth component={ <OrdersPage /> } />
+              } 
+          />
+
       </Routes>
 
       {

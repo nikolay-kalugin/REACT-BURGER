@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { NavLink, useNavigate  } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate  } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 import { useDispatch } from 'react-redux';
 import { userAuthRequest, userAuthSuccess, userAuthFailed, setUserName, setUserEmail, setUserPassword } from '../../redux/actions/userActions'
@@ -10,6 +10,7 @@ export function LoginPage() {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const location = useLocation();
 
 	const [userAuthEmail, setUserAuthEmail] = useState('');
 	const onChangeEmail = (e) => {
@@ -43,7 +44,17 @@ export function LoginPage() {
 			dispatch(setUserPassword(userAuthPassword));
 			localStorage.setItem("accessToken", authUserResult.accessToken);
 			localStorage.setItem("refreshToken", authUserResult.refreshToken);
-			navigate(`/`);
+			
+			if(location.state !== null && location.state.savePath !== null)
+			{
+				
+				navigate(location.state.savePath)
+			}
+			else
+			{
+				navigate(`/`);	
+			} 
+			
 		}
 		else
 		{

@@ -13,7 +13,7 @@ function OrderDetails() {
 			{
 				(orderDetails.order === 'loading') 
 				?
-					<p className={styles.TextStatus}>Данные загружаются...</p>
+					<p className={styles.TextStatus}>Подождите. Заказ формируется ...</p>
 				:
 					<>
 						<p className={styles.Digits}>{orderDetails.order.number}</p>

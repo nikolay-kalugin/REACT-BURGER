@@ -20,6 +20,8 @@ const initialState = {
   	// ошибка в результате обмена с API
   	userRegistrationError: undefined, 
 
+	// признак, что пользователь в процессе залогинивания (авторизации)
+	userAuthRequest: false,
 	// признак, что пользователь залогинился (авторизован)
 	userIsLogged: false,
 
@@ -30,6 +32,8 @@ const initialState = {
 	userName: '',
 	userEmail: '',
 	userPassword: '',
+
+	
 };
 
 

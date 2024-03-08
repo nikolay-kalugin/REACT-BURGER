@@ -97,7 +97,7 @@ function BurgerIngredients() {
 
 			{
 
-				loading ? <p>Данные загружаются...</p> 
+				loading ? <p>Ингредиенты загружаются ...</p> 
 				 
 				:
 				 

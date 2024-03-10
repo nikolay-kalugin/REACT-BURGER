@@ -89,7 +89,7 @@ export const getUserData = async () => {
 	} 
 	catch(err) 
 	{
-		if (err.message === "jwt expired" || err.message === "Token is invalid")  
+		if ( err.message === "jwt expired" )  // err.message === "Token is invalid"
 		{
 			// обновляем токен
 			const refreshData = await refreshToken(); 
@@ -121,6 +121,7 @@ export const getUserData = async () => {
 		}
 	}
 };
+
 
 // patchUserData с обновлением токена (используется localStorage)
 export const patchUserData = async (url, options) => {
@@ -172,28 +173,3 @@ export const patchUserData = async (url, options) => {
 		}
 	}
 };
-
-
-
-/*
-
-export const fetchData = (url, method, token) => {
-
-	return fetch( url, 
-			{
-				method: method,
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": token,
-				},
-			}
-	)
-	.then( response => response.ok 
-				? response.json() 
-				: Promise.reject( new Error('Server returned ' + response.status) ) 
-	)
-	.then( obj => obj.data )
-	.catch( err )	
-}
-
-*/

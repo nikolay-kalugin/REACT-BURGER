@@ -8,6 +8,7 @@ import {
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
+	SET_USER_IS_LOGGED,
 	SET_USER_LOGOUT
 } from './__types'
 
@@ -42,6 +43,10 @@ export const userAuthFailed = (err) => {
 
 /********************************************/
 
+export const setUser = (obj) => {
+	return { type: SET_USER_NAME, payload: obj }
+} 
+
 export const setUserName = (name) => {
 	return { type: SET_USER_NAME, payload: name }
 } 
@@ -55,6 +60,10 @@ export const setUserPassword = (password) => {
 } 
 
 /********************************************/
+
+export const setUserIsLogged = (bool) => {
+	return { type: SET_USER_IS_LOGGED, payload: bool }
+} 
 
 export const setUserLogout = () => {
 	return { type: SET_USER_LOGOUT }

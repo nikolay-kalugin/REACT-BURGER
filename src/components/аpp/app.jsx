@@ -22,6 +22,7 @@ import { IngredientsPage } from '../../pages/ingredients/ingredients';
 import { OnlyAuth, OnlyUnAuth } from '../../pages/protected-route/protected-route';
 
 import { getIngredientsStart } from '../../services/getIngredientsStart';
+import { checkUserAuth } from '../../services/checkUserAuth'
 
 function App() {
 
@@ -29,8 +30,11 @@ function App() {
 
   useEffect( () => {
     dispatch( getIngredientsStart() );
+  }, [dispatch]);
 
-  }, [dispatch] );
+  useEffect(() => {
+    dispatch(checkUserAuth());
+  }, [dispatch]);
 
   const ingredientDetails = useSelector(getIngredientDetails)
 

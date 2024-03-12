@@ -2,12 +2,17 @@ import {
 	USER_REGISTRATION_REQUEST,
 	USER_REGISTRATION_SUCCESS,
 	USER_REGISTRATION_FAILED,
+	
 	USER_AUTH_REQUEST,
 	USER_AUTH_SUCCESS,
 	USER_AUTH_FAILED,
+	
+	SET_USER,
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
+	
+	SET_USER_IS_LOGGED,
 	SET_USER_LOGOUT,
 } from '../actions/__types'
 
@@ -22,13 +27,15 @@ const initialState = {
 
 	// признак, что пользователь в процессе залогинивания (авторизации)
 	userAuthRequest: false,
-	// признак, что пользователь залогинился (авторизован)
+
+	// признак, что пользователь залогинился/разлогинился
 	userIsLogged: false,
 
 	// приложение ожидает код в письме для сброса пароля
   	userPasswordResetting: false,
 
 	// Данные авторизованного пользователя (для Профиля)
+	user: null,
 	userName: '',
 	userEmail: '',
 	userPassword: '',
@@ -91,6 +98,12 @@ export const userReducer = ( state = initialState, action ) => {
 
 		/**************************************/
 
+		case SET_USER: 
+			return {
+				...state,
+				user: action.payload,
+			}
+
 		case SET_USER_NAME: 
 			return {
 				...state,
@@ -111,11 +124,18 @@ export const userReducer = ( state = initialState, action ) => {
 
 		/**************************************/
 
+
+		case SET_USER_IS_LOGGED: 
+			return {
+				...state,
+				userIsLogged: action.payload,
+			}
+
 		case SET_USER_LOGOUT: 
-		return {
-			...state,
-			userIsLogged: false,
-		}
+			return {
+				...state,
+				userIsLogged: false,
+			}
 
 
 

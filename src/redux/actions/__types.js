@@ -30,10 +30,12 @@ export const  USER_AUTH_REQUEST = 'USER_AUTH_REQUEST';
 export const  USER_AUTH_SUCCESS = 'USER_AUTH_SUCCESS';
 export const  USER_AUTH_FAILED = 'USER_AUTH_FAILED';
 
+export const  SET_USER = 'SET_USER';
 export const  SET_USER_NAME = 'SET_USER_NAME';
 export const  SET_USER_EMAIL = 'SET_USER_EMAIL';
 export const  SET_USER_PASSWORD = 'SET_USER_PASSWORD';
 
+export const  SET_USER_IS_LOGGED = 'SET_USER_IS_LOGGED';
 export const  SET_USER_LOGOUT = 'SET_USER_LOGOUT';
 
 

@@ -66,8 +66,8 @@ export const fetchWithRefresh = async (url, options) => {
 		} 
 		else 
 		{
-			// return Promise.reject(err);
-			alert( err.message ) 
+			console.log( err.message );
+			return Promise.reject(err);
 		}
 	}
 };
@@ -116,8 +116,8 @@ export const getUserData = async () => {
 		} 
 		else 
 		{
-			// return Promise.reject(err);
-			alert( err.message ) 
+			console.log( err.message );
+			return Promise.reject(err);
 		}
 	}
 };
@@ -168,8 +168,8 @@ export const patchUserData = async (url, options) => {
 		} 
 		else 
 		{
-			// return Promise.reject(err);
-			alert( err.message ) 
+			console.log( err.message );
+			return Promise.reject(err);
 		}
 	}
 };

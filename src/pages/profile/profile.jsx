@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { NavLink } from 'react-router-dom';
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { setUserName, setUserEmail } from '../../redux/actions/userActions';
+import { setUserName, setUserEmail, setUser, setUserLogout } from '../../redux/actions/userActions';
 import { BURGER_API_URL, fetchWithRefresh, getUserData, patchUserData } from '../../utils/api';
-import { setUserLogout } from '../../redux/actions/userActions';
 
 export function ProfilePage() {
 
@@ -63,7 +62,10 @@ export function ProfilePage() {
 	const onClickLogoutHandler = async(url, data) => {
 		const logoutUserResult = await fetchWithRefresh(url, data)
 		dispatch(setUserLogout());
-		alert(logoutUserResult.message)
+		dispatch(setUser(null));
+		localStorage.removeItem("accessToken");
+		localStorage.removeItem("refreshToken");
+		console.log(logoutUserResult.message)
 	}
 
 	// Обработчик кнопки "Отменить"

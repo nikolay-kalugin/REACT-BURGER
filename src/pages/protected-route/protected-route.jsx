@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { getUserAuthRequest, getUserIsLogged } from '../../redux/selectors/selectors';
+import { getUserAuthRequest, getUserIsLogged, getUser } from '../../redux/selectors/selectors';
 import { useSelector } from 'react-redux';
 
 export function OnlyAuth({component}) {
@@ -7,7 +7,8 @@ export function OnlyAuth({component}) {
 	let location = useLocation();
 
 	const userAuthRequest = useSelector( getUserAuthRequest );
-	const userIsLogged = useSelector( getUserIsLogged );
+	// const userIsLogged = useSelector( getUserIsLogged );
+	const user = useSelector( getUser );
 
 	// Если Пользователь в процессе авторизации
 	if(userAuthRequest)
@@ -18,7 +19,7 @@ export function OnlyAuth({component}) {
 	} 
 
 	// Маршруты доступные НЕ Авторизованному пользователю
-	if(!userIsLogged) 
+	if(!user) 
 	{
 		return <Navigate to="/login" state={{savePath: location.pathname}} />
 	}
@@ -32,6 +33,8 @@ export function OnlyUnAuth({component}) {
 
 	let location = useLocation();
 	const userIsLogged = useSelector( getUserIsLogged );
+
+	console.log('userIsLogged', userIsLogged)
 
 	// Маршруты для блокировки
 	const isProtectedPath = ['/login', '/register', '/forgot-password', '/reset-password'].indexOf(location.pathname) === 0

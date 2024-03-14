@@ -77,7 +77,7 @@ export const userReducer = ( state = initialState, action ) => {
 		case USER_AUTH_REQUEST: 
 			return {
 				...state,
-				userAuthRequest: true,
+				userAuthRequest: action.payload,
 			}
 
 		case USER_AUTH_SUCCESS: 

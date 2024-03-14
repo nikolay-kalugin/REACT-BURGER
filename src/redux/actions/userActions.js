@@ -29,8 +29,8 @@ export const userRegistrationFailed = (err) => {
 
 /********************************************/
 
-export const userAuthRequest = () => {
-	return { type: USER_AUTH_REQUEST }
+export const userAuthRequest = (bool) => {
+	return { type: USER_AUTH_REQUEST, payload: bool }
 } 
 
 export const userAuthSuccess = (bool) => {

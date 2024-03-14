@@ -30,7 +30,7 @@ export function ProfilePage() {
 	}
 
 	const [profilePassword, setProfilePassword] = useState('');
-	const onChangePassword = e => {
+	const onChangePassword = (e) => {
 		setProfilePassword(e.target.value);
 	}
 

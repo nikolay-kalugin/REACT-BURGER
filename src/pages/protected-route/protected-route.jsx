@@ -11,10 +11,10 @@ export function OnlyAuth({component}) {
 	const user = useSelector( getUser );
 
 	// Если Пользователь в процессе авторизации
-	if(userAuthRequest)
+	if(!userAuthRequest)
 	{
 		return ( 
-			<div>Пользователь в процессе авторизации ...</div> 
+			<div>Пользователь в процессе авторизации ....</div> 
 		)
 	} 
 
@@ -34,7 +34,7 @@ export function OnlyUnAuth({component}) {
 	let location = useLocation();
 	const userIsLogged = useSelector( getUserIsLogged );
 
-	console.log('userIsLogged', userIsLogged)
+	// console.log('userIsLogged', userIsLogged)
 
 	// Маршруты для блокировки
 	const isProtectedPath = ['/login', '/register', '/forgot-password', '/reset-password'].indexOf(location.pathname) === 0

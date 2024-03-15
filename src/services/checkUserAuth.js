@@ -6,8 +6,8 @@ export const getUser = () => {
 	return (dispatch) => {
 	  return getUserData()
             .then( res => {
-              console.log('getUserData res', res)
-		          dispatch(setUser(res.user));
+                // console.log('getUserData res', res)
+		        dispatch(setUser(res.user));
 	          });
 	};
 };

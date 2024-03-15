@@ -34,10 +34,11 @@ export function LoginPage() {
 
 		const authUserResult = await fetchWithRefresh(url, data)
 
-		dispatch(userAuthRequest());
+		dispatch(userAuthRequest(true));
 		
 		if(authUserResult.success)
 		{
+			dispatch(userAuthRequest(false));
 			dispatch(userAuthSuccess(true));
 			dispatch(setUser(authUserResult.user));
 			dispatch(setUserPassword(userAuthPassword));

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { NavLink } from 'react-router-dom';
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { setUserName, setUserEmail, setUser, setUserIsLogged } from '../../redux/actions/userActions';
+import { setUserName, setUserEmail, setUser } from '../../redux/actions/userActions';
 import { BURGER_API_URL, fetchWithRefresh, getUserData, patchUserData } from '../../utils/api';
 
 export function ProfilePage() {
@@ -62,7 +62,6 @@ export function ProfilePage() {
 	const onClickLogoutHandler = async(url, data) => {
 		const logoutUserResult = await fetchWithRefresh(url, data)
 		dispatch(setUser(null));
-		dispatch(setUserIsLogged(false));
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		console.log(logoutUserResult.message)
@@ -167,7 +166,10 @@ export function ProfilePage() {
 				{
 					isVisibleProfile && (
 
-						<form className={styles.form} >
+						<form 
+							className={styles.form} 
+							onSubmit={e => { e.preventDefault(); }}
+						>
 
 							<Input
 								onChange={onChangeName}

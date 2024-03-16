@@ -23,7 +23,10 @@ export function ForgotPasswordPage() {
 		<div className={styles.Page}>
 			<div className={styles.Wrapper}>
 			
-				<form className={styles.form}>
+				<form 
+					className={styles.form}
+					onSubmit={e => { e.preventDefault(); }}
+				>
 
 					<h2 className="mb-6">Восстановление пароля</h2>
 

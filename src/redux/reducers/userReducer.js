@@ -11,19 +11,19 @@ import {
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
-	
-	SET_USER_IS_LOGGED,
 
 } from '../actions/__types'
 
 
 const initialState = {
+
 	// признак того, что запрос на Регистрацию в процессе 
 	userRegistrationRequest:  false,
 	// признак того, что запрос на Регистрацию завершен (пользователь зарегистрировался)
 	userRegistrationSuccess: false,
   	// ошибка в результате обмена с API (при регистрации)
   	userRegistrationError: undefined, 
+
 
 	// признак того, что запрос на Авторизацию в процессе 
 	userAuthRequest: false,
@@ -32,12 +32,6 @@ const initialState = {
 	// ошибка в результате обмена с API (при авторизации)
 	userAuthError: undefined,
 
-
-	// признак, что пользователь залогинился/разлогинился
-	userIsLogged: false,
-
-	// Признак, что приложение ожидает код в письме для сброса пароля
-  	userPasswordResetting: false,
 
 	// Данные авторизованного пользователя (для Профиля)
 	user: null,
@@ -89,7 +83,6 @@ export const userReducer = ( state = initialState, action ) => {
 				...state,
 				userAuthRequest: false,
 				userAuthSuccess: true,
-				userIsLogged: true,
 			}
 
 		case USER_AUTH_FAILED: 
@@ -97,8 +90,6 @@ export const userReducer = ( state = initialState, action ) => {
 				...state,
 				userAuthRequest: false,
 				userAuthError: action.payload,
-				userIsLogged: false,
-
 			}
 
 		/**************************************/
@@ -129,12 +120,6 @@ export const userReducer = ( state = initialState, action ) => {
 
 		/**************************************/
 
-
-		case SET_USER_IS_LOGGED: 
-			return {
-				...state,
-				userIsLogged: action.payload,
-			}
 
 		// Экшен по дефолту
 		default: 

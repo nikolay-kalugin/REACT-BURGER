@@ -12,7 +12,6 @@ import {
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
 	
-	SET_USER_IS_LOGGED,
 } from './__types'
 
 // Для работы с USER
@@ -62,11 +61,7 @@ export const setUserPassword = (password) => {
 	return { type: SET_USER_PASSWORD, payload: password }
 } 
 
-/********************************************/
 
-export const setUserIsLogged = (bool) => {
-	return { type: SET_USER_IS_LOGGED, payload: bool }
-} 
 
 
 

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddedIngredients, getAddedBun, getUserIsLogged } from '../../redux/selectors/selectors';
+import { getAddedIngredients, getAddedBun, getUser } from '../../redux/selectors/selectors';
 import { getOrderData } from '../../services/getOrderData';
 import getOrderResults from '../../redux/selectors/getOrderResults';
 import { useNavigate  } from 'react-router-dom';
@@ -15,7 +15,7 @@ function OrderCreator() {
 
 	const addedBun = useSelector( getAddedBun );
 
-	const userIsLogged = useSelector( getUserIsLogged );
+	const user = useSelector( getUser );
 
 	const addedIngredients = useSelector( getAddedIngredients );
 
@@ -27,7 +27,7 @@ function OrderCreator() {
 	
 	const orderButtonClickHandler = () => {
 
-		if (userIsLogged) 
+		if (user)
 		{
 			dispatch( setOrderDetails({order: 'loading'}) )
 			dispatch( getOrderData(orderResults.data) )

@@ -1,6 +1,6 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { getUserAuthRequest, getUserIsLogged, getUser } from '../../redux/selectors/selectors';
 import { useSelector } from 'react-redux';
+import { Navigate, useLocation } from 'react-router-dom';
+import { getUserAuthRequest, getUser } from '../../redux/selectors/selectors';
 
 export function OnlyAuth({component}) {
 
@@ -8,11 +8,10 @@ export function OnlyAuth({component}) {
 
 	// признак того, что запрос на Авторизацию в процессе 
 	const userAuthRequest = useSelector( getUserAuthRequest );
-
 	const user = useSelector( getUser );
 
 	console.log('userAuthRequest', userAuthRequest)
-
+	console.log('user', user)
 
 	// Если Пользователь в процессе авторизации
 	if(userAuthRequest)
@@ -36,16 +35,19 @@ export function OnlyAuth({component}) {
 export function OnlyUnAuth({component}) {
 
 	let location = useLocation();
-	const userIsLogged = useSelector( getUserIsLogged );
+	const user = useSelector( getUser );
 
-	// console.log('userIsLogged', userIsLogged)
+	console.log('user', user)
 
 	// Маршруты для блокировки
 	const isProtectedPath = ['/login', '/register', '/forgot-password', '/reset-password'].indexOf(location.pathname) === 0
 
 	// Если Пользоавтель Авторизован, то блокируем маршруты из массива
-	if( userIsLogged && isProtectedPath ) 
+	if( user && isProtectedPath ) 
 	{
+
+		console.log(123)
+
 		return <Navigate to="/" />
 	}
 	else

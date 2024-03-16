@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import styles from './register.module.css';
 import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -9,22 +9,21 @@ import { useDispatch, useSelector } from 'react-redux';
 export function RegisterPage() {
 
 	const dispatch = useDispatch();
-
 	const navigate = useNavigate();
 
 	const userRegistrationSuccess = useSelector( getUserRegistrationSuccess );
 
-	const [userName, setUserName] = React.useState('');
+	const [userName, setUserName] = useState('');
 	const onChangeUserName = (e) => {
 		setUserName(e.target.value)
 	}
 
-	const [userEmail, setUserEmail] = React.useState('');
+	const [userEmail, setUserEmail] = useState('');
 	const onChangeEmail = (e) => {
 		setUserEmail(e.target.value)
 	}
 
-	const [userPassword, setUserPassword] = React.useState(''); // password
+	const [userPassword, setUserPassword] = useState(''); // password
 	const onChangePassword = (e) => {
 		setUserPassword(e.target.value)
 	}
@@ -52,7 +51,10 @@ export function RegisterPage() {
 		<div className={styles.Page}>
 			<div className={styles.Wrapper}>
 			
-				<form className={styles.form}>
+				<form 
+					className={styles.form}
+					onSubmit={e => { e.preventDefault(); }}
+				>
 
 					<h2 className="mb-6">Регистрация</h2>
 

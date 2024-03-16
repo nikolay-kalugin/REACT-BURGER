@@ -17,13 +17,14 @@ export const getAddedIngredients = store => store.constructorReducer.addedIngred
 export const getUserRegistrationRequest = store => store.userReducer.userRegistrationRequest ;
 export const getUserRegistrationSuccess = store => store.userReducer.userRegistrationSuccess ;
 
+export const getUserAuthRequest = store => store.userReducer.userAuthRequest ;
+
 export const getUser = store => store.userReducer.user ;
 export const getUserName = store => store.userReducer.userName ;
 export const getUserEmail = store => store.userReducer.userEmail ;
 export const getUserPassword = store => store.userReducer.userPassword ;
 
-export const getUserAuthRequest = store => store.userReducer.userAuthRequest ;
-export const getUserIsLogged = store => store.userReducer.userIsLogged ;
+
 
 
 

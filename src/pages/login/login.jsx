@@ -4,12 +4,12 @@ import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 import { useDispatch } from 'react-redux';
-import { setUserAuthRequest, setUserAuthSuccess, setUserAuthFailed, setUser, setUserPassword, setUserIsLogged } from '../../redux/actions/userActions'
+import { setUserAuthRequest, setUserAuthSuccess, setUserAuthFailed, setUser, setUserPassword } from '../../redux/actions/userActions'
 
 export function LoginPage() {
 
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const location = useLocation();
 
 	const [userAuthEmail, setUserAuthEmail] = useState('');
@@ -39,7 +39,6 @@ export function LoginPage() {
 		if(authUserResult.success)
 		{
 			dispatch(setUserAuthSuccess());
-			dispatch(setUserIsLogged(true));
 			dispatch(setUser(authUserResult.user));
 			dispatch(setUserPassword(userAuthPassword));
 			localStorage.setItem("accessToken", authUserResult.accessToken);
@@ -67,7 +66,10 @@ export function LoginPage() {
 		<div className={styles.Page}>
 			<div className={styles.Wrapper}>
 			
-				<form className={styles.form}>
+				<form 
+					className={styles.form}
+					onSubmit={e => { e.preventDefault(); }}
+				>
 
 					<h2 className="mb-6">Вход</h2>
 

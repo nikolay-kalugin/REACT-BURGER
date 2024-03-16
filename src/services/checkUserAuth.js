@@ -1,5 +1,5 @@
 import { getUserData } from '../utils/api';
-import { setUser, userAuthRequest } from '../redux/actions/userActions';
+import { setUser, setUserAuthRequest } from '../redux/actions/userActions';
 
 
 export const getUser = () => {
@@ -23,11 +23,11 @@ export const checkUserAuth = () => {
                   localStorage.removeItem("refreshToken");
                   dispatch(setUser(null));
                })
-              .finally(() => dispatch(userAuthRequest(true)));
+              .finally(() => dispatch(setUserAuthRequest()));
         } 
         else 
         {
-            dispatch(userAuthRequest(true));
+            dispatch(setUserAuthRequest());
         }
     };
 };

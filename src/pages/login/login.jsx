@@ -4,7 +4,7 @@ import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer
 import { NavLink, useLocation, useNavigate  } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 import { useDispatch } from 'react-redux';
-import { userAuthRequest, userAuthSuccess, userAuthFailed, setUser, setUserPassword } from '../../redux/actions/userActions'
+import { setUserAuthRequest, setUserAuthSuccess, userAuthFailed, setUser, setUserPassword } from '../../redux/actions/userActions'
 
 export function LoginPage() {
 
@@ -34,12 +34,13 @@ export function LoginPage() {
 
 		const authUserResult = await fetchWithRefresh(url, data)
 
-		dispatch(userAuthRequest(true));
+		dispatch(setUserAuthRequest(true));
 		
 		if(authUserResult.success)
 		{
-			dispatch(userAuthRequest(false));
-			dispatch(userAuthSuccess(true));
+
+			dispatch(setUserAuthSuccess());
+
 			dispatch(setUser(authUserResult.user));
 			dispatch(setUserPassword(userAuthPassword));
 			localStorage.setItem("accessToken", authUserResult.accessToken);
@@ -58,7 +59,7 @@ export function LoginPage() {
 		}
 		else
 		{
-			dispatch(userAuthFailed('userAuthFailedErr'));
+			dispatch(userAuthFailed('userAuthFailedError'));
 		} 
 	}
 

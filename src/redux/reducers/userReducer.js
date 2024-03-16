@@ -77,14 +77,14 @@ export const userReducer = ( state = initialState, action ) => {
 		case USER_AUTH_REQUEST: 
 			return {
 				...state,
-				userAuthRequest: action.payload,
+				userAuthRequest: true,
 			}
 
 		case USER_AUTH_SUCCESS: 
 			return {
 				...state,
 				userAuthRequest: false,
-				userAuthSuccess: action.payload.success,
+				userAuthSuccess: true,
 				userIsLogged: true,
 			}
 
@@ -93,6 +93,7 @@ export const userReducer = ( state = initialState, action ) => {
 				...state,
 				userAuthRequest: false,
 				userAuthError: action.payload.message,
+				userIsLogged: false,
 
 			}
 

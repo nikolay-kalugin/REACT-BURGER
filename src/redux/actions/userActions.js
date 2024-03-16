@@ -5,6 +5,7 @@ import {
 	USER_AUTH_REQUEST,
 	USER_AUTH_SUCCESS,
 	USER_AUTH_FAILED,
+	SET_USER,
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
@@ -29,12 +30,12 @@ export const userRegistrationFailed = (err) => {
 
 /********************************************/
 
-export const userAuthRequest = (bool) => {
-	return { type: USER_AUTH_REQUEST, payload: bool }
+export const setUserAuthRequest = () => {
+	return { type: USER_AUTH_REQUEST }
 } 
 
-export const userAuthSuccess = (bool) => {
-	return { type: USER_AUTH_SUCCESS, payload: bool }
+export const setUserAuthSuccess = () => {
+	return { type: USER_AUTH_SUCCESS }
 } 
 
 export const userAuthFailed = (err) => {
@@ -44,7 +45,7 @@ export const userAuthFailed = (err) => {
 /********************************************/
 
 export const setUser = (obj) => {
-	return { type: SET_USER_NAME, payload: obj }
+	return { type: SET_USER, payload: obj }
 } 
 
 export const setUserName = (name) => {

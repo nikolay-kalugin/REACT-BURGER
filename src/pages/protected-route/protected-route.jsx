@@ -6,12 +6,16 @@ export function OnlyAuth({component}) {
 
 	let location = useLocation();
 
+	// признак того, что запрос на Авторизацию в процессе 
 	const userAuthRequest = useSelector( getUserAuthRequest );
-	// const userIsLogged = useSelector( getUserIsLogged );
+
 	const user = useSelector( getUser );
 
+	console.log('userAuthRequest', userAuthRequest)
+
+
 	// Если Пользователь в процессе авторизации
-	if(!userAuthRequest)
+	if(userAuthRequest)
 	{
 		return ( 
 			<div>Пользователь в процессе авторизации ....</div> 

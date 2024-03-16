@@ -13,25 +13,30 @@ import {
 	SET_USER_PASSWORD,
 	
 	SET_USER_IS_LOGGED,
-	SET_USER_LOGOUT,
+
 } from '../actions/__types'
 
 
 const initialState = {
-	// признак того, что пользователь отправляет данные на сервер
+	// признак того, что запрос на Регистрацию в процессе 
 	userRegistrationRequest:  false,
-	// признак, что пользователь зарегистрировался
+	// признак того, что запрос на Регистрацию завершен (пользователь зарегистрировался)
 	userRegistrationSuccess: false,
-  	// ошибка в результате обмена с API
+  	// ошибка в результате обмена с API (при регистрации)
   	userRegistrationError: undefined, 
 
-	// признак, что пользователь в процессе залогинивания (авторизации)
+	// признак того, что запрос на Авторизацию в процессе 
 	userAuthRequest: false,
+	// признак того, что запрос на Авторизацию завершен
+	userAuthSuccess: false,
+	// ошибка в результате обмена с API (при авторизации)
+	userAuthError: undefined,
+
 
 	// признак, что пользователь залогинился/разлогинился
 	userIsLogged: false,
 
-	// приложение ожидает код в письме для сброса пароля
+	// Признак, что приложение ожидает код в письме для сброса пароля
   	userPasswordResetting: false,
 
 	// Данные авторизованного пользователя (для Профиля)
@@ -40,7 +45,6 @@ const initialState = {
 	userEmail: '',
 	userPassword: '',
 
-	
 };
 
 
@@ -77,7 +81,7 @@ export const userReducer = ( state = initialState, action ) => {
 		case USER_AUTH_REQUEST: 
 			return {
 				...state,
-				userAuthRequest: true,
+				userAuthRequest: action.payload,
 			}
 
 		case USER_AUTH_SUCCESS: 
@@ -92,7 +96,7 @@ export const userReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				userAuthRequest: false,
-				userAuthError: action.payload.message,
+				userAuthError: action.payload,
 				userIsLogged: false,
 
 			}
@@ -131,14 +135,6 @@ export const userReducer = ( state = initialState, action ) => {
 				...state,
 				userIsLogged: action.payload,
 			}
-
-		case SET_USER_LOGOUT: 
-			return {
-				...state,
-				userIsLogged: false,
-			}
-
-
 
 		// Экшен по дефолту
 		default: 

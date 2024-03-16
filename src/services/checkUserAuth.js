@@ -23,11 +23,11 @@ export const checkUserAuth = () => {
                   localStorage.removeItem("refreshToken");
                   dispatch(setUser(null));
                })
-              .finally(() => dispatch(setUserAuthRequest()));
+              .finally(() => dispatch(setUserAuthRequest(true)));
         } 
         else 
         {
-            dispatch(setUserAuthRequest());
+            dispatch(setUserAuthRequest(true));
         }
     };
 };

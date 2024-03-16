@@ -36,7 +36,6 @@ export const  SET_USER_EMAIL = 'SET_USER_EMAIL';
 export const  SET_USER_PASSWORD = 'SET_USER_PASSWORD';
 
 export const  SET_USER_IS_LOGGED = 'SET_USER_IS_LOGGED';
-export const  SET_USER_LOGOUT = 'SET_USER_LOGOUT';
 
 
 

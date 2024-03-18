@@ -3,20 +3,28 @@ import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
+import { useDispatch } from 'react-redux';
+import { setResetPasswordAccess } from '../../redux/actions/userActions'
 
 export function ForgotPasswordPage() {
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const [email, setEmail] = React.useState('')
 	const onChangeEmail = (e) => {
 		setEmail(e.target.value)
 	}
 
-	const navigate = useNavigate();
 
 	const onClickHandler = async (url, data) => {
 		const resetPasswordResult = await fetchWithRefresh(url, data)
 										
-		resetPasswordResult.success && navigate(`/reset-password`);
+		if(resetPasswordResult.success) 
+		{
+			navigate(`/reset-password`);
+			dispatch( setResetPasswordAccess(true) )
+		} 
 	}
 	
 	return (

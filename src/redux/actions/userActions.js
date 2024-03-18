@@ -11,6 +11,8 @@ import {
 	SET_USER_NAME,
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
+
+	SET_RESET_PASSWORD_ACCESS,
 	
 } from './__types'
 
@@ -61,6 +63,11 @@ export const setUserPassword = (password) => {
 	return { type: SET_USER_PASSWORD, payload: password }
 } 
 
+/********************************************/
+
+export const setResetPasswordAccess = (bool) => {
+	return { type: SET_RESET_PASSWORD_ACCESS, payload: bool }
+} 
 
 
 

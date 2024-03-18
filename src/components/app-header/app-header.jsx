@@ -1,10 +1,14 @@
 import styles from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-
+import { getUser } from '../../redux/selectors/selectors';
 
 function AppHeader() 
 {
+	// признак, что пользователь авторизовался
+	const user = useSelector( getUser );
+
 	return (
 	  	<header className={styles.Header}>
 			<nav className={styles.Nav}>
@@ -58,7 +62,7 @@ function AppHeader()
 									</span>
 									<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}
 									>
-										Личный кабинет
+										{!user ? 'Личный кабинет' : user.name}
 									</p>
 								</>
 							)

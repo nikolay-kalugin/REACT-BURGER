@@ -12,6 +12,8 @@ import {
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
 
+	SET_RESET_PASSWORD_ACCESS,
+
 } from '../actions/__types'
 
 
@@ -38,6 +40,9 @@ const initialState = {
 	userName: '',
 	userEmail: '',
 	userPassword: '',
+
+	// Признак разрешить доступ к маршруту  /reset-password
+	resetPasswordAccess: false,
 
 };
 
@@ -116,6 +121,15 @@ export const userReducer = ( state = initialState, action ) => {
 			return {
 				...state,
 				userPassword: action.payload,
+			}
+
+		/**************************************/
+
+
+		case SET_RESET_PASSWORD_ACCESS: 
+			return {
+				...state,
+				resetPasswordAccess: action.payload,
 			}
 
 		/**************************************/

@@ -33,10 +33,10 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(checkUserAuth());
+    dispatch( checkUserAuth() );
   }, [dispatch]);
 
-  const ingredientDetails = useSelector(getIngredientDetails)
+  const ingredientDetails = useSelector( getIngredientDetails )
 
   const location = useLocation();
   const background = location.state && location.state.background;
@@ -65,8 +65,20 @@ function App() {
               } 
           />
 
-          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/forgot-password" 
+              element={
+                <OnlyUnAuth component={ <ForgotPasswordPage /> } />
+              } 
+          />
+
+
+          <Route path="/reset-password" 
+              element={
+                <OnlyUnAuth component={ <ResetPasswordPage /> } />
+              } 
+          />
+
+
 
           <Route path="/orders" element={<OrdersPage />} />
 

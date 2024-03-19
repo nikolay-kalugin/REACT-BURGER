@@ -24,7 +24,7 @@ export const getUserName = store => store.userReducer.userName ;
 export const getUserEmail = store => store.userReducer.userEmail ;
 export const getUserPassword = store => store.userReducer.userPassword ;
 
-export const getResetPasswordAccess = store => store.userReducer.resetPasswordAccess ;
+// export const getResetPasswordAccess = store => store.userReducer.resetPasswordAccess ;
 
 
 

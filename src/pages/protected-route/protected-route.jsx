@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { getUserAuthRequest, getUser, getResetPasswordAccess } from '../../redux/selectors/selectors';
+import { getUserAuthRequest, getUser } from '../../redux/selectors/selectors';
 
+// Для авторизованных 
 export function OnlyAuth({component}) {
 
 	let location = useLocation();
@@ -30,13 +31,17 @@ export function OnlyAuth({component}) {
 			
 }
 
-
+// Для НЕ авторизованных 
 export function OnlyUnAuth({component}) {
 
 	const user = useSelector( getUser );
+	const location = useLocation();
+
+
 
 	// признак, что пользователь имеет доступ к маршруту /reыуе-password
-	const resetPasswordAccess = useSelector( getResetPasswordAccess );
+	const resetPasswordAccess = location.state && location.state.resetPasswordAccess
+
 
 	// Если Пользоавтель Авторизован, то блокируем маршруты 
 	if( user ) 
@@ -45,9 +50,10 @@ export function OnlyUnAuth({component}) {
 	}
 	else
 	{
-		if (resetPasswordAccess)
+		// Блокировка маршрута сброса пароля (если нет доступа)
+		if ( !resetPasswordAccess  &&  location.pathname === '/reset-password' )
 		{
-			
+			return <Navigate to="/forgot-password" />
 		}
 		return component
 	}

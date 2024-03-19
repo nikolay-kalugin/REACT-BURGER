@@ -39,6 +39,7 @@ function App() {
   const ingredientDetails = useSelector( getIngredientDetails )
 
   const location = useLocation();
+  
   const background = location.state && location.state.background;
 
   return (

@@ -3,7 +3,7 @@ import {
 	GET_INGREDIENTS_SUCCESS, 
 	GET_INGREDIENTS_FAILED,
 
-} from '../actions/types'
+} from '../actions/__types'
 
 
 const initialState = {
@@ -37,8 +37,8 @@ export const ingredientsReducer = ( state = initialState, action ) => {
 		case GET_INGREDIENTS_FAILED:
 			return {
 				...state,
-				isLoading: false,
 				error: action.payload,
+				isLoading: false,
 			} 
 		
 

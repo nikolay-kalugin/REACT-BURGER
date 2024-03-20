@@ -18,6 +18,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
+    "react-router-dom": "^6.22.0",
     "react-scripts": "^5.0.1",
     "redux": "^5.0.0",
     "redux-devtools-extension": "^2.13.9",
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "react-devtools": "react-devtools"
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-devtools": "^5.0.0"
   }
 }

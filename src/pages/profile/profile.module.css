@@ -1,0 +1,46 @@
+.Page {
+	width: 100%;
+	padding-top: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.Wrapper {
+	width: 1000px;
+	min-height: 430px;
+	/* margin: 0 auto; */
+	display: grid;
+	grid-template-columns: 50% 50%;
+	gap: 20px;
+}
+
+h2 {
+	display: block;
+}
+
+.SideNavMenu {
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.Text {
+	font-family: 'JetBrainsMono';
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.TextDefault {
+	composes: text text_type_main-medium  mb-6 from global;
+}
+
+.TextInactive {
+	composes: text text_type_main-medium text_color_inactive  mb-6  from global;
+}
+

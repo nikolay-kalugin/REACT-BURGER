@@ -1,4 +1,5 @@
-.IngredientDetails{
+.IngredientDetails {
+	margin: 0 auto;
 	width: 480px;
 	display: flex;
 	flex-direction: column;

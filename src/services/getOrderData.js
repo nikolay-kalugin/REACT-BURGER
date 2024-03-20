@@ -4,6 +4,8 @@ import { getOrderDataRequest,
 } from '../redux/actions/orderDetailsActions';
 
 import { setOrderDetails } from '../redux/actions/orderDetailsActions';
+import { BURGER_API_URL } from '../utils/api';
+
 
 export const getOrderData = 
 	(data) => 
@@ -11,13 +13,14 @@ export const getOrderData =
 			
 			dispatch( getOrderDataRequest() );
 
-			const url = `https://norma.nomoreparties.space/api/orders`;
+			const url = `${BURGER_API_URL}/orders`;
 
 			fetch( url, 
 			{
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					"Authorization": localStorage.getItem("accessToken"),
 				},
 				body: JSON.stringify(data)
 			})

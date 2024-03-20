@@ -2,15 +2,20 @@ import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
+import { getAddedIngredients, getAddedBun, getUser } from '../../redux/selectors/selectors';
 import { getOrderData } from '../../services/getOrderData';
-import getOrderResults from '../../redux/selectors/getOrderResults'
+import getOrderResults from '../../redux/selectors/getOrderResults';
+import { useNavigate  } from 'react-router-dom';
+import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 
 function OrderCreator() {
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const addedBun = useSelector( getAddedBun );
+
+	const user = useSelector( getUser );
 
 	const addedIngredients = useSelector( getAddedIngredients );
 
@@ -20,11 +25,20 @@ function OrderCreator() {
 	);
 
 	
-	const orderButtonClickHandler = () =>  {
-		// console.log( orderResults.constructorIngredientsCounts )
-		dispatch( getOrderData(orderResults.data) )
-	}
+	const orderButtonClickHandler = () => {
 
+		if (user)
+		{
+			dispatch( setOrderDetails({order: 'loading'}) )
+			dispatch( getOrderData(orderResults.data) )
+		}
+		else
+		{
+			navigate('/login');
+		}
+		
+	
+	}
 
 	return(
 		<div className={styles.OrderCreator}>

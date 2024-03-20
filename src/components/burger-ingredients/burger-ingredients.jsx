@@ -1,23 +1,20 @@
 import { useState, useMemo, useRef, } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import Modal from '../modal/modal';
 import IngredientCategory from '../ingredient-category/ingredient-category';
-import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 import { useSelector } from 'react-redux';
-import { getIngredients, getIngredientDetails } from '../../redux/selectors/selectors';
+import { getIsLoading, getIngredients } from '../../redux/selectors/selectors';
 
+function BurgerIngredients() {
 
-function BurgerIngredients() 
-{
+	const loading = useSelector( getIsLoading );
+
 	const ingredients = useSelector( getIngredients );
-
-	const ingredientDetails = useSelector( getIngredientDetails );
 
 	const [currentTab, setCurrentTab] = useState('one');
 
 	// Переключение табов при скроллинге - begin
-
+	const appScroll = document.getElementById('app');
 	const elemTabs = document.getElementById('tabs');
 	const refBunsList = useRef(null);
 	const refSaucesList = useRef(null);
@@ -25,9 +22,9 @@ function BurgerIngredients()
 
 	function update() {
 		
-		const elemBuns = refBunsList.current
-		const elemSauces = refSaucesList.current
-		const elemMains = refMainsList.current
+		const elemBuns = refBunsList?.current
+		const elemSauces = refSaucesList?.current
+		const elemMains = refMainsList?.current
 
 		const rectTabs = elemTabs?.getBoundingClientRect();
 		const rectBuns = elemBuns?.getBoundingClientRect();
@@ -36,37 +33,51 @@ function BurgerIngredients()
 
 		const diffKoeff = 120;
 
-		if ( (rectBuns.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectBuns?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('one')
 		}
 
-		if ( (rectSauces.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectSauces?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('two')
 		}
 
-		if ( (rectMains.top - rectTabs.top) < diffKoeff ) 
+		if ( (rectMains?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('three')
 		}
 
 	}
-
 	// Переключение табов при скроллинге - end
 	
+	
 	const onTabClick = (tab) => {
+		
 		setCurrentTab(tab);
-		const element = document.getElementById(tab);
-		element && element.scrollIntoView({ behavior: 'smooth' });
+		
+		switch(tab)
+		{
+			case 'buns': refBunsList?.current.scrollIntoView({block: "start", behavior: "smooth"}) 
+				break;
+			case 'sauces': refSaucesList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+				break;
+			case 'mains': refMainsList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+				break;
+			default: 	
+		}
+		
+		appScroll.scrollTo( 0, 0 )
 	};
 
-	useMemo( () => ingredients, [ingredients] ); 
-
-	const buns = ingredients.filter( obj => obj.type === 'bun' );
-	const sauces = ingredients.filter( obj => obj.type === 'sauce' );
-	const mains = ingredients.filter( obj => obj.type === 'main' );
-
+	const [buns, sauces, mains] = useMemo(() => {
+		return [
+					ingredients.filter( obj => obj.type === 'bun' ), 
+					ingredients.filter( obj => obj.type === 'sauce' ),
+					ingredients.filter( obj => obj.type === 'main' )
+				]
+	  }, [ingredients])
+	
 	return (
 		<section className={styles.BurgerIngredients}>
 
@@ -85,43 +96,41 @@ function BurgerIngredients()
 			</div>
 
 			{
-				ingredients.length > 0  && (  
+
+				loading ? <p>Ингредиенты загружаются ...</p> 
 				 
-					<ul onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
+				:
+				 
+				ingredients.length > 0  &&  (  
+				
+					<article onScroll={update} className={`${styles.IngredientsList} custom-scroll`}>
 
-							<IngredientCategory 
-								id={'buns'}
-								title={'Булки'} 
-								ingredients={buns}
-								ref={refBunsList}
+						<IngredientCategory 
+							id={'buns'}
+							title={'Булки'} 
+							ingredients={buns}
+							ref={refBunsList}
 
-							/>
-							<IngredientCategory 
-								id={'sauces'}
-								title={'Соусы'} 
-								ingredients={sauces}
-								ref={refSaucesList}
-							/>
-							<IngredientCategory 
-								id={'mains'}
-								title={'Начинки'} 
-								ingredients={mains}
-								ref={refMainsList}
-							/>	
-					</ul>
+						/>
+
+						<IngredientCategory 
+							id={'sauces'}
+							title={'Соусы'} 
+							ingredients={sauces}
+							ref={refSaucesList}
+						/>
+
+						<IngredientCategory 
+							id={'mains'}
+							title={'Начинки'} 
+							ingredients={mains}
+							ref={refMainsList}
+						/>
+
+					</article>
 				
 				)
 			
-			}
-			
-			{	
-				ingredientDetails && (
-					<Modal 
-						title="Детали ингредиента" 
-					> 
-							<IngredientDetails ingredientDetails={ingredientDetails} />
-					</Modal>
-				)
 			}
 
 		</section>

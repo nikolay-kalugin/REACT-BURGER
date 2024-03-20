@@ -1,6 +1,6 @@
 import { 
 	SET_INGREDIENT_DETAILS,
-} from '../actions/types'
+} from '../actions/__types'
 
 
 const initialState = {
@@ -18,6 +18,7 @@ export const ingredientDetailsReducer = ( state = initialState, action ) => {
 				...state,
 				ingredientDetails: action.payload
 			}
+
 
 		// Экшен по дефолту
 		default: 

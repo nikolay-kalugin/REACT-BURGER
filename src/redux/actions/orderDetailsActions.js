@@ -3,7 +3,7 @@ import {
 	GET_ORDER_DATA_REQUEST,
 	GET_ORDER_DATA_SUCCESS,
 	GET_ORDER_DATA_FAILED,
-} from './types'
+} from './__types'
 
 
 // Для отображения ДАННЫХ ЗАКАЗА

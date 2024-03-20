@@ -5,24 +5,25 @@ import { useDrag } from 'react-dnd';
 import { useSelector } from 'react-redux';
 import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
 import getOrderResults from '../../redux/selectors/getOrderResults'
+import { Link, useLocation } from 'react-router-dom';
 
 function IngredientCard({ingredient}) {
+
+	const location = useLocation();
 
 	const addedBun = useSelector( getAddedBun );
 
 	const addedIngredients = useSelector( getAddedIngredients );
 
 	const ingredientCount = useMemo( () => {
-		const orderResults = getOrderResults(addedBun, addedIngredients);
 
-		// console.log(orderResults.constructorIngredientsCounts)
-		return orderResults.constructorIngredientsCounts[ingredient._id]
+			const orderResults = getOrderResults(addedBun, addedIngredients);
 
-	}, [addedIngredients, addedBun, ingredient._id] 
+			return orderResults.constructorIngredientsCounts[ingredient._id]
+
+		}, [addedIngredients, addedBun, ingredient._id] 
 	);
 
-	
-	
 
 	/*** Drag & Drop (Drag elem handlers) ***/
 
@@ -30,27 +31,43 @@ function IngredientCard({ingredient}) {
 		type: 'ingredient',
 		item: ingredient,
 		collect: (monitor) => {
-			// console.log(ingredient)
 			return {isDrag: monitor.isDragging()}
 		}
 	});
 
 
-	return(
-		<div className={styles.IngredientCard} >
-			<img className={styles.IngredientImg} 
-				src={ingredient.image} 
-				width={240} 
-				alt={`ingredient`}
-				ref={dragRef}
-			/>
-			<div className={styles.IngredientPriceBlock}>
-				<span className={styles.IngredientPrice}>{ingredient.price}</span>
-				<CurrencyIcon type="primary" />
+	return (
+
+		<Link 
+			to={`ingredients/${ingredient._id}`} 
+			state={{ background: location }}
+		>
+
+			<div className={styles.IngredientCard} >
+
+				<img className={styles.IngredientImg} 
+					src={ingredient.image} 
+					width={240}
+					height={120} 
+					alt={`ingredient`}
+					ref={dragRef}
+				/>
+
+				<div className={styles.IngredientPriceBlock}>
+					<span className={styles.IngredientPrice}>{ingredient.price}</span>
+					<CurrencyIcon type="primary" />
+				</div>
+
+				<div className={styles.IngredientText}>{ingredient.name}</div>
+
+				{
+					(ingredientCount > 0) && <Counter count={ingredientCount} />
+				}
+				
 			</div>
-			<div className={styles.IngredientText}>{ingredient.name}</div>
-			<Counter count={ingredientCount} />
-		</div>
+
+		</Link> 
+
 	)
 
 }

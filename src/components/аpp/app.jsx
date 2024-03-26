@@ -50,9 +50,9 @@ function App() {
 
       <Routes location={background || location}>
 
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={ <HomePage /> } />
           <Route path="/ingredients/:ingredientID" element={<IngredientsPage />} />
-          <Route path="*" element={<NotFound404 />} />
+          <Route path="*" element={ <NotFound404 /> } />
 
           <Route path="/login" 
               element={
@@ -81,7 +81,7 @@ function App() {
 
 
 
-          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders" element={ <OrdersPage /> } />
 
 
           {/* Профиль пользователя */}

@@ -9,6 +9,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addIngredientConstructor } from '../../redux/actions/constructorActions';
 import { getAddedIngredients, getAddedBun, getOrderDetails } from '../../redux/selectors/selectors';
 import { useDrop } from 'react-dnd';
+import { Key } from 'react';
+
+type TIngredient = {
+    _id: string | number;
+    id: string | number;
+    name: string;
+    type: string;
+    price: number;
+    image: string;
+}
+
 
 function BurgerConstructor() { 
 
@@ -23,7 +34,7 @@ function BurgerConstructor() {
 
 	/*** Drag & Drop (Drop elem handlers) ***/
 
-	const [{canDrop, dragItem}, dropRef] = useDrop(() => (
+	const [{canDrop, dragItem}, dropRef] = useDrop<TIngredient, unknown, { canDrop: boolean, dragItem: TIngredient }>(() => (
 		{
 			accept: 'ingredient',
 			drop: (ingredient) => {
@@ -37,8 +48,8 @@ function BurgerConstructor() {
 		})
 	);
 
-	let borderStyleBun = null;
-	let borderStyleMiddle = null;
+	let borderStyleBun = undefined;
+	let borderStyleMiddle = undefined;
 
 	if( dragItem?.type === 'bun' && canDrop)
 	{
@@ -90,7 +101,7 @@ function BurgerConstructor() {
 					) : (
 						<ul className={`${styles.MiddleConstructorList} custom-scroll`} > 
 							{
-								addedIngredients.map( ingredient =>  (
+								addedIngredients.map( (ingredient: TIngredient) =>  (
 
 									<li key={ingredient.id}>
 
@@ -130,7 +141,7 @@ function BurgerConstructor() {
 
 			{ 
 				orderDetails &&
-				<Modal>
+				<Modal title={undefined}>
 						<OrderDetails />
 				</Modal>	
 			}

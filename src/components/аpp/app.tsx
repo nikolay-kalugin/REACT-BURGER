@@ -29,11 +29,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch( getIngredientsStart() );
+    dispatch( 
+      // @ts-ignore
+      getIngredientsStart() 
+    );
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch( checkUserAuth() );
+  useEffect( () => {
+    dispatch(
+      // @ts-ignore 
+      checkUserAuth() 
+    );
   }, [dispatch]);
 
   const ingredientDetails = useSelector( getIngredientDetails )

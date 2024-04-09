@@ -1,6 +1,17 @@
 import styles from '../ingredient-details/ingredient-details.module.css'
 
-function IngredientDetails({ingredientDetails}) {
+type TIngredientDetails = {
+	ingredientDetails: {
+		image_large: string;
+		name: string;
+		calories: string | number;
+		proteins: string | number;
+		fat: string | number;
+		carbohydrates: string | number;
+	}
+}
+
+function IngredientDetails({ingredientDetails}: TIngredientDetails) {
 
 	return (
 

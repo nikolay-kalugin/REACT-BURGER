@@ -8,6 +8,12 @@ import getOrderResults from '../../redux/selectors/getOrderResults';
 import { useNavigate  } from 'react-router-dom';
 import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 
+type TorderResults = { 
+	orderIngredients: any[]; 
+	totalPrice: number; 
+	data: { ingredients: any[]; }; 
+	constructorIngredientsCounts: any; }
+
 function OrderCreator() {
 
 	const dispatch = useDispatch();
@@ -25,11 +31,13 @@ function OrderCreator() {
 	);
 
 	
-	const orderButtonClickHandler = () => {
+	const orderButtonClickHandler = (orderResults: TorderResults) => {
 
 		if (user)
 		{
 			dispatch( setOrderDetails({order: 'loading'}) )
+			
+			// @ts-ignore
 			dispatch( getOrderData(orderResults.data) )
 		}
 		else

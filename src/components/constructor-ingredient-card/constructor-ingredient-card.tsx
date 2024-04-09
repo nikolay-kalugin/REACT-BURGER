@@ -8,7 +8,19 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import { getAddedIngredients } from '../../redux/selectors/selectors';
  
-function ConstructorIngredientCard({ingredient}) {
+type TIngredientProps = {
+	ingredient: {
+		_id: string | number;
+		id: string | number;
+		name: string;
+		type: string;
+		price: number;
+		image: string;
+	}
+}
+
+
+function ConstructorIngredientCard({ingredient}: TIngredientProps) {
 
 	const dispatch = useDispatch();
 
@@ -40,10 +52,13 @@ function ConstructorIngredientCard({ingredient}) {
 
 			if (dragObjIndex === dropObjIndex) { return }
 
+			// @ts-ignore
 			const hoverBoundingRect = ref.current?.getBoundingClientRect();
 			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
 			const clientOfSet = monitor.getClientOffset();
+
+			// @ts-ignore
 			const hoverClientY = clientOfSet.y - hoverBoundingRect.top;
 
 			if( dragObjIndex < dropObjIndex && hoverClientY < hoverMiddleY) { return }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay'
@@ -8,10 +8,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOrderDetails }  from '../../redux/actions/orderDetailsActions'
 import { getOrderIsLoading, getOrderDetails } from '../../redux/selectors/selectors';
 
-const modal = document.getElementById('modal') 
+type TProps = {
+	title?: string; 
+	children: ReactNode;
+} 
+
+const modal = document.getElementById('modal') as Element; 
 
 
-function Modal( {title, children} ) {
+function Modal( {title, children} : TProps ) {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -35,7 +40,7 @@ function Modal( {title, children} ) {
 
 
 	useEffect(() => {
-		const handleEscape = (e) => {
+		const handleEscape = (e: { key: string; }) => {
 			e.key === 'Escape' && onClose();
 		}
 

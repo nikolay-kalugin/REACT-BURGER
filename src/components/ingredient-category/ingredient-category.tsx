@@ -1,11 +1,27 @@
-import { forwardRef } from 'react';
+import { LegacyRef, forwardRef } from 'react';
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
 import { useDispatch } from 'react-redux';
 import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
 
-const IngredientCategory = ( {id, title, ingredients}, ref ) => {
+type TIngredient = {
+    _id: string | number;
+    id: string | number;
+    name: string;
+    type: string;
+    price: number;
+    image: string;
+}
+
+type TIngredientCategoryProps = {
+	id: string;
+	title: string;
+	ingredients: TIngredient[]
+
+}
+
+const IngredientCategory = ( {id, title, ingredients} : TIngredientCategoryProps, ref: LegacyRef<HTMLHeadingElement> | undefined ) => {
 
 	const dispatch = useDispatch();
 

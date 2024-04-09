@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -9,11 +9,11 @@ export function ForgotPasswordPage() {
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
-	const onChangeEmail = (e) => {
+	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
 		setEmail(e.target.value)
 	}
 
-	const onClickHandler = async (url, data) => {
+	const onClickHandler = async (url: string, data: { email: string; }) => {
 
 		if (email === '') 
 		{

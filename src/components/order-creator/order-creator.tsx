@@ -8,11 +8,8 @@ import getOrderResults from '../../redux/selectors/getOrderResults';
 import { useNavigate  } from 'react-router-dom';
 import { setOrderDetails } from '../../redux/actions/orderDetailsActions';
 
-type TorderResults = { 
-	orderIngredients: any[]; 
-	totalPrice: number; 
-	data: { ingredients: any[]; }; 
-	constructorIngredientsCounts: any; }
+import { TOrderResults } from '../../types/types' 
+
 
 function OrderCreator() {
 
@@ -31,7 +28,7 @@ function OrderCreator() {
 	);
 
 	
-	const orderButtonClickHandler = (orderResults: TorderResults) => {
+	const orderButtonClickHandler = (orderResults: TOrderResults) => {
 
 		if (user)
 		{

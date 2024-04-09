@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay'
@@ -8,15 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOrderDetails }  from '../../redux/actions/orderDetailsActions'
 import { getOrderIsLoading, getOrderDetails } from '../../redux/selectors/selectors';
 
-type TProps = {
-	title?: string; 
-	children: ReactNode;
-} 
+import { TModalProps } from '../../types/types' 
+ 
 
 const modal = document.getElementById('modal') as Element; 
 
 
-function Modal( {title, children} : TProps ) {
+function Modal( {title, children} : TModalProps ) {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

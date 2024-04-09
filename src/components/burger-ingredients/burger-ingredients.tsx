@@ -5,11 +5,7 @@ import IngredientCategory from '../ingredient-category/ingredient-category';
 import { useSelector } from 'react-redux';
 import { getIsLoading, getIngredients } from '../../redux/selectors/selectors';
 
-
-type TIngredient = {
-	name: string;
-	type: string;
-}
+import { TIngredient } from '../../types/types' 
 
 function BurgerIngredients() {
 

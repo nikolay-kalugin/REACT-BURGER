@@ -9,16 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addIngredientConstructor } from '../../redux/actions/constructorActions';
 import { getAddedIngredients, getAddedBun, getOrderDetails } from '../../redux/selectors/selectors';
 import { useDrop } from 'react-dnd';
-import { Key } from 'react';
 
-type TIngredient = {
-    _id: string | number;
-    id: string | number;
-    name: string;
-    type: string;
-    price: number;
-    image: string;
-}
+import { TIngredient } from '../../types/types' 
 
 
 function BurgerConstructor() { 

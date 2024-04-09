@@ -7,16 +7,7 @@ import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selector
 import getOrderResults from '../../redux/selectors/getOrderResults'
 import { Link, useLocation } from 'react-router-dom';
 
-type TIngredientProps = {
-	ingredient: {
-		_id: string | number;
-		id: string | number;
-		name: string;
-		type: string;
-		price: number;
-		image: string;
-	}
-}
+import { TIngredientProps } from '../../types/types' 
 
 
 function IngredientCard({ingredient}: TIngredientProps) {

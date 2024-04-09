@@ -7,17 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { getAddedIngredients } from '../../redux/selectors/selectors';
- 
-type TIngredientProps = {
-	ingredient: {
-		_id: string | number;
-		id: string | number;
-		name: string;
-		type: string;
-		price: number;
-		image: string;
-	}
-}
+
+import { TIngredientProps } from '../../types/types' 
 
 
 function ConstructorIngredientCard({ingredient}: TIngredientProps) {

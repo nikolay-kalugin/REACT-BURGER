@@ -5,21 +5,8 @@ import styles from './ingredient-category.module.css';
 import { useDispatch } from 'react-redux';
 import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
 
-type TIngredient = {
-    _id: string | number;
-    id: string | number;
-    name: string;
-    type: string;
-    price: number;
-    image: string;
-}
+import { TIngredientCategoryProps } from '../../types/types' 
 
-type TIngredientCategoryProps = {
-	id: string;
-	title: string;
-	ingredients: TIngredient[]
-
-}
 
 const IngredientCategory = ( {id, title, ingredients} : TIngredientCategoryProps, ref: LegacyRef<HTMLHeadingElement> | undefined ) => {
 

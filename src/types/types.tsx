@@ -50,3 +50,13 @@ export type TOrderResults = {
 	data: { ingredients: any[]; }; 
 	constructorIngredientsCounts: any; 
 }
+
+export type TComponent = {
+	component: JSX.Element
+}
+
+export type TData = { 
+	name: string; 
+	email: string; 
+	password: string; 
+}

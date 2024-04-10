@@ -9,12 +9,12 @@ export function ResetPasswordPage() {
 	const navigate = useNavigate();
 
 	const [newUserPassword, setNewUserPassword] = React.useState('')
-	const onChangePassword = (e) => {
+	const onChangePassword = (e: { target: { value: React.SetStateAction<string>; }; }) => {
 		setNewUserPassword(e.target.value)
 	}
 
 	const [token, setToken] = React.useState('')
-	const onChangeToken = (e) => {
+	const onChangeToken = (e: { target: { value: React.SetStateAction<string>; }; }) => {
 		setToken(e.target.value)
 	}
 
@@ -24,7 +24,7 @@ export function ResetPasswordPage() {
 	  } 
 
 
-	const onClickHandler = async (url, data) => {
+	const onClickHandler = async (url: string, data: { password: string; token: string; }) => {
 		const updatePasswordResult = await fetchWithRefresh(url, data)
 										
 		updatePasswordResult.success && navigate(`/login`);

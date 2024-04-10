@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import styles from './register.module.css';
 import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { registerUser } from '../../services/registerUser'
 import { getUserRegistrationSuccess } from '../../redux/selectors/selectors';
 import { useDispatch, useSelector } from 'react-redux';
+
+
+import { TData } from '../../types/types' 
 
 export function RegisterPage() {
 
@@ -14,17 +17,17 @@ export function RegisterPage() {
 	const userRegistrationSuccess = useSelector( getUserRegistrationSuccess );
 
 	const [userName, setUserName] = useState('');
-	const onChangeUserName = (e) => {
+	const onChangeUserName = (e: { target: { value: SetStateAction<string>; }; }) => {
 		setUserName(e.target.value)
 	}
 
 	const [userEmail, setUserEmail] = useState('');
-	const onChangeEmail = (e) => {
+	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
 		setUserEmail(e.target.value)
 	}
 
 	const [userPassword, setUserPassword] = useState(''); // password
-	const onChangePassword = (e) => {
+	const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
 		setUserPassword(e.target.value)
 	}
 
@@ -35,8 +38,9 @@ export function RegisterPage() {
 
 	}
 
-	const onClickHandler = (data) => {
+	const onClickHandler = (data: TData) => {
 
+		//@ts-ignore
 		dispatch( registerUser(data) );
 
 		if (userRegistrationSuccess) 

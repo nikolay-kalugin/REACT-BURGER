@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getIngredients } from '../../redux/selectors/selectors';
 
+import { TIngredient } from '../../types/types' 
+
 export function IngredientsPage() {
 
 	let ingredientDetails = null;
@@ -14,7 +16,7 @@ export function IngredientsPage() {
 	
 	const ingredients = useSelector( getIngredients );
 
-	[ingredientDetails] = ingredients.filter( ingredient => ingredient._id === ingredientID )
+	[ingredientDetails] = ingredients.filter( (ingredient: TIngredient) => ingredient._id === ingredientID )
 
 	return (
 		ingredientDetails && (

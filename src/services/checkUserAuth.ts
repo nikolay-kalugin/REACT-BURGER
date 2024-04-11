@@ -3,6 +3,7 @@ import { setUser } from '../redux/actions/userActions';
 
 
 export const getUser = () => {
+    //@ts-ignore
 	return (dispatch) => {
 	  return getUserData()
             .then( res => {
@@ -13,6 +14,7 @@ export const getUser = () => {
 
 
 export const checkUserAuth = () => {
+    //@ts-ignore
     return (dispatch) => {
         if (localStorage.getItem("accessToken")) 
         {

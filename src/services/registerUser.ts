@@ -2,7 +2,9 @@ import { userRegistrationRequest, userRegistrationSuccess, userRegistrationFaile
 import { BURGER_API_URL } from '../utils/api';
 
 export const registerUser = 
-	(dataParam) => 
+	//@ts-ignore
+	(dataParam) =>
+		//@ts-ignore 
 		(dispatch) => {
 			
 			dispatch( userRegistrationRequest() );

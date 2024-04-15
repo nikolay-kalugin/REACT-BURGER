@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './register.module.css';
 import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -17,17 +17,17 @@ export function RegisterPage() {
 	const userRegistrationSuccess = useSelector( getUserRegistrationSuccess );
 
 	const [userName, setUserName] = useState('');
-	const onChangeUserName = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeUserName = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserName(e.target.value)
 	}
 
 	const [userEmail, setUserEmail] = useState('');
-	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserEmail(e.target.value)
 	}
 
 	const [userPassword, setUserPassword] = useState(''); // password
-	const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserPassword(e.target.value)
 	}
 
@@ -57,7 +57,7 @@ export function RegisterPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={e => { e.preventDefault(); }}
+					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 				>
 
 					<h2 className="mb-6">Регистрация</h2>

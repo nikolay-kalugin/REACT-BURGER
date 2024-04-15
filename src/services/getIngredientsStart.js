@@ -4,7 +4,6 @@ import { BURGER_API_URL } from '../utils/api';
 
 export const getIngredientsStart = 
 	() => 
-		//@ts-ignore
 		(dispatch) => {
 			
 			dispatch( getIngredientsRequest() );

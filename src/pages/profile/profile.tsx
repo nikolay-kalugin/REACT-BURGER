@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { NavLink } from 'react-router-dom';
@@ -20,17 +20,17 @@ export function ProfilePage() {
 	const [isVisibleProfile, setIsVisibleProfile] = useState(true);
 
 	const [profileName, setProfileName] = useState('');
-	const onChangeName = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfileName(e.target.value);
 	}
 
 	const [profileEmail, setProfileEmail] = useState('');
-	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfileEmail(e.target.value);
 	}
 
 	const [profilePassword, setProfilePassword] = useState('');
-	const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfilePassword(e.target.value);
 	}
 
@@ -169,7 +169,7 @@ export function ProfilePage() {
 
 						<form 
 							className={styles.form} 
-							onSubmit={e => { e.preventDefault(); }}
+							onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 						>
 
 							<Input

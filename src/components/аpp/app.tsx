@@ -109,7 +109,7 @@ function App() {
       {
         background && (
           <Routes>
-            <Route
+            <Route 
               path="/ingredients/:ingredientID"
               element={
                 <Modal title="Детали ингредиента" >

@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -16,12 +16,12 @@ export function LoginPage() {
 	const loginUrl = `${BURGER_API_URL}/auth/login`
 
 	const [userAuthEmail, setUserAuthEmail] = useState('');
-	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserAuthEmail(e.target.value)
 	}
 
 	const [userAuthPassword, setUserAuthPassword] = useState('');
-	const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserAuthPassword(e.target.value)
 	}
 
@@ -71,7 +71,7 @@ export function LoginPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={e => { e.preventDefault(); }}
+					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 				>
 
 					<h2 className="mb-6">Вход</h2>

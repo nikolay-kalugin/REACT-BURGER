@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './forgot-password.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ export function ForgotPasswordPage() {
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
-	const onChangeEmail = (e: { target: { value: SetStateAction<string>; }; }) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement> ) => {
 		setEmail(e.target.value)
 	}
 
@@ -36,7 +36,7 @@ export function ForgotPasswordPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={e => { e.preventDefault(); }}
+					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 				>
 
 					<h2 className="mb-6">Восстановление пароля</h2>

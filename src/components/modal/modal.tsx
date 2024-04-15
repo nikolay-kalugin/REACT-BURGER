@@ -38,7 +38,7 @@ function Modal( {title, children} : TModalProps ) {
 
 
 	useEffect(() => {
-		const handleEscape = (e: { key: string; }) => {
+		const handleEscape = (e: KeyboardEvent) => {
 			e.key === 'Escape' && onClose();
 		}
 

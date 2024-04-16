@@ -1,15 +1,18 @@
+import { TRefreshTokenResponse } from '../types/types' 
+
 // API_URL
 export const BURGER_API_URL = 'https://norma.nomoreparties.space/api'; 
 
+
 // Проверка успешности ответа сервера
-const checkResponse = (res: Response) => {
+const checkResponse = <T>(res: Response): Promise<T> => {
 	return res.ok 
 				? res.json()
 				: res.json().then((err) => Promise.reject(err));
 };
   
 // Обновление токена
-export const refreshToken = () => {
+export const refreshToken = () : Promise<TRefreshTokenResponse> => {
 	return fetch(`${BURGER_API_URL}/auth/token`, {
 			method: "POST",
 			headers: {
@@ -18,13 +21,14 @@ export const refreshToken = () => {
 			body: JSON.stringify({
 				token: localStorage.getItem("refreshToken"),
 			}),
-		}).then(res => checkResponse(res));
+		}).then(res => checkResponse<TRefreshTokenResponse>(res));
 };
   
 
 
+
 // fetch с обновлением токена (используется localStorage)
-export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?: string; password?: string; token?: string | null; headers?: any; }) => {
+export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?: string; password?: string; token?: string | null; headers?: any; }) : Promise<TRefreshTokenResponse> => {
 	try {
 		const res = await fetch(url, 
 				{
@@ -35,7 +39,7 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 					body: JSON.stringify(options)
 				}
 			);
-		return await checkResponse(res);
+		return await checkResponse<TRefreshTokenResponse>(res);
 	} 
 	catch(err) 
 	{
@@ -63,7 +67,7 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 						body: JSON.stringify(options)
 					}
 				); 
-			return await checkResponse(res);
+			return await checkResponse<TRefreshTokenResponse>(res);
 		} 
 		else 
 		{
@@ -76,7 +80,7 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 
 
 // getUserData с обновлением токена (используется localStorage)
-export const getUserData = async () => {
+export const getUserData = async () : Promise<TRefreshTokenResponse> => {
 	try {
 		const res = await fetch(`${BURGER_API_URL}/auth/user`, 
 				{
@@ -88,7 +92,7 @@ export const getUserData = async () => {
 					},
 				}
 			);
-		return await checkResponse(res);
+		return await checkResponse<TRefreshTokenResponse>(res);
 	} 
 	catch(err) 
 	{
@@ -117,7 +121,7 @@ export const getUserData = async () => {
 						},
 					}
 				); 
-			return await checkResponse(res);
+			return await checkResponse<TRefreshTokenResponse>(res);
 		} 
 		else 
 		{
@@ -130,7 +134,7 @@ export const getUserData = async () => {
 
 
 // patchUserData с обновлением токена (используется localStorage)
-export const patchUserData = async (url: RequestInfo | URL, options: { name?: string; email?: string; password?: string; headers?: any; }) => {
+export const patchUserData = async (url: RequestInfo | URL, options: { name?: string; email?: string; password?: string; headers?: any; }) : Promise<TRefreshTokenResponse> => {
 	try {
 		const res = await fetch(url, 
 				{
@@ -143,7 +147,7 @@ export const patchUserData = async (url: RequestInfo | URL, options: { name?: st
 					body: JSON.stringify(options)
 				}
 			);
-		return await checkResponse(res);
+		return await checkResponse<TRefreshTokenResponse>(res);
 	} 
 	catch(err) 
 	{
@@ -173,7 +177,7 @@ export const patchUserData = async (url: RequestInfo | URL, options: { name?: st
 						body: JSON.stringify(options)
 					}
 				); 
-			return await checkResponse(res);
+			return await checkResponse<TRefreshTokenResponse>(res);
 		} 
 		else 
 		{

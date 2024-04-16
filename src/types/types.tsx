@@ -60,3 +60,17 @@ export type TData = {
 	email: string; 
 	password: string; 
 }
+
+export type TServerResponse<T> = {
+	success: boolean;
+} & T;
+
+export type TRefreshTokenResponse = TServerResponse<{
+	refreshToken: string;
+	accessToken: string;
+	message: string;
+	user: {
+		name: string;
+		email: string;
+	}
+}>

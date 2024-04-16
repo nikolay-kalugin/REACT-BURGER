@@ -45,10 +45,12 @@ export type TModalProps = {
 }
 
 export type TOrderResults = { 
-	orderIngredients: any[]; 
+	orderIngredients: TIngredient[]; 
 	totalPrice: number; 
-	data: { ingredients: any[]; }; 
-	constructorIngredientsCounts: any; 
+	data: { 
+		ingredients: TIngredient[]; 
+	}; 
+	constructorIngredientsCounts: number; 
 }
 
 export type TComponent = {

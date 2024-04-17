@@ -8,7 +8,21 @@ export type TIngredient = {
     type: string;
     price: number;
     image: string;
+	image_large: string;
+	calories: string | number;
+	proteins: string | number;
+	fat: string | number;
+	carbohydrates: string | number;
 }
+
+// export type TIngredientDetails = {
+// 	image_large: string;
+// 	name: string;
+// 	calories: string | number;
+// 	proteins: string | number;
+// 	fat: string | number;
+// 	carbohydrates: string | number;
+// }
 
 export type TIngredientProps = {
 	ingredient: {
@@ -28,7 +42,7 @@ export type TIngredientCategoryProps = {
 
 }
 
-export type TIngredientDetails = {
+export type TIngredientDetailsProps = {
 	ingredientDetails: {
 		image_large: string;
 		name: string;
@@ -38,6 +52,8 @@ export type TIngredientDetails = {
 		carbohydrates: string | number;
 	}
 }
+
+
 
 export type TModalProps = {
 	title?: string; 

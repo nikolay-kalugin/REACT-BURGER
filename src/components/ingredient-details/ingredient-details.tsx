@@ -1,10 +1,10 @@
 import styles from '../ingredient-details/ingredient-details.module.css'
 
-import { TIngredientDetails } from '../../types/types' 
+import { TIngredientDetailsProps } from '../../types/types' 
 
 
 
-function IngredientDetails({ingredientDetails}: TIngredientDetails) {
+function IngredientDetails( {ingredientDetails} : TIngredientDetailsProps ) {
 
 	return (
 

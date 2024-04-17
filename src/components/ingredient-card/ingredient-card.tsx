@@ -7,7 +7,10 @@ import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selector
 import getOrderResults from '../../redux/selectors/getOrderResults'
 import { Link, useLocation } from 'react-router-dom';
 
-function IngredientCard({ingredient}) {
+import { TIngredientProps } from '../../types/types' 
+
+
+function IngredientCard({ingredient}: TIngredientProps) {
 
 	const location = useLocation();
 

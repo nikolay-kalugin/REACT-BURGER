@@ -2,8 +2,12 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getUserAuthRequest, getUser } from '../../redux/selectors/selectors';
 
+import { TComponent } from '../../types/types' 
+
+
+
 // Для авторизованных 
-export function OnlyAuth({component}) {
+export function OnlyAuth({component}: TComponent){
 
 	let location = useLocation();
 
@@ -32,14 +36,14 @@ export function OnlyAuth({component}) {
 }
 
 // Для НЕ авторизованных 
-export function OnlyUnAuth({component}) {
+export function OnlyUnAuth({component}: TComponent)  {
 
 	const user = useSelector( getUser );
 	const location = useLocation();
 
 
 
-	// признак, что пользователь имеет доступ к маршруту /reыуе-password
+	// признак, что пользователь имеет доступ к маршруту /reset-password
 	const resetPasswordAccess = location.state && location.state.resetPasswordAccess
 
 

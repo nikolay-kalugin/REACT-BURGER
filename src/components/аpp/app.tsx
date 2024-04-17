@@ -29,11 +29,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch( getIngredientsStart() );
+    dispatch( 
+      // @ts-ignore
+      getIngredientsStart() 
+    );
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch( checkUserAuth() );
+  useEffect( () => {
+    dispatch(
+      // @ts-ignore 
+      checkUserAuth() 
+    );
   }, [dispatch]);
 
   const ingredientDetails = useSelector( getIngredientDetails )
@@ -50,9 +56,9 @@ function App() {
 
       <Routes location={background || location}>
 
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={ <HomePage /> } />
           <Route path="/ingredients/:ingredientID" element={<IngredientsPage />} />
-          <Route path="*" element={<NotFound404 />} />
+          <Route path="*" element={ <NotFound404 /> } />
 
           <Route path="/login" 
               element={
@@ -81,7 +87,7 @@ function App() {
 
 
 
-          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/orders" element={ <OrdersPage /> } />
 
 
           {/* Профиль пользователя */}
@@ -103,7 +109,7 @@ function App() {
       {
         background && (
           <Routes>
-            <Route
+            <Route 
               path="/ingredients/:ingredientID"
               element={
                 <Modal title="Детали ингредиента" >

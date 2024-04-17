@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, ChangeEvent, FormEvent} from 'react';
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -8,13 +8,13 @@ export function ResetPasswordPage() {
 
 	const navigate = useNavigate();
 
-	const [newUserPassword, setNewUserPassword] = React.useState('')
-	const onChangePassword = (e) => {
+	const [newUserPassword, setNewUserPassword] = useState('')
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setNewUserPassword(e.target.value)
 	}
 
-	const [token, setToken] = React.useState('')
-	const onChangeToken = (e) => {
+	const [token, setToken] = useState('')
+	const onChangeToken = (e: ChangeEvent<HTMLInputElement>) => {
 		setToken(e.target.value)
 	}
 
@@ -24,7 +24,7 @@ export function ResetPasswordPage() {
 	  } 
 
 
-	const onClickHandler = async (url, data) => {
+	const onClickHandler = async (url: string, data: { password: string; token: string; }) => {
 		const updatePasswordResult = await fetchWithRefresh(url, data)
 										
 		updatePasswordResult.success && navigate(`/login`);
@@ -36,7 +36,7 @@ export function ResetPasswordPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={e => { e.preventDefault(); }}
+					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 				>
 
 					<h2 className="mb-6">Восстановление пароля</h2>

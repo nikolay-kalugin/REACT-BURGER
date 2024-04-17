@@ -2,7 +2,9 @@ import { userRegistrationRequest, userRegistrationSuccess, userRegistrationFaile
 import { BURGER_API_URL } from '../utils/api';
 
 export const registerUser = 
-	(dataParam) => 
+
+	(dataParam) =>
+
 		(dispatch) => {
 			
 			dispatch( userRegistrationRequest() );

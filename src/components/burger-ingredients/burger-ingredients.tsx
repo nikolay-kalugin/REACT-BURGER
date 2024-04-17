@@ -1,9 +1,11 @@
-import { useState, useMemo, useRef, } from 'react';
+import { useState, useMemo, useRef, SetStateAction, } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import IngredientCategory from '../ingredient-category/ingredient-category';
 import { useSelector } from 'react-redux';
 import { getIsLoading, getIngredients } from '../../redux/selectors/selectors';
+
+import { TIngredient } from '../../types/types' 
 
 function BurgerIngredients() {
 
@@ -26,23 +28,30 @@ function BurgerIngredients() {
 		const elemSauces = refSaucesList?.current
 		const elemMains = refMainsList?.current
 
+		/* @ts-ignore */
 		const rectTabs = elemTabs?.getBoundingClientRect();
+		/* @ts-ignore */
 		const rectBuns = elemBuns?.getBoundingClientRect();
+		/* @ts-ignore */
 		const rectSauces = elemSauces?.getBoundingClientRect();
+		/* @ts-ignore */
 		const rectMains = elemMains?.getBoundingClientRect();
 
 		const diffKoeff = 120;
 
+		/* @ts-ignore */
 		if ( (rectBuns?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('one')
 		}
 
+		/* @ts-ignore */
 		if ( (rectSauces?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('two')
 		}
 
+		/* @ts-ignore */
 		if ( (rectMains?.top - rectTabs?.top) < diffKoeff ) 
 		{
 			setCurrentTab('three')
@@ -52,29 +61,33 @@ function BurgerIngredients() {
 	// Переключение табов при скроллинге - end
 	
 	
-	const onTabClick = (tab) => {
+	const onTabClick = (tab: SetStateAction<string>) => {
 		
 		setCurrentTab(tab);
 		
 		switch(tab)
 		{
+			/* @ts-ignore */
 			case 'buns': refBunsList?.current.scrollIntoView({block: "start", behavior: "smooth"}) 
 				break;
+			/* @ts-ignore */
 			case 'sauces': refSaucesList?.current.scrollIntoView({block: "start", behavior: "smooth"})
 				break;
+			/* @ts-ignore */
 			case 'mains': refMainsList?.current.scrollIntoView({block: "start", behavior: "smooth"})
 				break;
 			default: 	
 		}
 		
+		/* @ts-ignore */
 		appScroll.scrollTo( 0, 0 )
 	};
 
 	const [buns, sauces, mains] = useMemo(() => {
 		return [
-					ingredients.filter( obj => obj.type === 'bun' ), 
-					ingredients.filter( obj => obj.type === 'sauce' ),
-					ingredients.filter( obj => obj.type === 'main' )
+					ingredients.filter( (obj: TIngredient) => obj.type === 'bun' ), 
+					ingredients.filter( (obj: TIngredient) => obj.type === 'sauce' ),
+					ingredients.filter( (obj: TIngredient) => obj.type === 'main' )
 				]
 	  }, [ingredients])
 	

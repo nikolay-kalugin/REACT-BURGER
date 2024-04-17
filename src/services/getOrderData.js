@@ -8,7 +8,9 @@ import { BURGER_API_URL } from '../utils/api';
 
 
 export const getOrderData = 
-	(data) => 
+
+	(data) =>
+
 		(dispatch) => {
 			
 			dispatch( getOrderDataRequest() );
@@ -18,6 +20,7 @@ export const getOrderData =
 			fetch( url, 
 			{
 				method: "POST",
+
 				headers: {
 					"Content-Type": "application/json",
 					"Authorization": localStorage.getItem("accessToken"),

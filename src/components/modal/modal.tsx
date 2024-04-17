@@ -8,10 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOrderDetails }  from '../../redux/actions/orderDetailsActions'
 import { getOrderIsLoading, getOrderDetails } from '../../redux/selectors/selectors';
 
-const modal = document.getElementById('modal') 
+import { TModalProps } from '../../types/types' 
+ 
+
+const modal = document.getElementById('modal') as Element; 
 
 
-function Modal( {title, children} ) {
+function Modal( {title, children} : TModalProps ) {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -35,7 +38,7 @@ function Modal( {title, children} ) {
 
 
 	useEffect(() => {
-		const handleEscape = (e) => {
+		const handleEscape = (e: KeyboardEvent) => {
 			e.key === 'Escape' && onClose();
 		}
 

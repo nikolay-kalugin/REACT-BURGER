@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './profile.module.css';
 import { NavLink } from 'react-router-dom';
@@ -12,7 +12,7 @@ export function ProfilePage() {
 
 	const [userNameEditing, setUserNameEditing] = useState(true);
 
-	const onNameIconClickHandler = (e) =>
+	const onNameIconClickHandler = () =>
 	{
 		setUserNameEditing(!userNameEditing);
 	}
@@ -20,23 +20,24 @@ export function ProfilePage() {
 	const [isVisibleProfile, setIsVisibleProfile] = useState(true);
 
 	const [profileName, setProfileName] = useState('');
-	const onChangeName = (e) => {
+	const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfileName(e.target.value);
 	}
 
 	const [profileEmail, setProfileEmail] = useState('');
-	const onChangeEmail = (e) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfileEmail(e.target.value);
 	}
 
 	const [profilePassword, setProfilePassword] = useState('');
-	const onChangePassword = (e) => {
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setProfilePassword(e.target.value);
 	}
 
 	// Подгрузка данных пользователя в профиль
-	useEffect(() => 
+	useEffect(() =>
 
+			//@ts-ignore
 			async() => {
 
 				if( document.location.pathname === '/profile' )
@@ -59,7 +60,7 @@ export function ProfilePage() {
 	}
 
 	// Обработчик кнопки "Выход"	
-	const onClickLogoutHandler = async(url, data) => {
+	const onClickLogoutHandler = async(url: string, data: { token: string | null; }) => {
 		const logoutUserResult = await fetchWithRefresh(url, data)
 		dispatch(setUser(null));
 		localStorage.removeItem("accessToken");
@@ -87,7 +88,7 @@ export function ProfilePage() {
 	}
 
 	// Обработчик кнопки "Сохранить"
-	const onClickSaveBtn = async(url, data) => {
+	const onClickSaveBtn = async(url: string, data: { name: string; email: string; password: string; }) => {
 		const patchUserDataResult = await patchUserData(url, data)
 
 		if(patchUserDataResult.success)
@@ -113,7 +114,7 @@ export function ProfilePage() {
 							>
 								{
 									({isActive}) => (
-										<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}>
+										<p className={`styles.Text ${isActive ? styles.TextDefault : styles.TextInactive}`}>
 											Профиль
 										</p>
 									)
@@ -128,7 +129,7 @@ export function ProfilePage() {
 							>
 								{
 									({isActive}) => (
-										<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}>
+										<p className={`styles.Text ${isActive ? styles.TextDefault : styles.TextInactive}`}>
 											История заказов
 										</p>
 									)
@@ -143,7 +144,7 @@ export function ProfilePage() {
 							>
 								{
 									({isActive}) => (
-										<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}>
+										<p className={`styles.Text ${isActive ? styles.TextDefault : styles.TextInactive}`}>
 											Выход
 										</p>
 									)
@@ -168,7 +169,7 @@ export function ProfilePage() {
 
 						<form 
 							className={styles.form} 
-							onSubmit={e => { e.preventDefault(); }}
+							onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 						>
 
 							<Input

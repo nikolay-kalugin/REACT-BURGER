@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -6,19 +6,22 @@ import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
 import { useDispatch } from 'react-redux';
 import { setUserAuthRequest, setUserAuthSuccess, setUserAuthFailed, setUser, setUserPassword } from '../../redux/actions/userActions'
 
+
 export function LoginPage() {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	const loginUrl = `${BURGER_API_URL}/auth/login`
+
 	const [userAuthEmail, setUserAuthEmail] = useState('');
-	const onChangeEmail = (e) => {
+	const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserAuthEmail(e.target.value)
 	}
 
 	const [userAuthPassword, setUserAuthPassword] = useState('');
-	const onChangePassword = (e) => {
+	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserAuthPassword(e.target.value)
 	}
 
@@ -30,7 +33,7 @@ export function LoginPage() {
 	}
 
 	// Обработчик кнопки "Вход"
-	const  onClickHandler = async (url, data) => {
+	const  onClickHandler = async ( url: string, data: { email: string; password: string; } ) => {
 
 		const authUserResult = await fetchWithRefresh(url, data)
 
@@ -68,7 +71,7 @@ export function LoginPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={e => { e.preventDefault(); }}
+					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
 				>
 
 					<h2 className="mb-6">Вход</h2>
@@ -94,7 +97,7 @@ export function LoginPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler(`${BURGER_API_URL}/auth/login`, loginUserData)}
+						onClick={() => onClickHandler(loginUrl, loginUserData)}
 					>
 						Войти
 					</Button>

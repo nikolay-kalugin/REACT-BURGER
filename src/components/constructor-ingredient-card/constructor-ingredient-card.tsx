@@ -7,8 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { getAddedIngredients } from '../../redux/selectors/selectors';
- 
-function ConstructorIngredientCard({ingredient}) {
+
+import { TIngredientProps } from '../../types/types' 
+
+
+function ConstructorIngredientCard({ingredient}: TIngredientProps) {
 
 	const dispatch = useDispatch();
 
@@ -40,10 +43,13 @@ function ConstructorIngredientCard({ingredient}) {
 
 			if (dragObjIndex === dropObjIndex) { return }
 
+			// @ts-ignore
 			const hoverBoundingRect = ref.current?.getBoundingClientRect();
 			const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
 
 			const clientOfSet = monitor.getClientOffset();
+
+			// @ts-ignore
 			const hoverClientY = clientOfSet.y - hoverBoundingRect.top;
 
 			if( dragObjIndex < dropObjIndex && hoverClientY < hoverMiddleY) { return }

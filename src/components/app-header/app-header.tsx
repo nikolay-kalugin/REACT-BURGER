@@ -21,7 +21,7 @@ function AppHeader()
 									<span className={styles.NavIcon}>
 										<BurgerIcon type={isActive ? "primary" : "secondary"} />
 									</span>
-									<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}>
+									<p className ={`${styles.Text} ${isActive ? styles.TextDefault : styles.TextInactive}`}>
 										Конструктор
 									</p>
 								</>
@@ -37,7 +37,7 @@ function AppHeader()
 									<span className={styles.NavIcon}>
 										<ListIcon type={isActive ? "primary" : "secondary"} />
 									</span>
-									<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}>
+									<p className={`${styles.Text} ${isActive ? styles.TextDefault : styles.TextInactive}`}>
 										Лента заказов
 									</p>
 								</>
@@ -60,7 +60,7 @@ function AppHeader()
 									<span className={styles.NavIcon}>
 										<ProfileIcon type={ isActive ? "primary" : "secondary"} />
 									</span>
-									<p className={[styles.Text, isActive ? styles.TextDefault : styles.TextInactive]}
+									<p className={`${styles.Text} ${isActive ? styles.TextDefault : styles.TextInactive}`}
 									>
 										{!user ? 'Личный кабинет' : user.name}
 									</p>

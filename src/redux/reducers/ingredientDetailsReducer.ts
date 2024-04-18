@@ -3,12 +3,14 @@ import {
 } from '../actions/__types'
 
 
+import { TAllActions } from '../../types/actions_types' 
+
 const initialState = {
 	ingredientDetails: null,
 };
 
 
-export const ingredientDetailsReducer = ( state = initialState, action ) => {
+export const ingredientDetailsReducer = ( state = initialState, action: TAllActions ) => {
 
 	switch( action.type ) 
 	{

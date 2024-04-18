@@ -12,10 +12,10 @@ import {
 	SET_USER_EMAIL,
 	SET_USER_PASSWORD,
 
-	// SET_RESET_PASSWORD_ACCESS,
 
 } from '../actions/__types'
 
+import { TAllActions } from '../../types/actions_types' 
 
 const initialState = {
 
@@ -41,13 +41,10 @@ const initialState = {
 	userEmail: '',
 	userPassword: '',
 
-	// Признак разрешить доступ к маршруту  /reset-password
-	// resetPasswordAccess: false,
-
 };
 
 
-export const userReducer = ( state = initialState, action ) => {
+export const userReducer = ( state = initialState, action: TAllActions ) => {
 
 	switch( action.type ) 
 	{

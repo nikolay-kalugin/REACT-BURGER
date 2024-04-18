@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.8",
     "react-devtools": "^5.0.0"
   }
 }

@@ -1,11 +1,13 @@
 import { userRegistrationRequest, userRegistrationSuccess, userRegistrationFailed } from '../redux/actions/userActions';
 import { BURGER_API_URL } from '../utils/api';
+import { AppThunk, AppDispatch } from '../index';
 
-export const registerUser = 
+
+export const registerUser : AppThunk = 
 
 	(dataParam) =>
 
-		(dispatch) => {
+		(dispatch : AppDispatch) => {
 			
 			dispatch( userRegistrationRequest() );
 

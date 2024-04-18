@@ -6,13 +6,15 @@ import {
 } from '../actions/__types'
 
 
+import { TAllActions } from '../../types/actions_types' 
+
 const initialState = {
 	bun: null,
 	addedIngredients: [],
 };
 
 
-export const constructorReducer = ( state = initialState, action ) => {
+export const constructorReducer = ( state = initialState, action: TAllActions ) => {
 
 	switch( action.type ) 
 	{

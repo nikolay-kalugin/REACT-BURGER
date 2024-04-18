@@ -1,11 +1,11 @@
 import { getUserData } from '../utils/api';
 import { setUser } from '../redux/actions/userActions';
+import {AppThunk, AppDispatch} from '../index';
 
-
-export const getUser = 
+export const getUser: AppThunk = 
 () => 
 {
-	return (dispatch) => 
+	return (dispatch: AppDispatch) => 
     {
 	  return getUserData()
             .then( res => {
@@ -15,10 +15,10 @@ export const getUser =
 };
 
 
-export const checkUserAuth = 
+export const checkUserAuth: AppThunk = 
     () => 
     {
-        return (dispatch) => {
+        return (dispatch: AppDispatch) => {
             
             if (localStorage.getItem("accessToken")) 
             {

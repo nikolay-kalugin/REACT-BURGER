@@ -15,15 +15,6 @@ export type TIngredient = {
 	carbohydrates: string | number;
 }
 
-// export type TIngredientDetails = {
-// 	image_large: string;
-// 	name: string;
-// 	calories: string | number;
-// 	proteins: string | number;
-// 	fat: string | number;
-// 	carbohydrates: string | number;
-// }
-
 export type TIngredientProps = {
 	ingredient: {
 		_id: string | number;
@@ -73,10 +64,18 @@ export type TComponent = {
 	component: JSX.Element
 }
 
-export type TData = { 
+export type TUserData = { 
 	name: string; 
 	email: string; 
 	password: string; 
+}
+
+export type TUser = {
+	user: {
+		name: string; 
+		email: string; 
+		password: string; 
+	} 
 }
 
 export type TServerResponse<T> = {

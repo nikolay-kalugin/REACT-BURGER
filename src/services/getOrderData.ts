@@ -5,13 +5,14 @@ import { getOrderDataRequest,
 
 import { setOrderDetails } from '../redux/actions/orderDetailsActions';
 import { BURGER_API_URL } from '../utils/api';
+import { AppThunk, AppDispatch } from '../index';
 
 
-export const getOrderData = 
+export const getOrderData : AppThunk = 
 
 	(data) =>
 
-		(dispatch) => {
+		(dispatch : AppDispatch) => {
 			
 			dispatch( getOrderDataRequest() );
 

@@ -5,6 +5,7 @@ import {
 	GET_ORDER_DATA_FAILED,
 } from '../actions/__types'
 
+import { TAllActions } from '../../types/actions_types' 
 
 const initialState = {
 	orderDetails: null,
@@ -13,7 +14,7 @@ const initialState = {
 };
 
 
-export const orderDetailsReducer = ( state = initialState, action ) => {
+export const orderDetailsReducer = ( state = initialState, action : TAllActions ) => {
 
 	switch( action.type ) 
 	{

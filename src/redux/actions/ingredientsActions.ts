@@ -7,7 +7,7 @@ import {
 import {
 	IGetIngredientsRequest,
 	IGetIngredientsSuccess,
-	IGetIngredientsFailed
+	IGetIngredientsFailed,
 } from '../../types/actions_types'
 
 import { TIngredient } from '../../types/types'

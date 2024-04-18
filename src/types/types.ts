@@ -64,18 +64,10 @@ export type TComponent = {
 	component: JSX.Element
 }
 
-export type TUserData = { 
+export type TUser = { 
 	name: string; 
 	email: string; 
 	password: string; 
-}
-
-export type TUser = {
-	user: {
-		name: string; 
-		email: string; 
-		password: string; 
-	} 
 }
 
 export type TServerResponse<T> = {

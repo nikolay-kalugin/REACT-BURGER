@@ -1,6 +1,6 @@
 import { getUserData } from '../utils/api';
 import { setUser } from '../redux/actions/userActions';
-import {AppThunk, AppDispatch} from '../index';
+import { AppThunk, AppDispatch } from '../index';
 
 export const getUser: AppThunk = 
 () => 
@@ -26,7 +26,7 @@ export const checkUserAuth: AppThunk =
                 .catch(() => {
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
-                    dispatch(setUser(null));
+                    dispatch(setUser({name: '', email: '', password: ''}));
                 })
 
             } 

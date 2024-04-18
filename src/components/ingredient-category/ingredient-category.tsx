@@ -2,7 +2,10 @@ import { LegacyRef, forwardRef } from 'react';
 import IngredientCard from '../ingredient-card/ingredient-card';
 import styles from './ingredient-category.module.css';
 
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
+
+import { useDispatch } from '../../index';
+
 import { setIngredientDetails } from '../../redux/actions/ingredientDetailsActions'
 
 import { TIngredientCategoryProps } from '../../types/types' 

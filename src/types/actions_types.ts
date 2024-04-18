@@ -55,6 +55,6 @@ export interface ISetIngredientDetails {
 
 
 
-// Объединяем в Unions
-export type TGetIngredients = IGetIngredientsRequest | IGetIngredientsSuccess | IGetIngredientsFailed
+// Union types
+export type TAllActions = IGetIngredientsRequest | IGetIngredientsSuccess | IGetIngredientsFailed
 

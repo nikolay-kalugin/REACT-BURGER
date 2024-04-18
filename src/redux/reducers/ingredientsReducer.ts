@@ -5,6 +5,8 @@ import {
 
 } from '../actions/__types'
 
+import { TAllActions } from '../../types/actions_types' 
+
 
 const initialState = {
 	ingredients: [],
@@ -13,7 +15,7 @@ const initialState = {
 };
 
 
-export const ingredientsReducer = ( state = initialState, action ) => {
+export const ingredientsReducer = ( state = initialState, action: TAllActions ) => {
 
 	switch( action.type ) 
 	{

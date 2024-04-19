@@ -29,7 +29,7 @@ export type RootState = ReturnType<typeof store.getState>;
 // Типизация всех экшенов приложения
 type TApplicationActions = TAllActions;
 
-// Типизация thunk'ов в нашем приложении
+// Типизация thunk'ов (т.е. асинхронных экшенов) 
 export type AppThunk<TReturn = void> = ActionCreator<
     ThunkAction<TReturn, Action, RootState, TApplicationActions>
 >; 
@@ -37,14 +37,19 @@ export type AppThunk<TReturn = void> = ActionCreator<
 // Типизация метода dispatch для проверки на валидность отправляемого экшена
 export type AppDispatch = Dispatch<TApplicationActions>; 
 
+// export type AppDispatch<TReturnType = void> = (
+//   action: TApplicationActions | AppThunk<TReturnType>
+// ) => TReturnType;
+
+
+
+// Хук не даст отправить экшен, который ему не знаком
+// export const useDispatch = () => dispatchHook<AppDispatch | AppThunk>();
+
+export const useDispatch: () => AppDispatch = dispatchHook;
 
 // Типизация useSelector
 export const useSelector: TypedUseSelectorHook<RootState> = selectorHook; 
-
-// Хук не даст отправить экшен, который ему не знаком
-export const useDispatch = () => dispatchHook<AppDispatch | AppThunk>(); 
-
-
 
 root.render(
   <React.StrictMode>

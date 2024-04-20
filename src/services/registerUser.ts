@@ -24,9 +24,6 @@ export const registerUser : AppThunk =
 			.then( response => response.ok 
 				? response.json() 
 				: response.json().then( obj => console.log( obj.message ) )
-					// Promise.reject( new Error('Server returned ' + response.status) ) 
-				
-					
 			)
 			.then( obj => 
 					{

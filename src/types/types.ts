@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 
 export type TIngredient = {
-    _id: string | number;
-    id: string | number;
+    _id: number;
+    id: number;
     name: string;
     type: string;
     price: number;
@@ -12,13 +12,13 @@ export type TIngredient = {
 	calories: string | number;
 	proteins: string | number;
 	fat: string | number;
-	carbohydrates: string | number;
+	carbohydrates: string | number;	
 }
 
 export type TIngredientProps = {
 	ingredient: {
-		_id: string | number;
-		id: string | number;
+		_id: number;
+		id: number;
 		name: string;
 		type: string;
 		price: number;
@@ -67,7 +67,7 @@ export type TComponent = {
 export type TUser = { 
 	name: string; 
 	email: string; 
-	password: string; 
+	password?: string; 
 }
 
 export type TServerResponse<T> = {

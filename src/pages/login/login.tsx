@@ -3,8 +3,13 @@ import styles from './login.module.css';
 import { Button, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { BURGER_API_URL, fetchWithRefresh } from '../../utils/api';
-import { useDispatch } from 'react-redux';
-import { setUserAuthRequest, setUserAuthSuccess, setUserAuthFailed, setUser, setUserPassword } from '../../redux/actions/userActions'
+import { useDispatch } from '../../index';
+
+import { setUserAuthRequest, 
+	setUserAuthSuccess, 
+	setUserAuthFailed, 
+	setUser, 
+	setUserPassword } from '../../redux/actions/userActions'
 
 
 export function LoginPage() {

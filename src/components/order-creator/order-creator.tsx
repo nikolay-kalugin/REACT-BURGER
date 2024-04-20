@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './order-creator.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../index';
 import { getAddedIngredients, getAddedBun, getUser } from '../../redux/selectors/selectors';
 import { getOrderData } from '../../services/getOrderData';
 import getOrderResults from '../../redux/selectors/getOrderResults';
@@ -31,7 +31,8 @@ function OrderCreator() {
 	const orderButtonClickHandler = (orderResults: TOrderResults) => {
 
 		if (user)
-		{
+		{	
+			// @ts-ignore
 			dispatch( setOrderDetails({order: 'loading'}) )
 			
 			// @ts-ignore

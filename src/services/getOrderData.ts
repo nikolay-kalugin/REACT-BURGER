@@ -18,26 +18,31 @@ export const getOrderData : AppThunk =
 
 			const url = `${BURGER_API_URL}/orders`;
 
-			fetch( url, 
-			{
-				method: "POST",
+			const accessToken = localStorage.getItem("accessToken");
 
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": localStorage.getItem("accessToken"),
-				},
-				body: JSON.stringify(data)
-			})
-			.then( response => response.ok 
-						? response.json() 
-						: Promise.reject( new Error('Server returned ' + response.status) ) 
-			)
-			.then( obj => { 
-							dispatch( getOrderDataSuccess(obj.data) ); 
-							return obj;
-						})
-			.then( obj => dispatch( setOrderDetails(obj) ) ) 
-			.catch( err => dispatch( getOrderDataFailed(err) ) )
+			if(accessToken) 
+			{
+				fetch( url, 
+					{
+						method: "POST",
+		
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": accessToken,
+						},
+						body: JSON.stringify(data)
+					})
+					.then( response => response.ok 
+								? response.json() 
+								: Promise.reject( new Error('Server returned ' + response.status) ) 
+					)
+					.then( obj => { 
+									dispatch( getOrderDataSuccess(obj.data) ); 
+									return obj;
+								})
+					.then( obj => dispatch( setOrderDetails(obj) ) ) 
+					.catch( err => dispatch( getOrderDataFailed(err) ) )
+			}
 		} 
 
 

@@ -2,7 +2,7 @@ import { useState, useMemo, useRef, SetStateAction, } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import IngredientCategory from '../ingredient-category/ingredient-category';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../index';
 import { getIsLoading, getIngredients } from '../../redux/selectors/selectors';
 
 import { TIngredient } from '../../types/types' 

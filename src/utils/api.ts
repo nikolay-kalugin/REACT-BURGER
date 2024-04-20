@@ -12,7 +12,7 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 };
   
 // Обновление токена
-export const refreshToken = () : Promise<TRefreshTokenResponse> => {
+export const refreshToken = (): Promise<TRefreshTokenResponse> => {
 	return fetch(`${BURGER_API_URL}/auth/token`, {
 			method: "POST",
 			headers: {
@@ -41,9 +41,9 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 			);
 		return await checkResponse<TRefreshTokenResponse>(res);
 	} 
-	catch(err) 
+	catch(err: any) 
 	{
-		//@ts-ignore
+		
 		if (err.message === "jwt expired") 
 		{
 			// обновляем токен
@@ -71,7 +71,6 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 		} 
 		else 
 		{
-			//@ts-ignore
 			console.log( err.message );
 			return Promise.reject(err);
 		}
@@ -81,26 +80,36 @@ export const fetchWithRefresh = async (url: RequestInfo | URL, options: { email?
 
 // getUserData с обновлением токена (используется localStorage)
 export const getUserData = async () : Promise<TRefreshTokenResponse> => {
-	try {
-		const res = await fetch(`${BURGER_API_URL}/auth/user`, 
+	try 
+	{
+		const accessToken = localStorage.getItem("accessToken");
+
+		if (accessToken) 
+		{
+			const res = await fetch(`${BURGER_API_URL}/auth/user`, 
 				{
 					method: "GET",
-					//@ts-ignore
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": localStorage.getItem("accessToken"),
+						"Authorization": accessToken,
 					},
 				}
 			);
-		return await checkResponse<TRefreshTokenResponse>(res);
+
+			return await checkResponse<TRefreshTokenResponse>(res);
+
+		}
+		
+		return Promise.reject();
 	} 
-	catch(err) 
+	catch(err: any) 
 	{
-		//@ts-ignore
-		if ( err.message === "jwt expired" )  // err.message === "Token is invalid"
+
+		if ( err.message === "jwt expired" ) 
 		{
 			// обновляем токен
 			const refreshData = await refreshToken(); 
+
 			if (!refreshData.success) 
 			{
 				return Promise.reject(refreshData);
@@ -109,23 +118,29 @@ export const getUserData = async () : Promise<TRefreshTokenResponse> => {
 			localStorage.setItem("refreshToken", refreshData.refreshToken);
 			localStorage.setItem("accessToken", refreshData.accessToken);
 
+			const accessToken = localStorage.getItem("accessToken");
 
-			// повторяем запрос
-			const res = await fetch(`${BURGER_API_URL}/auth/user`, 
-					{
-						method: "GET",
-						//@ts-ignore
-						headers: {
-							"Content-Type": "application/json",
-							"Authorization": localStorage.getItem("accessToken"),
-						},
-					}
-				); 
-			return await checkResponse<TRefreshTokenResponse>(res);
+			if(accessToken)
+			{
+				// повторяем запрос
+				const res = await fetch(`${BURGER_API_URL}/auth/user`, 
+						{
+							method: "GET",
+						
+							headers: {
+								"Content-Type": "application/json",
+								"Authorization": accessToken,
+							},
+						}
+					); 
+				return await checkResponse<TRefreshTokenResponse>(res);
+			}
+
+			return Promise.reject();
+
 		} 
 		else 
 		{
-			//@ts-ignore
 			console.log( err.message );
 			return Promise.reject(err);
 		}
@@ -135,23 +150,35 @@ export const getUserData = async () : Promise<TRefreshTokenResponse> => {
 
 // patchUserData с обновлением токена (используется localStorage)
 export const patchUserData = async (url: RequestInfo | URL, options: { name?: string; email?: string; password?: string; headers?: any; }) : Promise<TRefreshTokenResponse> => {
-	try {
-		const res = await fetch(url, 
+	try 
+	{
+		const accessToken = localStorage.getItem("accessToken");
+
+		if(accessToken)
+		{
+
+			const res = await fetch(url, 
 				{
 					method: "PATCH",
-					//@ts-ignore
+				
 					headers: {
 						"Content-Type": "application/json",
-						"Authorization": localStorage.getItem("accessToken"),
+						"Authorization": accessToken,
 					},
 					body: JSON.stringify(options)
 				}
 			);
-		return await checkResponse<TRefreshTokenResponse>(res);
+
+			return await checkResponse<TRefreshTokenResponse>(res);
+
+		}
+
+		return Promise.reject();
+
 	} 
-	catch(err) 
+	catch(err: any) 
 	{
-		//@ts-ignore
+	
 		if (err.message === "jwt expired") 
 		{
 			// обновляем токен
@@ -165,23 +192,32 @@ export const patchUserData = async (url: RequestInfo | URL, options: { name?: st
 			localStorage.setItem("accessToken", refreshData.accessToken);
 			options.headers.authorization = refreshData.accessToken;
 
-			// повторяем запрос
-			const res = await fetch(url, 
+
+			const accessToken = localStorage.getItem("accessToken");
+
+			if(accessToken)
+			{
+				// повторяем запрос
+				const res = await fetch(url, 
 					{
 						method: "PATCH",
-						//@ts-ignore
+
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": localStorage.getItem("accessToken"),
+							"Authorization": accessToken,
 						},
 						body: JSON.stringify(options)
 					}
-				); 
-			return await checkResponse<TRefreshTokenResponse>(res);
+				);
+
+				return await checkResponse<TRefreshTokenResponse>(res);
+			}
+
+			return Promise.reject();
+
 		} 
 		else 
 		{
-			//@ts-ignore
 			console.log( err.message );
 			return Promise.reject(err);
 		}

@@ -3,7 +3,7 @@ import { deleteIngredientConstructor, changeIngredientsConstructor } from '../..
 import styles from './constructor-ingredient-card.module.css';
 import { useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../index';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { getAddedIngredients } from '../../redux/selectors/selectors';

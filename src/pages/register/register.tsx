@@ -4,10 +4,10 @@ import { Input, Button, PasswordInput, EmailInput } from '@ya.praktikum/react-de
 import { NavLink, useNavigate } from 'react-router-dom';
 import { registerUser } from '../../services/registerUser'
 import { getUserRegistrationSuccess } from '../../redux/selectors/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../index';
 
 
-import { TData } from '../../types/types' 
+import { TUser } from '../../types/types' 
 
 export function RegisterPage() {
 
@@ -38,9 +38,9 @@ export function RegisterPage() {
 
 	}
 
-	const onClickHandler = (data: TData) => {
+	const onClickHandler = (data: TUser) => {
 
-		//@ts-ignore
+		
 		dispatch( registerUser(data) );
 
 		if (userRegistrationSuccess) 

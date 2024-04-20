@@ -4,7 +4,8 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay'
 import styles from '../modal/modal.module.css'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from '../../index';
 import { setOrderDetails }  from '../../redux/actions/orderDetailsActions'
 import { getOrderIsLoading, getOrderDetails } from '../../redux/selectors/selectors';
 
@@ -33,7 +34,19 @@ function Modal( {title, children} : TModalProps ) {
 
 	const onClose = useCallback( () => { 
 			handleModalClose(); 
-			dispatch(setOrderDetails(null));
+			dispatch(setOrderDetails({
+				_id: 0,
+				id: 0,
+				name: '',
+				type: '',
+				price: 0,
+				image: '',
+				image_large: '',
+				calories: '',
+				proteins: '',
+				fat: '',
+				carbohydrates: ''
+			}));
 		}, [handleModalClose, dispatch] )
 
 

@@ -1,4 +1,4 @@
-import {useState, ChangeEvent, FormEvent} from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './reset-password.module.css';
 import { Input, Button, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { NavLink, useNavigate } from 'react-router-dom';

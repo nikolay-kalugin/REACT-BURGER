@@ -1,5 +1,5 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../index';
 import styles from './profile.module.css';
 import { NavLink } from 'react-router-dom';
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -35,23 +35,26 @@ export function ProfilePage() {
 	}
 
 	// Подгрузка данных пользователя в профиль
-	useEffect(() =>
-
-			//@ts-ignore
-			async() => {
-
-				if( document.location.pathname === '/profile' )
-				{
-					const getUserDataResult = await getUserData();
-		
-					if (getUserDataResult.success)
-					{
-						setProfileName(getUserDataResult.user.name);
-						setProfileEmail(getUserDataResult.user.email);
-					}
-				}
-			}
+	useEffect(() => 
+		{
+			getUserDataWrap()
+		} 
 	,[]) 
+
+
+	const getUserDataWrap:() => Promise<void> = async() => {
+
+		if( document.location.pathname === '/profile' )
+		{
+			const getUserDataResult = await getUserData();
+
+			if (getUserDataResult.success)
+			{
+				setProfileName(getUserDataResult.user.name);
+				setProfileEmail(getUserDataResult.user.email);
+			}
+		}
+	}
 	
 
 
@@ -60,9 +63,12 @@ export function ProfilePage() {
 	}
 
 	// Обработчик кнопки "Выход"	
-	const onClickLogoutHandler = async(url: string, data: { token: string | null; }) => {
+	const onClickLogoutHandler = async(url: string, data: { token: string | null }) => {
 		const logoutUserResult = await fetchWithRefresh(url, data)
-		dispatch(setUser(null));
+		dispatch(setUser({
+			name: '',
+			email: ''
+		}));
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
 		console.log(logoutUserResult.message)

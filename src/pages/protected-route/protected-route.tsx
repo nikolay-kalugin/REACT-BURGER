@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../index';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getUserAuthRequest, getUser } from '../../redux/selectors/selectors';
 

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ingredient-card.module.css';
 import { useDrag } from 'react-dnd';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../index';
 import { getAddedIngredients, getAddedBun } from '../../redux/selectors/selectors';
 import getOrderResults from '../../redux/selectors/getOrderResults'
 import { Link, useLocation } from 'react-router-dom';

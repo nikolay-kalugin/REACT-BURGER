@@ -5,7 +5,7 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../index';
 import { addIngredientConstructor } from '../../redux/actions/constructorActions';
 import { getAddedIngredients, getAddedBun, getOrderDetails } from '../../redux/selectors/selectors';
 import { useDrop } from 'react-dnd';

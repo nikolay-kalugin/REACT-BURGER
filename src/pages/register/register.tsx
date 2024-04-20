@@ -26,7 +26,7 @@ export function RegisterPage() {
 		setUserEmail(e.target.value)
 	}
 
-	const [userPassword, setUserPassword] = useState(''); // password
+	const [userPassword, setUserPassword] = useState('');
 	const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
 		setUserPassword(e.target.value)
 	}

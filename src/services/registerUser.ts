@@ -3,11 +3,10 @@ import { BURGER_API_URL } from '../utils/api';
 import { AppThunk, AppDispatch } from '../index';
 
 
-export const registerUser : AppThunk = 
-
+export const registerUser: AppThunk = 
 	(dataParam) =>
-
-		(dispatch : AppDispatch) => {
+	{
+		return (dispatch: AppDispatch) => {
 			
 			dispatch( userRegistrationRequest() );
 
@@ -36,3 +35,4 @@ export const registerUser : AppThunk =
 				dispatch( userRegistrationFailed(err) ) 
 			)
 		} 
+	}

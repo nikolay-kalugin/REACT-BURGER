@@ -6,12 +6,12 @@ import {
 } from '../actions/__types'
 
 import { TAllActions } from '../../types/actions_types' 
+import { TInitialState } from '../../types/types'
 
-
-const initialState = {
+const initialState: TInitialState = {
 	ingredients: [],
 	isLoading: false,
-	error: undefined,
+	error: null,
 };
 
 

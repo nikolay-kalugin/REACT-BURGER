@@ -4,8 +4,9 @@ import {
 
 
 import { TAllActions } from '../../types/actions_types' 
+import { TInitialState } from '../../types/types' 
 
-const initialState = {
+const initialState: TInitialState = {
 	ingredientDetails: null,
 };
 

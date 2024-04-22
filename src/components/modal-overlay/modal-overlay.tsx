@@ -1,6 +1,6 @@
 import styles from '../modal-overlay/modal-overlay.module.css'
 
-function ModalOverlay({onClose : () => void}) {
+function ModalOverlay ({onClose}) {
 	return (
 		<div 
 			className={styles.ModalOverlay} 

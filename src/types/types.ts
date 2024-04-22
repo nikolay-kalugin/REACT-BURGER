@@ -83,3 +83,14 @@ export type TRefreshTokenResponse = TServerResponse<{
 		email: string;
 	}
 }>
+
+
+export type TInitialState = {
+	ingredients?: TIngredient[];
+	orderDetails?: TIngredient | null; 
+	ingredientDetails?: TIngredient | null;
+	isLoading?: boolean;
+	error?: string | null;
+	addedIngredients?: TIngredient[];
+	bun?: TIngredient | null;
+}  

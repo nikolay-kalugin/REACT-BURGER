@@ -7,9 +7,9 @@ import {
 
 
 import { TAllActions } from '../../types/actions_types' 
-import { TInitialState } from '../../types/types' 
+import { TInitialStateConstructorReducer } from '../../types/types' 
 
-const initialState: TInitialState = {
+const initialState: TInitialStateConstructorReducer = {
 	bun: null,
 	addedIngredients: [],
 };

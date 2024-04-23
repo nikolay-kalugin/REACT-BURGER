@@ -1,6 +1,6 @@
 import { getUserData } from '../utils/api';
 import { setUser } from '../redux/actions/userActions';
-import { AppThunk, AppDispatch } from '../index';
+import { AppDispatch } from '../index';
 
 export const getUser = 
 () => 
@@ -15,7 +15,7 @@ export const getUser =
     };
 
 
-export const checkUserAuth: AppThunk = 
+export const checkUserAuth = 
     () => 
     {
         return (dispatch: AppDispatch) => {

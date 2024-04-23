@@ -13,7 +13,7 @@ import {
 } from '../../types/actions_types'
 
 
-import { TIngredient } from '../../types/types'
+import { TOrderResults } from '../../types/types'
 
 // Для получения НОМЕРА ЗАКАЗА с бэка 
 
@@ -32,6 +32,6 @@ export const getOrderDataFailed = (err: string) : IGetOrderDataFailed => {
 
 // Для отображения ДАННЫХ ЗАКАЗА
 
-export const setOrderDetails = (obj: TIngredient) : ISetOrderDetails => {
+export const setOrderDetails = (obj: TOrderResults) : ISetOrderDetails => {
 	return { type: SET_ORDER_DETAILS, payload: obj }
 } 

@@ -30,13 +30,21 @@ function OrderCreator() {
 	
 	const orderButtonClickHandler = (orderResults: TOrderResults) => {
 
-		if (user)
+		if(user)
 		{	
-			// @ts-ignore
-			dispatch( setOrderDetails({order: 'loading'}) )
 			
-			// @ts-ignore
-			dispatch( getOrderData(orderResults.data) )
+			dispatch( setOrderDetails({
+					order: 'loading',
+					orderIngredients: [],
+					totalPrice: 0,
+					data: {
+						ingredients: []
+					},
+					constructorIngredientsCounts: 0
+				}) 
+			)
+			
+			dispatch( getOrderData( orderResults.data ) )
 		}
 		else
 		{

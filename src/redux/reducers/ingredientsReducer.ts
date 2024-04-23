@@ -6,9 +6,9 @@ import {
 } from '../actions/__types'
 
 import { TAllActions } from '../../types/actions_types' 
-import { TInitialState } from '../../types/types'
+import { TInitialStateIngredientsReducer } from '../../types/types'
 
-const initialState: TInitialState = {
+const initialState: TInitialStateIngredientsReducer = {
 	ingredients: [],
 	isLoading: false,
 	error: null,

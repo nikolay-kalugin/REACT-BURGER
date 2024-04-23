@@ -16,15 +16,16 @@ import {
 } from '../actions/__types'
 
 import { TAllActions } from '../../types/actions_types' 
+import { TInitialStateUserReducer } from '../../types/types' 
 
-const initialState = {
+const initialState: TInitialStateUserReducer = {
 
 	// признак того, что запрос на Регистрацию в процессе 
 	userRegistrationRequest:  false,
 	// признак того, что запрос на Регистрацию завершен (пользователь зарегистрировался)
 	userRegistrationSuccess: false,
   	// ошибка в результате обмена с API (при регистрации)
-  	userRegistrationError: undefined, 
+  	userRegistrationError: null, 
 
 
 	// признак того, что запрос на Авторизацию в процессе 
@@ -32,7 +33,7 @@ const initialState = {
 	// признак того, что запрос на Авторизацию завершен
 	userAuthSuccess: false,
 	// ошибка в результате обмена с API (при авторизации)
-	userAuthError: undefined,
+	userAuthError: null,
 
 
 	// Данные авторизованного пользователя (для Профиля)

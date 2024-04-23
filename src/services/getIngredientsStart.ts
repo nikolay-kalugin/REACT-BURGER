@@ -1,8 +1,8 @@
 import { getIngredientsRequest, getIngredientsSuccess, getIngredientsFailed } from '../redux/actions/ingredientsActions';
 import { BURGER_API_URL } from '../utils/api';
-import { AppThunk, AppDispatch } from '../index';
+import { AppDispatch } from '../index';
 
-export const getIngredientsStart: AppThunk = 
+export const getIngredientsStart = 
 
 	() =>
 

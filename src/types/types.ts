@@ -45,10 +45,10 @@ export type TIngredientDetailsProps = {
 }
 
 
-
 export type TModalProps = {
 	title?: string; 
-	children: ReactNode;
+	children?: ReactNode;
+	onClose?: () => void;
 }
 
 export type TOrderResults = { 
@@ -58,7 +58,9 @@ export type TOrderResults = {
 		ingredients: TIngredient[]; 
 	}; 
 	constructorIngredientsCounts: number; 
+	order?: string;
 }
+
 
 export type TComponent = {
 	component: JSX.Element
@@ -85,12 +87,44 @@ export type TRefreshTokenResponse = TServerResponse<{
 }>
 
 
-export type TInitialState = {
-	ingredients?: TIngredient[];
-	orderDetails?: TIngredient | null; 
-	ingredientDetails?: TIngredient | null;
-	isLoading?: boolean;
-	error?: string | null;
-	addedIngredients?: TIngredient[];
+export type TInitialStateConstructorReducer = {
+	addedIngredients: TIngredient[];
 	bun?: TIngredient | null;
 }  
+
+
+export type TInitialStateIngredientDetailsReducer = {
+	ingredientDetails?: TIngredient | null;
+}  
+
+
+export type TInitialStateIngredientsReducer = {
+	ingredients: TIngredient[];
+	isLoading: boolean;
+	error: string | null;
+}  
+
+export type TInitialStateOrderDetailsReducer = {
+	orderDetails: TIngredient | null; 
+	isLoading: boolean;
+	error: string | null;
+}  
+
+export type TInitialStateUserReducer = {
+	userRegistrationRequest:  boolean;
+	userRegistrationSuccess: boolean;
+  	userRegistrationError: string | null; 
+
+	userAuthRequest: boolean;
+	userAuthSuccess: boolean;
+	userAuthError: string | null;
+
+	user: {
+		userName: string;
+		userEmail: string;
+	} | null;
+
+	userName: string;
+	userEmail: string;
+	userPassword: string;
+} 

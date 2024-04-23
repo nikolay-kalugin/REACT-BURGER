@@ -35,17 +35,13 @@ function Modal( {title, children} : TModalProps ) {
 	const onClose = useCallback( () => { 
 			handleModalClose(); 
 			dispatch(setOrderDetails({
-				_id: 0,
-				id: 0,
-				name: '',
-				type: '',
-				price: 0,
-				image: '',
-				image_large: '',
-				calories: '',
-				proteins: '',
-				fat: '',
-				carbohydrates: ''
+				order: 'loading',
+				orderIngredients: [],
+				totalPrice: 0,
+				data: {
+					ingredients: []
+				},
+				constructorIngredientsCounts: 0
 			}));
 		}, [handleModalClose, dispatch] )
 

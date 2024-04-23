@@ -1,4 +1,4 @@
-import { TIngredient, TUser } from './types'
+import { TIngredient, TUser, TOrderResults } from './types'
 
 import {
 	GET_INGREDIENTS_REQUEST,
@@ -89,7 +89,7 @@ export interface IGetOrderDataFailed {
 
 export interface ISetOrderDetails {
 	readonly type: typeof SET_ORDER_DETAILS;
-	readonly payload: TIngredient;
+	readonly payload: TOrderResults;
 }
 
 /**************************************/

@@ -18,43 +18,50 @@ function BurgerIngredients() {
 	// Переключение табов при скроллинге - begin
 	const appScroll = document.getElementById('app');
 	const elemTabs = document.getElementById('tabs');
-	const refBunsList = useRef(null);
-	const refSaucesList = useRef(null);
-	const refMainsList = useRef(null);
 
-	function update() {
+	const refBunsList = useRef<HTMLDivElement>(null);
+	const refSaucesList = useRef<HTMLDivElement>(null);
+	const refMainsList = useRef<HTMLDivElement>(null);
+
+	function update() : void {
 		
-		const elemBuns = refBunsList?.current
-		const elemSauces = refSaucesList?.current
-		const elemMains = refMainsList?.current
+		const elemBuns: HTMLDivElement | null = refBunsList?.current
+		const elemSauces: HTMLDivElement | null = refSaucesList?.current
+		const elemMains: HTMLDivElement | null = refMainsList?.current
 
-		/* @ts-ignore */
-		const rectTabs = elemTabs?.getBoundingClientRect();
-		/* @ts-ignore */
-		const rectBuns = elemBuns?.getBoundingClientRect();
-		/* @ts-ignore */
-		const rectSauces = elemSauces?.getBoundingClientRect();
-		/* @ts-ignore */
-		const rectMains = elemMains?.getBoundingClientRect();
+		
+		const rectTabs: DOMRect | undefined = elemTabs?.getBoundingClientRect();
+		const rectBuns: DOMRect | undefined = elemBuns?.getBoundingClientRect();
+		const rectSauces: DOMRect | undefined = elemSauces?.getBoundingClientRect();
+		const rectMains: DOMRect | undefined = elemMains?.getBoundingClientRect();
 
 		const diffKoeff = 120;
 
-		/* @ts-ignore */
-		if ( (rectBuns?.top - rectTabs?.top) < diffKoeff ) 
+	
+		if (rectBuns && rectTabs) 
 		{
-			setCurrentTab('one')
+			if ( (rectBuns.top - rectTabs.top) < diffKoeff ) 
+			{
+				setCurrentTab('one')
+			}
 		}
 
-		/* @ts-ignore */
-		if ( (rectSauces?.top - rectTabs?.top) < diffKoeff ) 
+
+		if (rectSauces && rectTabs) 
 		{
-			setCurrentTab('two')
+			if ( (rectSauces.top - rectTabs.top) < diffKoeff ) 
+			{
+				setCurrentTab('two')
+			}
+		
 		}
 
-		/* @ts-ignore */
-		if ( (rectMains?.top - rectTabs?.top) < diffKoeff ) 
+		if (rectMains && rectTabs) 
 		{
-			setCurrentTab('three')
+			if ( (rectMains.top - rectTabs.top) < diffKoeff ) 
+			{
+				setCurrentTab('three')
+			}
 		}
 
 	}
@@ -65,22 +72,26 @@ function BurgerIngredients() {
 		
 		setCurrentTab(tab);
 		
-		switch(tab)
+		if(refBunsList.current != null && refSaucesList.current != null && refMainsList.current) 
 		{
-			/* @ts-ignore */
-			case 'buns': refBunsList?.current.scrollIntoView({block: "start", behavior: "smooth"}) 
-				break;
-			/* @ts-ignore */
-			case 'sauces': refSaucesList?.current.scrollIntoView({block: "start", behavior: "smooth"})
-				break;
-			/* @ts-ignore */
-			case 'mains': refMainsList?.current.scrollIntoView({block: "start", behavior: "smooth"})
-				break;
-			default: 	
+			switch(tab)
+			{
+				case 'buns': refBunsList.current.scrollIntoView({block: "start", behavior: "smooth"}) 
+					break;
+				case 'sauces': refSaucesList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+					break;
+				case 'mains': refMainsList?.current.scrollIntoView({block: "start", behavior: "smooth"})
+					break;
+				default: 	
+			}
 		}
-		
-		/* @ts-ignore */
-		appScroll.scrollTo( 0, 0 )
+
+		if ( appScroll != null )  
+		{
+			appScroll.scrollTo( 0, 0 )
+		}
+	
+
 	};
 
 	const [buns, sauces, mains] = useMemo(() => {

@@ -16,7 +16,7 @@ export function IngredientsPage() {
 	
 	const ingredients = useSelector( getIngredients );
 
-	[ingredientDetails] = ingredients.filter( (ingredient: TIngredient) => ingredient._id === ingredientID )
+	[ingredientDetails] = ingredients.filter( (ingredient: TIngredient) => String(ingredient._id) === ingredientID )
 
 	return (
 		ingredientDetails && (

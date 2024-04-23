@@ -49,8 +49,11 @@ function ConstructorIngredientCard({ingredient}: TIngredientProps) {
 
 			const clientOfSet = monitor.getClientOffset();
 
-			// @ts-ignore
-			const hoverClientY = clientOfSet.y - hoverBoundingRect.top;
+			let hoverClientY = 0
+			
+			if (clientOfSet != null) {
+				hoverClientY = clientOfSet.y - hoverBoundingRect.top;
+			}
 
 			if( dragObjIndex < dropObjIndex && hoverClientY < hoverMiddleY) { return }
 			if( dragObjIndex > dropObjIndex && hoverClientY > hoverMiddleY) { return }

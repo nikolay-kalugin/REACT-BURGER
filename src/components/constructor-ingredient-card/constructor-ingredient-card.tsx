@@ -51,7 +51,7 @@ function ConstructorIngredientCard({ingredient}: TIngredientProps) {
 
 			let hoverClientY = 0
 			
-			if (clientOfSet != null) {
+			if (clientOfSet !== null) {
 				hoverClientY = clientOfSet.y - hoverBoundingRect.top;
 			}
 

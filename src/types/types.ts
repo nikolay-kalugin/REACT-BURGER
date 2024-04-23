@@ -52,6 +52,7 @@ export type TModalProps = {
 }
 
 export type TOrderResults = { 
+	
 	orderIngredients: TIngredient[]; 
 	totalPrice: number; 
 	data: { 
@@ -59,7 +60,7 @@ export type TOrderResults = {
 	}; 
 	constructorIngredientsCounts: number; 
 	order?: string;
-}
+} 
 
 
 export type TComponent = {

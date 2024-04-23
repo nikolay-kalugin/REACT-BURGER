@@ -42,7 +42,7 @@ export function ProfilePage() {
 	,[]) 
 
 
-	const getUserDataWrap:() => Promise<void> = async() => {
+	const getUserDataWrap : () => Promise<void> = async() => {
 
 		if( document.location.pathname === '/profile' )
 		{

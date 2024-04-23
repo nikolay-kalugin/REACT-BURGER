@@ -72,7 +72,7 @@ function BurgerIngredients() {
 		
 		setCurrentTab(tab);
 		
-		if(refBunsList.current != null && refSaucesList.current != null && refMainsList.current) 
+		if(refBunsList.current !== null && refSaucesList.current !== null && refMainsList.current) 
 		{
 			switch(tab)
 			{
@@ -86,7 +86,7 @@ function BurgerIngredients() {
 			}
 		}
 
-		if ( appScroll != null )  
+		if ( appScroll !== null )  
 		{
 			appScroll.scrollTo( 0, 0 )
 		}

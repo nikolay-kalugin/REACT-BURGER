@@ -89,7 +89,7 @@ export interface IGetOrderDataFailed {
 
 export interface ISetOrderDetails {
 	readonly type: typeof SET_ORDER_DETAILS;
-	readonly payload: TOrderResults;
+	readonly payload: TOrderResults | null;
 }
 
 /**************************************/

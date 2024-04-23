@@ -32,6 +32,6 @@ export const getOrderDataFailed = (err: string) : IGetOrderDataFailed => {
 
 // Для отображения ДАННЫХ ЗАКАЗА
 
-export const setOrderDetails = (obj: TOrderResults) : ISetOrderDetails => {
+export const setOrderDetails = (obj: TOrderResults | null) : ISetOrderDetails => {
 	return { type: SET_ORDER_DETAILS, payload: obj }
 } 

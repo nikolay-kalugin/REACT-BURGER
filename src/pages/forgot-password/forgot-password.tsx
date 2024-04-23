@@ -36,7 +36,11 @@ export function ForgotPasswordPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={(e: FormEvent<HTMLFormElement>) => { e.preventDefault(); }}
+					onSubmit={ (e: FormEvent<HTMLFormElement>) => { 
+						alert(123);
+						e.preventDefault(); 
+						// onClickHandler(`${BURGER_API_URL}/password-reset`, {email} );
+					}}
 				>
 
 					<h2 className="mb-6">Восстановление пароля</h2>
@@ -54,25 +58,29 @@ export function ForgotPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset`, {email} )}
+						// onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset`, {email} ) }
+						
 					>
 						Восстановить
 					</Button>
 
-					<p className="text text_type_main-default text_color_inactive">
-						Вспомнили пароль?
-						<NavLink to="/login">
-							<Button 
-								htmlType="button" 
-								type="secondary" 
-								size="medium"
-							>
-								Войти
-							</Button>
-						</NavLink>
-					</p>
-			
 				</form>
+
+				<p className="text text_type_main-default text_color_inactive">
+					
+					Вспомнили пароль?
+
+					<NavLink to="/login">
+						<Button 
+							htmlType="button" 
+							type="secondary" 
+							size="medium"
+						>
+							Войти
+						</Button>
+					</NavLink>
+					
+				</p>
 
 			</div>
 		</div>

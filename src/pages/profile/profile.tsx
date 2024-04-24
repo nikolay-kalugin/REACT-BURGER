@@ -46,13 +46,26 @@ export function ProfilePage() {
 
 		if( document.location.pathname === '/profile' )
 		{
-			const getUserDataResult = await getUserData();
-
-			if (getUserDataResult.success)
+			try 
 			{
-				setProfileName(getUserDataResult.user.name);
-				setProfileEmail(getUserDataResult.user.email);
+				const getUserDataResult = await getUserData();
+
+				if (!getUserDataResult)
+				{
+
+				}
+				else if(getUserDataResult.success)
+				{
+					setProfileName(getUserDataResult.user.name);
+					setProfileEmail(getUserDataResult.user.email);
+				}
+			} 
+			catch(e) 
+			{
+				// console.log(e);
 			}
+
+
 		}
 	}
 	

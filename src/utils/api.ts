@@ -84,7 +84,7 @@ export const getUserData = async () : Promise<TRefreshTokenResponse> => {
 	{
 		const accessToken = localStorage.getItem("accessToken");
 
-		if (accessToken) 
+		if(accessToken) 
 		{
 			const res = await fetch(`${BURGER_API_URL}/auth/user`, 
 				{

@@ -13,7 +13,7 @@ export function ForgotPasswordPage() {
 		setEmail(e.target.value)
 	}
 
-	const onClickHandler = async (url: string, data: { email: string; }) => {
+	const onClickHandler = async ( url: string, data: { email: string; } ) => {
 
 		if (email === '') 
 		{
@@ -36,11 +36,10 @@ export function ForgotPasswordPage() {
 			
 				<form 
 					className={styles.form}
-					onSubmit={ (e: FormEvent<HTMLFormElement>) => { 
-						alert(123);
-						e.preventDefault(); 
-						// onClickHandler(`${BURGER_API_URL}/password-reset`, {email} );
-					}}
+					onSubmit={ (e: FormEvent<HTMLFormElement>) =>  {
+							e.preventDefault(); 
+						}
+					}
 				>
 
 					<h2 className="mb-6">Восстановление пароля</h2>
@@ -58,8 +57,7 @@ export function ForgotPasswordPage() {
 						type="primary" 
 						size="medium"
 						extraClass="mb-20"
-						// onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset`, {email} ) }
-						
+						onClick={() => onClickHandler(`${BURGER_API_URL}/password-reset`, {email} ) }
 					>
 						Восстановить
 					</Button>
